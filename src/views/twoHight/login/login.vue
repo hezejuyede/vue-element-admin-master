@@ -10,16 +10,30 @@
         <div class="loginTitleRText">使用帮助</div>
       </div>
     </div>
-
+    <div class="loginMap">
+      <img src="./img/map_03.png" alt="">
+      <div class="loginDiv">
+        <div class="loginDivTitle">
+          <div class="loginDivTitleL">
+            <div :class="[clickType ?'clickText':'noClickText']" @click="changeClick(clickType)">管理人员登录</div>
+          </div>
+          <div class="loginDivTitleR">
+            <div :class="[clickType ?'noClickText':'clickText']" @click="changeClick(clickType)">企业人员登录</div>
+          </div>
+          <div class="loginDivCenter"></div>
+          <div class="loginDivBottom">还没有账号？去注册</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
+import {validUsername} from '@/utils/validate'
 
 export default {
   name: 'Login',
-  components: { },
+  components: {},
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
@@ -41,20 +55,21 @@ export default {
         password: '111111'
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        username: [{required: true, trigger: 'blur', validator: validateUsername}],
+        password: [{required: true, trigger: 'blur', validator: validatePassword}]
       },
       passwordType: 'password',
       capsTooltip: false,
       loading: false,
       showDialog: false,
       redirect: undefined,
-      otherQuery: {}
+      otherQuery: {},
+      clickType: true
     }
   },
   watch: {
     $route: {
-      handler: function(route) {
+      handler: function (route) {
         const query = route.query
         if (query) {
           this.redirect = query.redirect
@@ -64,7 +79,8 @@ export default {
       immediate: true
     }
   },
-  created() {},
+  created() {
+  },
   mounted() {
     if (this.loginForm.username === '') {
       this.$refs.username.focus()
@@ -77,7 +93,7 @@ export default {
   },
   methods: {
     checkCapslock(e) {
-      const { key } = e
+      const {key} = e
       this.capsTooltip = key && key.length === 1 && (key >= 'A' && key <= 'Z')
     },
     showPwd() {
@@ -96,7 +112,7 @@ export default {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
-              this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+              this.$router.push({path: this.redirect || '/', query: this.otherQuery})
               this.loading = false
             })
             .catch(() => {
@@ -115,6 +131,9 @@ export default {
         }
         return acc
       }, {})
+    },
+    changeClick(clickType) {
+      this.clickType = !this.clickType
     }
   }
 }
@@ -124,8 +143,8 @@ export default {
 /* 修复input 背景不协调 和光标变色 */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
-$bg:#283443;
-$light_gray:#fff;
+$bg: #283443;
+$light_gray: #fff;
 $cursor: #fff;
 
 @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
@@ -168,9 +187,9 @@ $cursor: #fff;
 </style>
 
 <style lang="scss" scoped>
-$bg:#2d3a4b;
-$dark_gray:#889aa4;
-$light_gray:#eee;
+$bg: #2d3a4b;
+$dark_gray: #889aa4;
+$light_gray: #eee;
 
 .login-container {
   min-height: 100%;
@@ -178,35 +197,40 @@ $light_gray:#eee;
   background-image: url(./img/login.jpg);
   background-size: cover;
   overflow: hidden;
-  .loginTitle{
-    width: 1920px;
+
+  .loginTitle {
+    width: 100%;
     height: 70px;
     background: #0449AE;
-    .loginTitleL{
+
+    .loginTitleL {
       float: left;
       width: 60%;
       height: 70px;
       display: flex;
       align-items: center;
       justify-content: center;
-      .loginTitleL1{
+
+      .loginTitleL1 {
         width: 450px;
         height: 70px;
         font-size: 26px;
         font-family: PangMenZhengDao;
-        font-weight:  700;
+        font-weight: 700;
         display: flex;
         align-items: center;
         justify-content: center;
         color: #FFFFFF;
       }
-      .loginTitleL2{
+
+      .loginTitleL2 {
         width: 1px;
         height: 30px;
         border: 1px solid #FFFFFF;
         opacity: 0.5;
       }
-      .loginTitleL3{
+
+      .loginTitleL3 {
         width: 119px;
         height: 70px;
         font-size: 16px;
@@ -218,13 +242,15 @@ $light_gray:#eee;
         justify-content: center;
       }
     }
-    .loginTitleR{
+
+    .loginTitleR {
       float: right;
       width: 40%;
       height: 70px;
       display: flex;
       align-items: center;
       justify-content: flex-start;
+
       .loginTitleRText {
         width: 96px;
         height: 28px;
@@ -243,6 +269,64 @@ $light_gray:#eee;
 
   }
 
+  .loginMap {
+    width: 100%;
+    height: 590px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+
+    img {
+      margin-left: 272px;
+    }
+
+    .loginDiv {
+      margin-top: 70px;
+      margin-right: 100px;
+      width: 400px;
+      height: 450px;
+      background: #FFFFFF;
+      border-radius: 3px;
+      float: right;
+
+    }
+  }
+
+  .loginDivTitle {
+    height: 80px;
+
+    .loginDivTitleL {
+      float: left;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .loginDivTitleR {
+      float: left;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+  }
+
+
+
+  
   .login-form {
     position: relative;
     width: 520px;
@@ -305,5 +389,17 @@ $light_gray:#eee;
       display: none;
     }
   }
+}
+
+.clickText {
+  color: #3377FF;
+  text-decoration: underline;
+  text-decoration-color: #3377FF;
+  text-decoration-width: 3px;
+  text-underline-offset:18px;
+}
+
+.noClickText {
+  color: #2F3133;
 }
 </style>
