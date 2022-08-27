@@ -20,8 +20,69 @@
           <div class="loginDivTitleR">
             <div :class="[clickType ?'noClickText':'clickText']" @click="changeClick(clickType)">企业人员登录</div>
           </div>
-          <div class="loginDivCenter"></div>
-          <div class="loginDivBottom">还没有账号？去注册</div>
+        </div>
+        <div class="loginDivCenter">
+          <div class="login-btn">
+            <span v-if="userLogin">密码登录</span>
+            <span v-if="iphoneLogin">短信验证码登录</span>
+          </div>
+          <el-form ref="form" :model="ruleForm" :rules="rules" label-width="50px" >
+            <el-form-item prop="username" style="background-color: #FFFFFF;margin-bottom: 10px" v-if="userLogin">
+              <i class="el-icon-user" style="font-size: 130%;"></i>
+              <el-input v-model.trim="ruleForm.username" style="width: 80%"
+                        maxlength="20"
+                        placeholder="登录名/手机号/身份证">
+              </el-input>
+            </el-form-item>
+            <el-form-item prop="password" style="background-color: #FFFFFF;margin-bottom: 10px" v-if="userLogin">
+              <i class="el-icon-lock" style="font-size: 130%"></i>
+              <el-input v-model.trim="ruleForm.password" style="width: 80%"
+                        maxlength="20"
+                        placeholder="请输入密码">
+              </el-input>
+            </el-form-item>
+
+            <el-form-item prop="code" style="background-color: #FFFFFF;margin-bottom: 10px" v-if="userLogin">
+              <i class="el-icon-key" style="font-size: 130%"></i>
+              <el-input v-model.trim="ruleForm.code" style="width: 50%"
+                        maxlength="20"
+                        placeholder="请输入验证码"></el-input>
+               <div class="yzm">
+                 9311
+               </div>
+            </el-form-item>
+            <el-form-item prop="iphone" style="background-color: #FFFFFF;margin-bottom: 10px" v-if="iphoneLogin">
+              <i class="el-icon-user" style="font-size: 130%;"></i>
+              <el-input v-model.trim="ruleForm.iphone" style="width: 80%"
+                        maxlength="20"
+                        placeholder="手机号">
+              </el-input>
+            </el-form-item>
+            <el-form-item prop="iphoneCode" style="background-color: #FFFFFF;margin-bottom: 10px" v-if="iphoneLogin">
+              <i class="el-icon-key" style="font-size: 130%"></i>
+              <el-input v-model.trim="ruleForm.iphoneCode" style="width: 50%"
+                        maxlength="20"
+                        placeholder="请输入6位短信验证码"></el-input>
+              <div class="sedyzm">
+               发送验证码
+              </div>
+            </el-form-item>
+            <el-form-item prop="code" style="background-color: #FFFFFF;margin-bottom: 10px">
+              <span  style="float: left;cursor: pointer">其他证件登录></span>
+              <span  style="float: right;cursor: pointer">忘记密码？</span>
+            </el-form-item>
+          </el-form>
+          <div class="login-btn">
+            <el-button type="primary" @click="submitForm('ruleForm')" style="width: 300px">登录</el-button>
+            <div class="login-btn-change">
+              <div class="" @click="goCodeScanning">扫码登录</div>
+              <div class="" @click="goUserLogin">密码登录</div>
+            </div>
+          </div>
+        </div>
+        <div class="loginDivBottom">
+          <div>还没有账号？</div>
+          <div class="goRegister" @click="goRegister">去注册</div>
         </div>
       </div>
     </div>
@@ -35,28 +96,35 @@ export default {
   name: 'Login',
   components: {},
   data() {
-    const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
-      } else {
-        callback()
-      }
-    }
-    const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
-      } else {
-        callback()
-      }
-    }
     return {
-      loginForm: {
-        username: 'admin',
-        password: '111111'
+      ruleForm: {
+        username: "",
+        password: "",
+        code: "",
+        iphone:"",
+        iphoneCode:""
       },
-      loginRules: {
-        username: [{required: true, trigger: 'blur', validator: validateUsername}],
-        password: [{required: true, trigger: 'blur', validator: validatePassword}]
+      rules: {
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { min: 1, max: 20, message: '用户名在 1 到 20 个字符' }
+        ],
+        iphone: [
+          { required: true, message: '请输手机号', trigger: 'blur' },
+          { min: 11, max: 11, message: '手机号在 11 到 11 个字符' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 1, max: 20, message: '密码在 1 到 16 个字符' }
+        ],
+        iphoneCode: [
+          { required: true, message: '请输入验证码', trigger: 'blur' },
+          { min: 6, max: 6, message: '验证码在6个字符' }
+        ],
+        code: [
+          { required: true, message: '请输入验证码', trigger: 'blur' },
+          { min: 6, max: 6, message: '验证码6 个字符' }
+        ]
       },
       passwordType: 'password',
       capsTooltip: false,
@@ -64,7 +132,11 @@ export default {
       showDialog: false,
       redirect: undefined,
       otherQuery: {},
-      clickType: true
+      clickType: true,
+      iphoneLogin: true,
+      adminLogin: false,
+      enterpriseLogin: false,
+      userLogin: false
     }
   },
   watch: {
@@ -134,7 +206,10 @@ export default {
     },
     changeClick(clickType) {
       this.clickType = !this.clickType
-    }
+    },
+    goRegister() {},
+    goCodeScanning() {},
+    goUserLogin() {}
   }
 }
 </script>
@@ -163,10 +238,11 @@ $cursor: #fff;
     input {
       background: transparent;
       border: 0px;
+      border-bottom:1px solid #D9E1E7;
       -webkit-appearance: none;
       border-radius: 0px;
       padding: 12px 5px 12px 15px;
-      color: $light_gray;
+      color: #1f2d3d;
       height: 47px;
       caret-color: $cursor;
 
@@ -182,6 +258,9 @@ $cursor: #fff;
     background: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     color: #454545;
+  }
+  .el-form-item__error{
+    left: 25px;
   }
 }
 </style>
@@ -287,7 +366,7 @@ $light_gray: #eee;
       margin-top: 70px;
       margin-right: 100px;
       width: 400px;
-      height: 450px;
+     /* height: 450px;*/
       background: #FFFFFF;
       border-radius: 3px;
       float: right;
@@ -323,67 +402,61 @@ $light_gray: #eee;
     }
 
   }
-
-
-
-  
-  .login-form {
-    position: relative;
-    width: 520px;
-    max-width: 100%;
-    padding: 160px 35px 0;
-    margin: 0 auto;
-    overflow: hidden;
+  .loginDivBottom{
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .goRegister{
+      color: #3377FF;
+      cursor: pointer;
+    }
   }
-
-  .tips {
-    font-size: 14px;
-    color: #fff;
-    margin-bottom: 10px;
-
-    span {
-      &:first-of-type {
-        margin-right: 16px;
+  .loginDivCenter{
+    width: 100%;
+    .yzm{
+      float: right;
+      width:40%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      font-size: 20px;
+      font-weight: bold;
+      color: #3377FF;
+    }
+    .sedyzm{
+      float: right;
+      width:40%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content:flex-start;
+      font-size: 16px;
+      color: #3377FF;
+    }
+    .login-btn{
+      height: 60px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      .login-btn-change{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-items: flex-start;
+        padding-left: 55px;
+        margin-top: 10px;
+        color: #3377FF;
+        div:last-child{
+          margin-left: 5px;
+          cursor: pointer;
+        }
       }
     }
   }
-
-  .svg-container {
-    padding: 6px 5px 6px 15px;
-    color: $dark_gray;
-    vertical-align: middle;
-    width: 30px;
-    display: inline-block;
-  }
-
-  .title-container {
-    position: relative;
-
-    .title {
-      font-size: 26px;
-      color: $light_gray;
-      margin: 0px auto 40px auto;
-      text-align: center;
-      font-weight: bold;
-    }
-  }
-
-  .show-pwd {
-    position: absolute;
-    right: 10px;
-    top: 7px;
-    font-size: 16px;
-    color: $dark_gray;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .thirdparty-button {
-    position: absolute;
-    right: 0;
-    bottom: 6px;
-  }
-
   @media only screen and (max-width: 470px) {
     .thirdparty-button {
       display: none;
