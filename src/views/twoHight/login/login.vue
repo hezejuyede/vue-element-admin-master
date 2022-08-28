@@ -25,6 +25,10 @@
           <div class="login-btn">
             <span v-if="userLogin">密码登录</span>
             <span v-if="iphoneLogin">短信验证码登录</span>
+            <span v-if="codeScanning">扫码登录</span>
+          </div>
+          <div class="loginDivCenterEWM" v-if="codeScanning">
+            <div class="EWMDiv"></div>
           </div>
           <el-form ref="form" :model="ruleForm" :rules="rules" label-width="50px" >
             <el-form-item prop="username" style="background-color: #FFFFFF;margin-bottom: 10px" v-if="userLogin">
@@ -67,7 +71,7 @@
                发送验证码
               </div>
             </el-form-item>
-            <el-form-item prop="code" style="background-color: #FFFFFF;margin-bottom: 10px">
+            <el-form-item prop="code" style="background-color: #FFFFFF;margin-bottom: 10px" v-if="userLogin">
               <span  style="float: left;cursor: pointer">其他证件登录></span>
               <span  style="float: right;cursor: pointer">忘记密码？</span>
             </el-form-item>
@@ -75,8 +79,9 @@
           <div class="login-btn">
             <el-button type="primary" @click="submitForm('ruleForm')" style="width: 300px">登录</el-button>
             <div class="login-btn-change">
-              <div class="" @click="goCodeScanning">扫码登录</div>
-              <div class="" @click="goUserLogin">密码登录</div>
+              <div class="" @click="goCodeScanning" v-if="!codeScanning">扫码登录</div>
+              <div class="" @click="goUserLogin" v-if="!userLogin">密码登录</div>
+              <div class="" @click="goIphoneLogin" v-if="!iphoneLogin">短信验证码登录</div>
             </div>
           </div>
         </div>
@@ -133,10 +138,11 @@ export default {
       redirect: undefined,
       otherQuery: {},
       clickType: true,
-      iphoneLogin: true,
+      iphoneLogin: false,
       adminLogin: false,
       enterpriseLogin: false,
-      userLogin: false
+      userLogin: false,
+      codeScanning: true
     }
   },
   watch: {
@@ -207,9 +213,23 @@ export default {
     changeClick(clickType) {
       this.clickType = !this.clickType
     },
-    goRegister() {},
-    goCodeScanning() {},
-    goUserLogin() {}
+    goRegister() {
+    },
+    goCodeScanning() {
+      this.codeScanning = true
+      this.userLogin = false
+      this.iphoneLogin = false
+    },
+    goUserLogin() {
+      this.userLogin = true
+      this.codeScanning = false
+      this.iphoneLogin = false
+    },
+    goIphoneLogin() {
+      this.userLogin = false
+      this.codeScanning = false
+      this.iphoneLogin = true
+    }
   }
 }
 </script>
@@ -454,6 +474,19 @@ $light_gray: #eee;
           margin-left: 5px;
           cursor: pointer;
         }
+      }
+    }
+    .loginDivCenterEWM{
+      width: 100%;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .EWMDiv{
+        width: 147px;
+        height: 147px;
+        background-image: url(./img/show.png);
+        background-size: cover;
       }
     }
   }
