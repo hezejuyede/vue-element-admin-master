@@ -61,6 +61,18 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/businessManagement',
+    component: Layout,
+    children: [
+      {
+        path: 'approval',
+        component: () => import('@/views/twoHight/businessManagement/EnterpriseInformationApproval/index'),
+        name: 'approval',
+        meta: { title: 'approval', icon: 'documentation', affix: true }
+      }
+    ]
+  },
+  {
     path: '/register',
     component: () => import('@/views/twoHight/register/register'),
     hidden: true
@@ -105,6 +117,7 @@ export const constantRoutes = [
       }
     ]
   },
+
   {
     path: '/guide',
     component: Layout,
