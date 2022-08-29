@@ -470,6 +470,9 @@ $light_gray: #eee;
         padding-left: 55px;
         margin-top: 10px;
         color: #3377FF;
+        div{
+          cursor: pointer;
+        }
         div:last-child{
           margin-left: 5px;
           cursor: pointer;
