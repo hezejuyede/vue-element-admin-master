@@ -1,14 +1,6 @@
 <template>
   <div class="management-container">
-    <div :class="leftState ? 'left-show':'left-hide'">
-      <div class="left-show-div" @click="showLeft" v-if="leftState">
-        <img src="./img/s-q.png" alt="" class="">
-      </div>
-      <div class="left-hide-div" @click="showLeft" v-if="!leftState">
-        <img src="./img/zh-k.png" alt="" class="">
-      </div>
-      <left></left>
-    </div>
+    <left :leftState="leftState" @showLeft="showRight"></left>
     <div :class="leftState ? 'right-show':'right-hide'">
     </div>
   </div>
@@ -20,7 +12,6 @@ export default {
   name: 'RegisterDiv',
   data() {
     return {
-      examineTime: [],
       leftState: true
     }
   },
@@ -41,8 +32,8 @@ export default {
   destroyed() {
   },
   methods: {
-    showLeft() {
-      this.leftState = !this.leftState
+    showRight(leftState) {
+      this.leftState = leftState
     }
   }
 }
@@ -93,58 +84,6 @@ export default {
         font-size: 12px;
       }
     }
-  }
-  .left-hide{
-    width: 20%;
-    position: relative;
-    left: -18%;
-    top: 0;
-    height: 800px;
-    transition: all 0.5s;
-    z-index: 99;
-  }
-  .left-show{
-    width: 20%;
-    height: 800px;
-    position: relative;
-    left: 0;
-    top: 0;
-    transition: all 0.5s;
-    z-index: 99;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-
-  }
-  .left-show-div{
-    width: 30px;
-    height:100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: auto;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    transition: all 0.5s;
-    background-color: #C6D6F5;
-  }
-  .left-hide-div{
-    width: 30px;
-    height:100%;
-    background-color: #C6D6F5;
-    position: absolute;
-    top: 0;
-    left: auto;
-    bottom: 0;
-    right: 0;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content:flex-end;
-    transition: all 0.5s;
   }
   .right-show{
     position: absolute;

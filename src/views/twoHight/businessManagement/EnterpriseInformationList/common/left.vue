@@ -1,37 +1,47 @@
 <template>
-  <div class="leftDiv">
-    <div class="leftDivTop">
-      <div class="leftDivTopTitle">
-        <div class="leftDivTopTitleL">行业选择</div>
-        <div class="leftDivTopTitleR">
-          <img src="../img/shou-q.png" alt="" v-if="showDown" @click="showBottom">
-          <img src="../img/zhan-k.png" alt="" v-if="!showDown" @click="showBottom">
-        </div>
-      </div>
-      <div class="leftDivTopBottom" v-if="showDown">
-        <div v-for="(item,index) in titleList" @click="chooseList(index,item.choose)"
-             :class="(item.choose==='0') ? 'leftDivTopBottomDivChoose':'leftDivTopBottomDiv'">
-          {{ item.name }}
-        </div>
-      </div>
+  <div :class="leftState ? 'left-show':'left-hide'">
+    <div class="left-show-div" @click="showLeft" v-if="leftState">
+      <img src="../img/s-q.png" alt="" class="">
     </div>
-    <div class="leftDivBottom">
-      <el-input
-        style="width: 90%;margin: 10px 5% 10px 5%"
-        placeholder="输入关键字进行过滤"
-        v-model="filterText">
-        <i slot="prefix" class="el-input__icon el-icon-search"></i>
-      </el-input>
-      <el-tree
-        class="filter-tree"
-        :data="treeData"
-        :props="defaultProps"
-        @node-click="nodeClick"
-        :filter-node-method="filterNode"
-        ref="tree">
-      </el-tree>
+    <div class="left-hide-div" @click="showLeft" v-if="!leftState">
+      <img src="../img/zh-k.png" alt="" class="">
+    </div>
+    <div class="leftDiv">
+      <div class="leftDivTop">
+        <div class="leftDivTopTitle">
+          <div class="leftDivTopTitleL">行业选择</div>
+          <div class="leftDivTopTitleR">
+            <img src="../img/shou-q.png" alt="" v-if="showDown" @click="showBottom">
+            <img src="../img/zhan-k.png" alt="" v-if="!showDown" @click="showBottom">
+          </div>
+        </div>
+        <div class="leftDivTopBottom" v-if="showDown">
+          <div v-for="(item,index) in titleList" @click="chooseList(index,item.choose)"
+               :class="(item.choose==='0') ? 'leftDivTopBottomDivChoose':'leftDivTopBottomDiv'">
+            {{ item.name }}
+          </div>
+        </div>
+      </div>
+      <div class="leftDivBottom">
+        <el-input
+          style="width: 90%;margin: 10px 5% 10px 5%"
+          placeholder="输入关键字进行过滤"
+          v-model="filterText">
+          <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-tree
+          class="filter-tree"
+          :data="treeData"
+          :props="defaultProps"
+          accordion
+          @node-click="nodeClick"
+          :filter-node-method="filterNode"
+          ref="tree">
+        </el-tree>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script type="text/ecmascript-6">
@@ -399,7 +409,7 @@ export default {
   },
   watch: {
     filterText(val) {
-      this.$refs.tree.filter(val);
+      this.$refs.tree.filter(val)
     }
   },
   methods: {
@@ -407,6 +417,10 @@ export default {
     },
     showBottom() {
       this.showDown = !this.showDown
+    },
+    showLeft() {
+      this.leftState = !this.leftState
+      this.$emit('showLeft', this.leftState)
     },
     chooseList(index, choose) {
       if (index === 0) {
@@ -454,85 +468,147 @@ export default {
       }
     }
   },
-  props: {}
+  // eslint-disable-next-line no-undef
+  props: {
+    leftState: {
+      type: Boolean,
+      required: true
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
+.left-hide{
+  width: 20%;
+  position: relative;
+  left: -18%;
+  top: 0;
+  height: 800px;
+  transition: all 0.5s;
+  z-index: 99;
+}
+.left-show{
+  width: 20%;
+  height: 800px;
+  position: relative;
+  left: 0;
+  top: 0;
+  transition: all 0.5s;
+  z-index: 99;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 
+}
+.left-show-div{
+  width: 30px;
+  height:100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: auto;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition: all 0.5s;
+  background-color: #C6D6F5;
+}
+.left-hide-div{
+  width: 30px;
+  height:100%;
+  background-color: #C6D6F5;
+  position: absolute;
+  top: 0;
+  left: auto;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content:flex-end;
+  transition: all 0.5s;
+}
 .leftDiv {
   width: 80%;
   height: 98%;
   background-color: #FFFFFF;
+  .leftDivTop{
+    .leftDivTopTitle {
+      height: 50px;
+      .leftDivTopTitleL {
+        width: 50%;
+        height: 100%;
+        float: left;
+        font-size: 16px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 10px;
+      }
 
-  .leftDivTopTitle {
-    height: 50px;
-
-    .leftDivTopTitleL {
-      width: 50%;
-      height: 100%;
-      float: left;
-      font-size: 16px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding-left: 10px;
+      .leftDivTopTitleR {
+        width: 50%;
+        height: 100%;
+        float: left;
+        font-size: 16px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 10px;
+        cursor: pointer;
+      }
     }
+    .leftDivTopBottom {
+      height: 250px;
+      .leftDivTopBottomDiv {
+        float: left;
+        width: 30%;
+        height: 30px;
+        padding: 5px 10px;
+        margin: 4px;
+        background-color: #F7F7F7;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 2px;
+      }
+      .leftDivTopBottomDiv:nth-child(16), :nth-child(17) {
+        width: 45%;
+      }
 
-    .leftDivTopTitleR {
-      width: 50%;
-      height: 100%;
-      float: left;
-      font-size: 16px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: 10px;
-      cursor: pointer;
+      .leftDivTopBottomDivChoose {
+        color: #FFFFFF;
+        float: left;
+        width: 30%;
+        height: 30px;
+        padding: 5px 10px;
+        margin: 4px;
+        background-color: #3377FF;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 2px;
+      }
+
+      .leftDivTopBottomDivChoose:nth-child(16), :nth-child(17) {
+        width: 45%;
+      }
     }
   }
-
-  .leftDivTopBottom {
-
-    .leftDivTopBottomDiv {
-      float: left;
-      width: 30%;
-      height: 30px;
-      padding: 5px 10px;
-      margin: 3px;
-      background-color: #F7F7F7;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border-radius: 2px;
-    }
-
-    .leftDivTopBottomDiv:nth-child(16), :nth-child(17) {
-      width: 45%;
-    }
-
-    .leftDivTopBottomDivChoose {
-      color: #FFFFFF;
-      float: left;
-      width: 30%;
-      height: 30px;
-      padding: 5px 10px;
-      margin: 3px;
-      background-color: #3377FF;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border-radius: 2px;
-    }
-
-    .leftDivTopBottomDivChoose:nth-child(16), :nth-child(17) {
-      width: 45%;
-    }
+  .leftDivBottom {
+    height: 60%;
+    width: 100%;
+    padding-top: 20px;
+    border-top: 3px solid #ECECEC;
+    overflow: auto;
   }
 
 }
