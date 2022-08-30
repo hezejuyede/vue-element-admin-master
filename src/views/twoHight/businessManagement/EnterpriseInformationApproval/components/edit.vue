@@ -1,56 +1,86 @@
 <template>
   <div class="visibleDiv">
+    <div class="visibleDivSelect">
+      <label style="margin-right: 5px;margin-left: 5px" class="fl">
+        <el-input v-model.trim="enterpriseName" style="width: 300px" maxlength="20" placeholder="企业名称"></el-input>
+      </label>
+      <label style="margin-right: 50px;margin-left: 5px" class="fl">
+        <el-button type="primary" @click="getList" icon="el-icon-search" style="background-color: #3377FF;width: 100px;height: 35px">搜索</el-button>
+        <el-button @click="getList" icon="el-icon-download" style="border: 1px solid #D8D8D8;width: 100px;color:#959699; height: 35px">导出</el-button>
+      </label>
+    </div>
     <div class="visibleTable">
       <el-table class="tb-edit" :data="tableData"
                 :header-cell-style="{background:'#EDF4F4',color:'#474F4F',height:'40px',borderColor:'#CAE5E4',fontSize:'14px',fontWeight: 'bold'}"
                 :cell-style="{fontSize:'12px',fontWeight: 'norma',color:'#444B4B',background:'#FFFFFF',borderColor:'#CAE5E4'}"
                 border
-                :height="320"
+                :height="200"
                 ref="moviesTable"
                 highlight-current-row style="width: 95%;margin: auto">
-        <el-table-column label="单元体名称" prop="htbh" align="center" width="100">
+        <el-table-column
+          type="selection"
+          width="40">
+        </el-table-column>
+        <el-table-column label="用户名称" prop="sdzt" align="center" width="100"  >
           <template slot-scope="scope">
             <el-popover placement="top-start" title="买方主体" width="350" trigger="hover"
-                        :content="scope.row.htbh">
+                        :content="scope.row.sdzt">
               <div slot="reference"
                    style="width: 100%;height: 100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;cursor: pointer">
-                {{ scope.row.htbh }}
+                {{ scope.row.sdzt }}
               </div>
             </el-popover>
           </template>
         </el-table-column>
-        <el-table-column label="单个体" prop=dgt" align="center"></el-table-column>
-        <el-table-column label="合同占比" prop="htzb" align="center"></el-table-column>
-        <el-table-column label="合同响应度" prop="htxyd" align="center" width="100"></el-table-column>
-        <el-table-column label="计划分配占比" prop="jhfpzb" align="center" width="120"></el-table-column>
-        <el-table-column label="实际占比" prop="sjzb" align="center"></el-table-column>
-        <el-table-column label="分配额度" prop="fped" align="center" width="100"></el-table-column>
-        <el-table-column label="补贴" prop="bt" align="center"></el-table-column>
-        <el-table-column label="总计" prop="zj" align="center" width="100"></el-table-column>
+        <el-table-column label="修改项目" prop="kssj" align="center">
+          <template slot-scope="scope">
+            <el-popover placement="top-start" title="卖方主体" width="350" trigger="hover"
+                        :content="scope.row.kssj">
+              <div slot="reference"
+                   style="width: 100%;height: 100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;cursor: pointer">
+                {{ scope.row.kssj }}
+              </div>
+            </el-popover>
+          </template>
+        </el-table-column>
+        <el-table-column label="资料预览" prop="lydl" align="center"></el-table-column>
+        <el-table-column label="提交时间" prop="lydl" align="center"></el-table-column>
+        <el-table-column label="意见" prop="lydl" align="center" ></el-table-column>
+        <el-table-column label="备注" prop="lydl" align="center"></el-table-column>
       </el-table>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+
+
 export default {
-  name: 'modal',
+  name: 'modal1',
   data() {
     return {
-      tableData: []
+      tableData: [],
+      enterpriseName: ''
     }
   },
   mounted() {
     this.getList()
+
+
   },
-  created() {},
+  created() {
+
+
+  },
   methods: {
-    getList() {}
+    getList() {
+    }
   },
   props: {}
 }
 </script>
 <style lang="scss" scoped>
+
 .visibleDiv {
   width: 100%;
   background-color: #ffffff;
@@ -59,10 +89,11 @@ export default {
     height: 80px;
     background-color: #ffffff;
     line-height: 80px;
+    padding-left: 20px;
   }
 
   .visibleTable {
-    height: 350px;
+    height: 290px;
 
   }
 

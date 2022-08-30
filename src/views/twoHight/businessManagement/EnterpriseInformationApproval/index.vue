@@ -118,7 +118,7 @@ export default {
 
 .management-container {
   width: 100%;
-  height: 750px;
+  height: 850px;
   background-color: #F8F8F8;
   padding-top: 20px;
 
@@ -165,13 +165,13 @@ export default {
     background-color: #F8F8F8;
     margin-left: 1%;
     .containerLeftTop{
-      height: 340px;
+      height: 390px;
       width: 100%;
       margin-bottom: 20px;
       background-color: #FFFFFF;
     }
     .containerLeftBottom{
-      height: 340px;
+      height: 390px;
       width: 100%;
       background-color: #FFFFFF;
     }
@@ -180,7 +180,7 @@ export default {
   .containerRight {
     float: right;
     width: 49%;
-    height: 700px;
+    height: 800px;
     margin-left: 1%;
     background-color: #FFFFFF;
   }

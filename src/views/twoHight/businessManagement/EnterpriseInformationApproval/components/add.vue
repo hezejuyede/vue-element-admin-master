@@ -75,18 +75,11 @@
                 :height="200"
                 ref="moviesTable"
                 highlight-current-row style="width: 95%;margin: auto">
-        <el-table-column label="" prop="htbh" align="center">
-          <template slot-scope="scope">
-            <el-popover placement="top-start" title="合同编号" width="350" trigger="hover"
-                        :content="scope.row.htbh">
-              <div slot="reference"
-                   style="width: 100%;height: 100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;cursor: pointer">
-                {{ scope.row.htbh }}
-              </div>
-            </el-popover>
-          </template>
+        <el-table-column
+          type="selection"
+          width="40">
         </el-table-column>
-        <el-table-column label="买方主体" prop="sdzt" align="center">
+        <el-table-column label="企业名称" prop="sdzt" align="center" width="200"  fixed>
           <template slot-scope="scope">
             <el-popover placement="top-start" title="买方主体" width="350" trigger="hover"
                         :content="scope.row.sdzt">
@@ -97,7 +90,7 @@
             </el-popover>
           </template>
         </el-table-column>
-        <el-table-column label="卖方主体" prop="kssj" align="center">
+        <el-table-column label="城市" prop="kssj" align="center" fixed>
           <template slot-scope="scope">
             <el-popover placement="top-start" title="卖方主体" width="350" trigger="hover"
                         :content="scope.row.kssj">
@@ -108,14 +101,12 @@
             </el-popover>
           </template>
         </el-table-column>
-        <el-table-column label="合同结算金额" prop="jssj" align="center"></el-table-column>
-        <el-table-column label="合同量" prop="htdl" align="center"></el-table-column>
-        <el-table-column label="实际应量" prop="lydl" align="center"></el-table-column>
-        <el-table-column label="响应度" prop="lydl" align="center"></el-table-column>
-        <el-table-column label="合同开始时间" prop="lydl" align="center"></el-table-column>
-        <el-table-column label="合同结束时间" prop="lydl" align="center"></el-table-column>
-        <el-table-column label="实际结束时间" prop="lydl" align="center"></el-table-column>
-        <el-table-column label="电力市场结算情况" prop="lydl" align="center" width="150"></el-table-column>
+        <el-table-column label="县区" prop="jssj" align="center" fixed></el-table-column>
+        <el-table-column label="行业" prop="htdl" align="center"></el-table-column>
+        <el-table-column label="资料预览" prop="lydl" align="center"></el-table-column>
+        <el-table-column label="时间" prop="lydl" align="center"></el-table-column>
+        <el-table-column label="意见" prop="lydl" align="center" width="150"></el-table-column>
+        <el-table-column label="备注" prop="lydl" align="center" width="150" ></el-table-column>
       </el-table>
     </div>
   </div>
