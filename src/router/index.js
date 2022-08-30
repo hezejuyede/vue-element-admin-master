@@ -69,6 +69,12 @@ export const constantRoutes = [
         component: () => import('@/views/twoHight/businessManagement/EnterpriseInformationApproval/index'),
         name: 'approval',
         meta: { title: 'approval', icon: 'documentation', affix: true }
+      },
+      {
+        path: 'InformationList',
+        component: () => import('@/views/twoHight/businessManagement/EnterpriseInformationList/index'),
+        name: 'InformationList',
+        meta: { title: 'InformationList', icon: 'documentation', affix: true }
       }
     ]
   },
