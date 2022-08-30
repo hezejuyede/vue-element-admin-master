@@ -24,6 +24,9 @@
             </div>
           </div>
         </div>
+        <div class="">
+          <add></add>
+        </div>
       </div>
       <div class="containerLeftBottom">
         <div class="managementTitle">
@@ -40,6 +43,9 @@
                             start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
             </el-date-picker>
           </div>
+        </div>
+        <div class="">
+          <bar></bar>
         </div>
       </div>
     </div>
@@ -66,17 +72,22 @@
           </div>
         </div>
       </div>
+      <div class="">
+        <edit></edit>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import add from './components/add'
+import bar from './components/bar'
+import edit from './components/edit'
 export default {
   name: 'RegisterDiv',
-  components: {},
   data() {
     return {
-      examineTime:[]
+      examineTime: []
     }
   },
   watch: {
@@ -86,6 +97,9 @@ export default {
       immediate: true
     }
   },
+  // eslint-disable-next-line vue/no-unused-components
+  components: { add, bar, edit },
+
   created() {
   },
   mounted() {
@@ -148,16 +162,18 @@ export default {
     float: left;
     width: 49%;
     height: 700px;
-    background-color: #FFFFFF;
+    background-color: #F8F8F8;
     margin-left: 1%;
     .containerLeftTop{
       height: 340px;
       width: 100%;
+      margin-bottom: 20px;
+      background-color: #FFFFFF;
     }
     .containerLeftBottom{
       height: 340px;
       width: 100%;
-      margin-top:20px ;
+      background-color: #FFFFFF;
     }
   }
 
