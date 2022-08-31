@@ -11,10 +11,8 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      setTimeout(() => {
-        this.getList()
-      }, 1000)
-    });
+      this.getList()
+    })
   },
   created() {
   },
