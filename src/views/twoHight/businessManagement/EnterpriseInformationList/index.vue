@@ -8,6 +8,7 @@
 
 <script>
 import left from './common/left'
+
 export default {
   name: 'RegisterDiv',
   data() {
@@ -17,13 +18,13 @@ export default {
   },
   watch: {
     $route: {
-      handler: function(route) {
+      handler: function (route) {
       },
       immediate: true
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: { left },
+  components: {left},
 
   created() {
   },
@@ -40,7 +41,7 @@ export default {
 </script>
 <style lang="scss">
 .el-badge__content.is-fixed {
-  right:0
+  right: 0
 }
 </style>
 <style lang="scss" scoped>
@@ -50,6 +51,7 @@ export default {
   height: 850px;
   background-color: #F8F8F8;
   padding-top: 20px;
+
   .managementTitle {
     height: 60px;
 
@@ -61,6 +63,7 @@ export default {
       align-items: center;
       justify-content: flex-start;
       padding-left: 10px;
+
       img {
         margin-right: 20px;
       }
@@ -85,20 +88,22 @@ export default {
       }
     }
   }
-  .right-show{
+
+  .right-show {
     position: absolute;
     width: 80%;
     left: 20%;
-    top:20px;
+    top: 20px;
     height: 800px;
     transition: all 0.5s;
     background-color: #3b91b6;
   }
-  .right-hide{
+
+  .right-hide {
     position: absolute;
     width: 100%;
     left: 0;
-    top:20px;
+    top: 20px;
     height: 800px;
     transition: all 0.5s;
     background-color: #3b91b6;

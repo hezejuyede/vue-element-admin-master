@@ -478,7 +478,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.left-hide{
+.left-hide {
   width: 20%;
   position: relative;
   left: -18%;
@@ -487,7 +487,8 @@ export default {
   transition: all 0.5s;
   z-index: 99;
 }
-.left-show{
+
+.left-show {
   width: 20%;
   height: 800px;
   position: relative;
@@ -500,9 +501,10 @@ export default {
   justify-content: center;
 
 }
-.left-show-div{
+
+.left-show-div {
   width: 30px;
-  height:100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -515,9 +517,10 @@ export default {
   transition: all 0.5s;
   background-color: #C6D6F5;
 }
-.left-hide-div{
+
+.left-hide-div {
   width: 30px;
-  height:100%;
+  height: 100%;
   background-color: #C6D6F5;
   position: absolute;
   top: 0;
@@ -527,16 +530,19 @@ export default {
   margin: auto;
   display: flex;
   align-items: center;
-  justify-content:flex-end;
+  justify-content: flex-end;
   transition: all 0.5s;
 }
+
 .leftDiv {
   width: 80%;
   height: 98%;
   background-color: #FFFFFF;
-  .leftDivTop{
+
+  .leftDivTop {
     .leftDivTopTitle {
       height: 50px;
+
       .leftDivTopTitleL {
         width: 50%;
         height: 100%;
@@ -562,8 +568,10 @@ export default {
         cursor: pointer;
       }
     }
+
     .leftDivTopBottom {
       height: 250px;
+
       .leftDivTopBottomDiv {
         float: left;
         width: 30%;
@@ -578,6 +586,7 @@ export default {
         cursor: pointer;
         border-radius: 2px;
       }
+
       .leftDivTopBottomDiv:nth-child(16), :nth-child(17) {
         width: 45%;
       }
@@ -603,6 +612,7 @@ export default {
       }
     }
   }
+
   .leftDivBottom {
     height: 60%;
     width: 100%;
