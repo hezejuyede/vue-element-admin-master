@@ -2,12 +2,58 @@
   <div class="management-container">
     <left :leftState="leftState" @showLeft="showRight"></left>
     <div :class="leftState ? 'right-show':'right-hide'">
+      <div class="containerTop">
+        <div class="containerTopL">
+          <div class="managementTitle">
+            <div class="managementTitleL">
+              <div class="">
+                <img src="./img/titleImg.png" alt="">
+              </div>
+              <div class="">
+                总览
+              </div>
+            </div>
+            <div class="managementTitleR">
+            </div>
+          </div>
+        </div>
+        <div class="containerTopR">
+          <div class="managementTitle">
+            <div class="managementTitleL">
+              <div class="">
+                <img src="./img/titleImg.png" alt="">
+              </div>
+              <div class="">
+                济南市企业分布状况
+              </div>
+            </div>
+            <div class="managementTitleR">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="containerBottom">
+        <div class="managementTitle">
+          <div class="managementTitleL">
+            <div class="">
+              <img src="./img/titleImg.png" alt="">
+            </div>
+            <div class="">
+                企业清单
+            </div>
+          </div>
+          <div class="managementTitleR">
+          </div>
+        </div>
+        <list-div></list-div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import left from './common/left'
+import listDiv from './components/list'
 
 export default {
   name: 'RegisterDiv',
@@ -24,7 +70,7 @@ export default {
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: {left},
+  components: { left, listDiv },
 
   created() {
   },
@@ -51,7 +97,6 @@ export default {
   height: 850px;
   background-color: #F8F8F8;
   padding-top: 20px;
-
   .managementTitle {
     height: 60px;
 
@@ -88,7 +133,6 @@ export default {
       }
     }
   }
-
   .right-show {
     position: absolute;
     width: 80%;
@@ -96,9 +140,7 @@ export default {
     top: 20px;
     height: 800px;
     transition: all 0.5s;
-    background-color: #3b91b6;
   }
-
   .right-hide {
     position: absolute;
     width: 100%;
@@ -106,9 +148,29 @@ export default {
     top: 20px;
     height: 800px;
     transition: all 0.5s;
-    background-color: #3b91b6;
   }
-
+  .containerTop{
+    height: 380px;
+    margin-bottom: 20px;
+    .containerTopL{
+      width: 49%;
+      height: 100%;
+      background-color: #ffffff;
+      margin-right: 1%;
+      float: left;
+    }
+    .containerTopR{
+      width: 49%;
+      height: 100%;
+      background-color: #ffffff;
+      margin-right: 1%;
+      float: left;
+    }
+  }
+  .containerBottom{
+    height: 400px;
+    background-color: #ffffff;
+  }
 }
 
 </style>

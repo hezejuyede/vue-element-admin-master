@@ -3,7 +3,7 @@
     <div class="visibleDivSelect">
       <label style="margin-right: 5px;margin-left: 5px" class="fl">
         <el-select
-          style="width:100px"
+          style="width:200px"
           v-model="situation"
           clearable
           filterable
@@ -22,7 +22,7 @@
       </label>
       <label style="margin-right: 5px;margin-left: 5px" class="fl">
         <el-select
-          style="width:100px"
+          style="width:200px"
           v-model="situation"
           clearable
           filterable
@@ -30,28 +30,9 @@
           multiple
           collapse-tags
           default-first-option
-          placeholder="地级市">
+          placeholder="状态">
           <el-option
             v-for="item in situationOptions"
-            :key="item.id"
-            :label="item.name"
-            :value="item.id">
-          </el-option>
-        </el-select>
-      </label>
-      <label style="margin-right: 5px;margin-left: 5px" class="fl">
-        <el-select
-          style="width:100px"
-          v-model="quota"
-          clearable
-          filterable
-          allow-create
-          multiple
-          collapse-tags
-          default-first-option
-          placeholder="县区">
-          <el-option
-            v-for="item in quotaOptions"
             :key="item.id"
             :label="item.name"
             :value="item.id">
@@ -79,7 +60,7 @@
           type="selection"
           width="40">
         </el-table-column>
-        <el-table-column label="企业名称" prop="sdzt" align="center" width="200" fixed>
+        <el-table-column label="企业名称" prop="sdzt" align="center" width="250">
           <template slot-scope="scope">
             <el-popover placement="top-start" title="买方主体" width="350" trigger="hover"
                         :content="scope.row.sdzt">
@@ -90,7 +71,7 @@
             </el-popover>
           </template>
         </el-table-column>
-        <el-table-column label="城市" prop="kssj" align="center">
+        <el-table-column label="所属行业" prop="kssj" align="center">
           <template slot-scope="scope">
             <el-popover placement="top-start" title="卖方主体" width="350" trigger="hover"
                         :content="scope.row.kssj">
@@ -101,44 +82,64 @@
             </el-popover>
           </template>
         </el-table-column>
-        <el-table-column label="县区" prop="jssj" align="center"></el-table-column>
-        <el-table-column label="行业" prop="htdl" align="center"></el-table-column>
-        <el-table-column label="资料预览" prop="lydl" align="center"></el-table-column>
-        <el-table-column label="时间" prop="lydl" align="center"></el-table-column>
-        <el-table-column label="意见" prop="lydl" align="center" width="150"></el-table-column>
-        <el-table-column label="备注" prop="lydl" align="center" width="150" ></el-table-column>
+        <el-table-column label="状态" prop="jssj" align="center"></el-table-column>
+        <el-table-column label="企业性质" prop="htdl" align="center"></el-table-column>
+        <el-table-column label="燃煤企业" prop="lydl" align="center"></el-table-column>
+        <el-table-column label="纳税企业" prop="lydl" align="center"></el-table-column>
+        <el-table-column label="规上企业" prop="lydl" align="center"></el-table-column>
+        <el-table-column label="更新时间" prop="lydl" align="center" width="250" ></el-table-column>
       </el-table>
+      <div class="handle-page" style="display: flex;align-items: center;justify-content: flex-end;margin-top: 15px;margin-bottom:10px;padding-right: 50px">
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage"
+          :page-sizes="[10,50,100, 150,200,250,300]"
+          :page-size="mrPage"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="countSize">
+        </el-pagination>
+      </div>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
 
-
 export default {
-  name: 'modal',
+  name: 'List',
   data() {
     return {
       tableData: [],
       quota: "",
       quotaOptions: [],
-      situation: "",
-      situationOptions: [],
-      examineTime: []
+      status: "",
+      statusOptions: [],
+      examineTime: [],
+      currentPage: 1,
+      startIndex: 0,
+      mrPage: 10,
+      pageNum: Number,
+      countSize: 0
     }
   },
   mounted() {
     this.getList()
-
-
   },
   created() {
-
-
   },
   methods: {
     getList() {
-    }
+    },
+    handleSizeChange(val) {
+      this.mrPage = val;
+      this.startIndex = (this.currentPage - 1) * this.mrPage;
+      this.getList()
+    },
+    handleCurrentChange(val) {
+      this.startIndex = (val - 1) * this.mrPage;
+      this.getList()
+    },
   },
   props: {}
 }
@@ -148,17 +149,15 @@ export default {
 .visibleDiv {
   width: 100%;
   background-color: #ffffff;
-
   .visibleDivSelect {
     height: 80px;
     background-color: #ffffff;
     line-height: 80px;
-    padding-left: 20px;
+    padding-left: 25px;
   }
 
   .visibleTable {
-    height: 290px;
-
+    height: 250px;
   }
 
 }
