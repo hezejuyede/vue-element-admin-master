@@ -14,6 +14,8 @@ import App from './App'
 import store from './store'
 import router from './router'
 import echarts from 'echarts'
+import china from 'echarts/map/js/china'
+echarts.registerMap('china', china)
 Vue.prototype.$echarts = echarts
 import './icons' // icon
 import './permission' // permission control

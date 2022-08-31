@@ -31,6 +31,7 @@
             <div class="managementTitleR">
             </div>
           </div>
+          <map-div></map-div>
         </div>
       </div>
       <div class="containerBottom">
@@ -56,6 +57,7 @@
 import left from './common/left'
 import listDiv from './components/list'
 import detailsDiv from './components/details'
+import mapDiv from './components/bar'
 
 export default {
   name: 'RegisterDiv',
@@ -72,7 +74,7 @@ export default {
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: { left, listDiv, detailsDiv },
+  components: { left, listDiv, detailsDiv, mapDiv },
 
   created() {
   },

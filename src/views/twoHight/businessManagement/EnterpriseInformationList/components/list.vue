@@ -4,7 +4,7 @@
       <label style="margin-right: 5px;margin-left: 5px" class="fl">
         <el-select
           style="width:200px"
-          v-model="situation"
+          v-model="quota"
           clearable
           filterable
           allow-create
@@ -13,7 +13,7 @@
           default-first-option
           placeholder="行业">
           <el-option
-            v-for="item in situationOptions"
+            v-for="item in quotaOptions"
             :key="item.id"
             :label="item.name"
             :value="item.id">
@@ -23,7 +23,7 @@
       <label style="margin-right: 5px;margin-left: 5px" class="fl">
         <el-select
           style="width:200px"
-          v-model="situation"
+          v-model="status"
           clearable
           filterable
           allow-create
@@ -32,7 +32,7 @@
           default-first-option
           placeholder="状态">
           <el-option
-            v-for="item in situationOptions"
+            v-for="item in  statusOptions"
             :key="item.id"
             :label="item.name"
             :value="item.id">
