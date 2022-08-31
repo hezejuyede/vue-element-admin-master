@@ -482,14 +482,14 @@ export default {
   position: relative;
   left: -18%;
   top: 0;
-  height: 800px;
+  height: 900px;
   transition: all 0.5s;
   z-index: 99;
 }
 
 .left-show {
   width: 20%;
-  height: 800px;
+  height: 900px;
   position: relative;
   left: 0;
   top: 0;
@@ -535,7 +535,7 @@ export default {
 
 .leftDiv {
   width: 80%;
-  height: 98%;
+  height: 100%;
   background-color: #FFFFFF;
 
   .leftDivTop {

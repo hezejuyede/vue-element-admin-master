@@ -16,6 +16,7 @@
             <div class="managementTitleR">
             </div>
           </div>
+          <details-div></details-div>
         </div>
         <div class="containerTopR">
           <div class="managementTitle">
@@ -54,6 +55,7 @@
 <script>
 import left from './common/left'
 import listDiv from './components/list'
+import detailsDiv from './components/details'
 
 export default {
   name: 'RegisterDiv',
@@ -70,7 +72,7 @@ export default {
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: { left, listDiv },
+  components: { left, listDiv, detailsDiv },
 
   created() {
   },
@@ -94,7 +96,7 @@ export default {
 
 .management-container {
   width: 100%;
-  height: 850px;
+  height: 950px;
   background-color: #F8F8F8;
   padding-top: 20px;
   .managementTitle {
@@ -150,7 +152,7 @@ export default {
     transition: all 0.5s;
   }
   .containerTop{
-    height: 380px;
+    height: 450px;
     margin-bottom: 20px;
     .containerTopL{
       width: 49%;
@@ -168,7 +170,7 @@ export default {
     }
   }
   .containerBottom{
-    height: 400px;
+    height: 430px;
     background-color: #ffffff;
   }
 }
