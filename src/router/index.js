@@ -79,6 +79,18 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/IndustryStatisticalAnalysis',
+    component: Layout,
+    children: [
+      {
+        path: 'InformationDisplay',
+        component: () => import('@/views/twoHight/IndustryStatisticalAnalysis/InformationDisplay/index'),
+        name: 'InformationDisplay',
+        meta: { title: 'InformationDisplay', icon: 'documentation', affix: true }
+      }
+    ]
+  },
+  {
     path: '/register',
     component: () => import('@/views/twoHight/register/register'),
     hidden: true
