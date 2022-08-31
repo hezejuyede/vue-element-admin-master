@@ -73,7 +73,7 @@ export default {
             {
               name: "万元",
               axisLine: {
-                show: false,
+                show: false
               },
               axisTick: { //y轴刻度线
                 show: false,
