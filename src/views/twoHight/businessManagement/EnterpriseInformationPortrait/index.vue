@@ -9,7 +9,7 @@
               <img src="./img/titleImg.png" alt="">
             </div>
             <div class="">
-              归上工业增加值
+              基本信息展示
             </div>
           </div>
           <div class="managementTitleR"></div>
