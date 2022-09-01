@@ -5,8 +5,11 @@
         <img :src="item.img" alt="">
       </div>
       <div class="bottomTR">
+        <div class="">
+          <div>{{item.number}}</div>
+          <div style="color: #00B000">+{{item.compare}}</div>
+        </div>
         <div class="">{{item.name}}</div>
-        <div class="">{{item.number}}</div>
       </div>
     </div>
   </div>
@@ -18,26 +21,11 @@ export default {
   data() {
     return {
       listData: [
-        { 'img': require('../images/icon1.png'), 'name': ' 企业名称', 'number': '7' },
-        { 'img': require('../images/icon2.png'), 'name': '统一社会信用代码', 'number': '7' },
-        { 'img': require('../images/icon3.png'), 'name': '所属城市', 'number': '7' },
-        { 'img': require('../images/icon4.png'), 'name': '所属县区', 'number': '7' },
-        { 'img': require('../images/icon5.png'), 'name': '企业详细地址', 'number': '济南市历下区龙鼎大道1号龙奥大厦5层济南市历下区龙鼎大道1号龙奥大厦5层' },
-        { 'img': require('../images/icon6.png'), 'name': '地理位置', 'number': '7' },
-        { 'img': require('../images/icon7.png'), 'name': '企业性质', 'number': '7' },
-        { 'img': require('../images/icon8.png'), 'name': '行业归属', 'number': '7' },
-        { 'img': require('../images/icon9.png'), 'name': '法定代表人', 'number': '7' },
-        { 'img': require('../images/icon10.png'), 'name': '联系电话', 'number': '7' },
-        { 'img': require('../images/icon11.png'), 'name': '邮箱', 'number': '7' },
-        { 'img': require('../images/icon12.png'), 'name': '用户名', 'number': '7' },
-        { 'img': require('../images/icon13.png'), 'name': '实际控制人', 'number': '7' },
-        { 'img': require('../images/icon14.png'), 'name': '企业联系人', 'number': '7' },
-        { 'img': require('../images/icon15.png'), 'name': '联系电话', 'number': '7' },
-        { 'img': require('../images/icon16.png'), 'name': '企业状态', 'number': '7' },
-        { 'img': require('../images/icon17.png'), 'name': '是否燃煤', 'number': '7' },
-        { 'img': require('../images/icon18.png'), 'name': '是否纳税企业', 'number': '7' },
-        { 'img': require('../images/icon19.png'), 'name': '是否上市企业', 'number': '7' },
-        { 'img': require('../images/icon20.png'), 'name': '是否已实名认证', 'number': '7' }
+        { 'img': require('../images/icon1.png'), 'name': '产值(万元)', 'number': '5812.00', 'compare': '0.31%' },
+        { 'img': require('../images/icon2.png'), 'name': '主业营收(万元)', 'number': '5812.00', 'compare': '0.31%' },
+        { 'img': require('../images/icon3.png'), 'name': '利润(万元)', 'number': '5812.00', 'compare': '0.31%' },
+        { 'img': require('../images/icon4.png'), 'name': '入库税(万元)', 'number': '5812.00', 'compare': '0.31%' },
+        { 'img': require('../images/icon5.png'), 'name': '职工人数(人)', 'number': '5812.00', 'compare': '0.31%' }
       ]
     }
   },
@@ -59,12 +47,15 @@ export default {
   height: 100%;
   .bottomT{
     float: left;
-    width: 25%;
-    height: 60px;
+    width: 18.5%;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 10px;
+    background-color: #ffffff;
+    box-shadow: 2.5px 2.5px 2.5px #E6F3F3;
+    margin-left: 1%;
     .bottomTL{
       flex:1;
       height: 100%;
@@ -81,23 +72,38 @@ export default {
       justify-content: center;
       flex-direction: column;
       div:first-child{
-        flex: 1.1;
+        flex: 1.4;
         width: 100%;
         height: 100%;
-        color: #A6AAB0;
-        font-size: 14px;
         display: flex;
-        align-items: flex-end;
-        justify-content: flex-start;
-        padding-bottom: 2px;
+        align-items: center;
+        justify-content: center;
+        div:first-child{
+          flex: 1;
+          color: #192845;
+          display: flex;
+          font-size: 20px;
+          font-weight: bold;
+          align-items: flex-end;
+          justify-content: flex-start;
+          padding-bottom: 5px;
+
+        }
+        div:last-child{
+          flex: 1;
+          color: #192845;
+          display: flex;
+          align-items: flex-end;
+          justify-content: flex-start;
+          padding-bottom: 10px;
+        }
       }
       div:last-child{
-        flex: 1.4;
+        flex: 1.1;
         width: 100%;
         height: 100%;
         color: #283650;
         font-size: 14px;
-        font-weight: bold;
         overflow: hidden;
         text-overflow: ellipsis;
         display:-webkit-box;

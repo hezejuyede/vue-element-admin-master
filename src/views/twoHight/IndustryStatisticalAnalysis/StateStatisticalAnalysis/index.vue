@@ -3,11 +3,73 @@
     <left :leftState="leftState" @showLeft="showRight"></left>
     <div :class="leftState ? 'right-show':'right-hide'">
       <div class="containerTop">
-
+        <div class="managementTitle">
+          <div class="managementTitleL">
+            <div class="">
+              <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
+            </div>
+            <div class="">
+              综合信息展示
+            </div>
+          </div>
+          <div class="managementTitleR">
+            <div class="">2022年-08月</div>
+          </div>
+        </div>
+        <details-div></details-div>
       </div>
       <div class="containerBottom">
-        <div class="containerBottomDiv">
-
+        <div class="containerBottomT">
+          <div class="managementTitle">
+            <div class="managementTitleL">
+              <div class="">
+                <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
+              </div>
+              <div class="">
+                趋势图
+              </div>
+            </div>
+            <div class="managementTitleR"></div>
+          </div>
+        </div>
+        <div class="containerBottomT">
+          <div class="managementTitle">
+            <div class="managementTitleL">
+              <div class="">
+                <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
+              </div>
+              <div class="">
+                能耗强度趋势
+              </div>
+            </div>
+            <div class="managementTitleR"></div>
+          </div>
+        </div>
+        <div class="containerBottomT">
+          <div class="managementTitle">
+            <div class="managementTitleL">
+              <div class="">
+                <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
+              </div>
+              <div class="">
+                地域统计分析
+              </div>
+            </div>
+            <div class="managementTitleR"></div>
+          </div>
+        </div>
+        <div class="containerBottomT">
+          <div class="managementTitle">
+            <div class="managementTitleL">
+              <div class="">
+                <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
+              </div>
+              <div class="">
+                行业统计分析
+              </div>
+            </div>
+            <div class="managementTitleR"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -16,6 +78,8 @@
 
 <script>
 import left from '../StateStatisticalAnalysis/common/left'
+import detailsDiv from '../StateStatisticalAnalysis/components/details'
+
 export default {
   name: 'RegisterDiv',
   data() {
@@ -45,13 +109,13 @@ export default {
   },
   watch: {
     $route: {
-      handler: function(route) {
+      handler: function (route) {
       },
       immediate: true
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: { left },
+  components: {left, detailsDiv},
 
   created() {
   },
@@ -78,6 +142,7 @@ export default {
   height: 950px;
   background-color: #F8F8F8;
   padding-top: 20px;
+
   .managementTitle {
     height: 60px;
 
@@ -110,10 +175,11 @@ export default {
       div {
         margin-right: 20px;
         font-weight: bold;
-        font-size: 12px;
+        font-size: 14px;
       }
     }
   }
+
   .right-show {
     position: absolute;
     width: 80%;
@@ -122,6 +188,7 @@ export default {
     height: 800px;
     transition: all 0.5s;
   }
+
   .right-hide {
     position: absolute;
     width: 98%;
@@ -130,11 +197,27 @@ export default {
     height: 800px;
     transition: all 0.5s;
   }
-  .containerTop{
-    height: 150px;
+
+  .containerTop {
+    height: 170px;
     width: 100%;
-    background-color: #3A71A8;
+    background-color: #ffffff;
   }
+
+  .containerBottom {
+    width: 100%;
+    height: 730px;
+
+    .containerBottomT {
+      width: 49%;
+      height: 350px;
+      float: left;
+      background-color: #ffffff;
+      margin-right: 1%;
+      margin-top: 15px;
+    }
+  }
+
 }
 
 </style>
