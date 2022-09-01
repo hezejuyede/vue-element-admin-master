@@ -6,7 +6,7 @@
         <div class="managementTitle">
           <div class="managementTitleL">
             <div class="">
-              <img src="./img/titleImg.png" alt="">
+              <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
             </div>
             <div class="">
               归上工业增加值
@@ -21,7 +21,7 @@
           <div class="managementTitle">
             <div class="managementTitleL">
               <div class="">
-                <img src="./img/titleImg.png" alt="">
+                <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
               </div>
               <div class="">
                 统计对比
@@ -35,7 +35,7 @@
           <div class="managementTitle">
             <div class="managementTitleL">
               <div class="">
-                <img src="./img/titleImg.png" alt="">
+                <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
               </div>
               <div class="">
                 趋势图
@@ -75,10 +75,10 @@
 </template>
 
 <script>
-import left from './common/left'
-import listDiv from './components/list'
-import descriptionsDiv from './components/descriptions'
-import barDiv from './components/bar'
+import left from '../StateStatisticalAnalysis/common/left'
+import listDiv from '../StateStatisticalAnalysis/components/list'
+import descriptionsDiv from '../StateStatisticalAnalysis/components/descriptions'
+import barDiv from '../StateStatisticalAnalysis/components/bar'
 export default {
   name: 'RegisterDiv',
   data() {

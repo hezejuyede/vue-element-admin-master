@@ -94,6 +94,12 @@ export const constantRoutes = [
         component: () => import('@/views/twoHight/IndustryStatisticalAnalysis/InformationDisplay/index'),
         name: 'InformationDisplay',
         meta: { title: 'InformationDisplay', icon: 'documentation', affix: true }
+      },
+      {
+        path: 'StateStatisticalAnalysis',
+        component: () => import('@/views/twoHight/IndustryStatisticalAnalysis/StateStatisticalAnalysis/index'),
+        name: 'StateStatisticalAnalysis',
+        meta: { title: 'StateStatisticalAnalysis', icon: 'documentation', affix: true }
       }
     ]
   },

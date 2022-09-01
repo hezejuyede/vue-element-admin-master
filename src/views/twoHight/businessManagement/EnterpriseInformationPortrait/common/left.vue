@@ -576,7 +576,8 @@ export default {
         width: 30%;
         height: 30px;
         padding: 5px 10px;
-        margin: 4px;
+        margin-left: 2.5%;
+        margin-top: 8px;
         background-color: #F7F7F7;
         font-size: 12px;
         display: flex;
@@ -596,7 +597,8 @@ export default {
         width: 30%;
         height: 30px;
         padding: 5px 10px;
-        margin: 4px;
+        margin-left: 2.5%;
+        margin-top: 8px;
         background-color: #3377FF;
         font-size: 12px;
         display: flex;
