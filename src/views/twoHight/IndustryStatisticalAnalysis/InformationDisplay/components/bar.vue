@@ -1,6 +1,6 @@
 <template>
   <div class="visibleDiv">
-    <div id="enterpriseBar" :style="{width: '100%', height: '350px'}"></div>
+    <div id="enterpriseBar" :style="{width: '100%', height: '400px'}"></div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -84,7 +84,7 @@ export default {
               },
               splitLine: {
                 lineStyle: {
-                  color: "#3A4467"
+                  color: "#EDEDED"
                 }
               },
               axisLabel: {
@@ -116,6 +116,6 @@ export default {
 <style lang="scss" scoped>
 .visibleDiv {
   width: 100%;
-  height: 330px;
+  height: 400px;
 }
 </style>

@@ -1,10 +1,9 @@
 <template>
   <div class="visibleDiv">
-    <div id="enterpriseBar" :style="{width: '100%', height: '300px'}"></div>
+    <div id="trendBar" :style="{width: '100%', height: '290px'}"></div>
   </div>
 </template>
 <script type="text/ecmascript-6">
-import Chart from '@/components/Charts/LineMarker'
 export default {
   name: 'modal',
   data() {
@@ -17,8 +16,7 @@ export default {
   },
   methods: {
     getList() {
-
-      let myChart1 = this.$echarts.init(document.getElementById('enterpriseBar'));
+      let myChart1 = this.$echarts.init(document.getElementById('trendBar'))
       // 绘制图表
       myChart1.setOption(
         {
@@ -34,10 +32,23 @@ export default {
             bottom: '3%',
             containLabel: true
           },
+          toolbox: {
+            show: true,
+            right: 'center',
+            top: 0,
+            feature: {
+              mark: {show: true},
+              magicType: {show: true, type: ['line', 'bar']},
+              restore: {show: true},
+              saveAsImage: {show: true},
+              dataView: {show: true},
+              dataZoom: {show: true}
+            }
+          },
           xAxis: [
             {
               type: 'category',
-              data:  ['济南市', '青岛市', '淄博市', '枣庄市', '东营市', '烟台市', '潍坊市', '济宁市', '泰安市', '威海市', '日照市', '临沂市', '德州市', '聊城市', '滨州市', '菏泽市'],
+              data: ['钢铁', '炼化', '焦化', '煤电', '肥料', '轮胎', '水泥', '石灰', '玻璃', '陶瓷', '有色', '铸造', '煤加工', '铁合金', '化学原料', '防水建材'],
               type: 'category',
               axisLine: {
                 lineStyle: {
@@ -59,7 +70,7 @@ export default {
           ],
           yAxis: [
             {
-              name: "(单位:元/个)",
+              name: "万元",
               axisLine: {
                 show: false,
               },
@@ -87,13 +98,14 @@ export default {
               name: 'Direct',
               type: 'bar',
               barWidth: '30%',
-              data: [10, 52, 200, 334, 390, 330, 220,10, 52, 200, 334, 390, 330, 220, 200, 334],
+              data: [10, 52, 200, 334, 390, 330, 220, 10, 52, 200, 334, 390, 330, 220, 200, 334],
               itemStyle: {
                 normal: {
                   color: '#3685F6',
-                  barBorderRadius:[10, 10, 0, 0]
+                  barBorderRadius: [10, 10, 0, 0]
                 }
-              }}]
+              }
+            }]
         }, true)
     }
   },

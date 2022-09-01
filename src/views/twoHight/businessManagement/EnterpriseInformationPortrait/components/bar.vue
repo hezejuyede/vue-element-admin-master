@@ -84,7 +84,7 @@ export default {
               },
               splitLine: {
                 lineStyle: {
-                  color: "#3A4467"
+                  color: "#EDEDED"
                 }
               },
               axisLabel: {

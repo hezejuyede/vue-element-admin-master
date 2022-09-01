@@ -29,8 +29,15 @@
                 趋势图
               </div>
             </div>
-            <div class="managementTitleR"></div>
+            <div class="managementTitleR">
+              <label style="margin-right: 1px;margin-left: 1px" class="fl">
+                <el-date-picker style="width: 240px" v-model="examineTime1" type="daterange"
+                                start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
+                </el-date-picker>
+              </label>
+            </div>
           </div>
+          <trend-bar></trend-bar>
         </div>
         <div class="containerBottomT">
           <div class="managementTitle">
@@ -42,8 +49,15 @@
                 能耗强度趋势
               </div>
             </div>
-            <div class="managementTitleR"></div>
+            <div class="managementTitleR">
+              <label style="margin-right: 1px;margin-left: 1px" class="fl">
+                <el-date-picker style="width: 240px" v-model="examineTime2" type="daterange"
+                                start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
+                </el-date-picker>
+              </label>
+            </div>
           </div>
+          <line-div></line-div>
         </div>
         <div class="containerBottomT">
           <div class="managementTitle">
@@ -131,6 +145,8 @@ import left from '../StateStatisticalAnalysis/common/left'
 import detailsDiv from '../StateStatisticalAnalysis/components/details'
 import industryBar from '../StateStatisticalAnalysis/components/industryBar'
 import regionBar from '../StateStatisticalAnalysis/components/regionBar'
+import lineDiv from '../StateStatisticalAnalysis/components/line'
+import trendBar from '../StateStatisticalAnalysis/components/trendBar'
 export default {
   name: 'RegisterDiv',
   data() {
@@ -158,7 +174,7 @@ export default {
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: { left, detailsDiv, industryBar, regionBar },
+  components: { left, detailsDiv, industryBar, regionBar, lineDiv, trendBar },
 
   created() {
   },

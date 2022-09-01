@@ -1,6 +1,6 @@
 <template>
   <div class="visibleDiv">
-    <div id="enterpriseBar" :style="{width: '100%', height: '300px'}"></div>
+    <div id="lineBar" :style="{width: '100%', height: '290px'}"></div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -18,7 +18,7 @@ export default {
   methods: {
     getList() {
 
-      let myChart1 = this.$echarts.init(document.getElementById('enterpriseBar'));
+      let myChart1 = this.$echarts.init(document.getElementById('lineBar'));
       // 绘制图表
       myChart1.setOption(
         {
@@ -34,11 +34,23 @@ export default {
             bottom: '3%',
             containLabel: true
           },
+          toolbox: {
+            show: true,
+            right:'center',
+            top:0,
+            feature: {
+              mark: { show: true },
+              magicType: { show: true, type: ['line', 'bar'] },
+              restore: { show: true },
+              saveAsImage: { show: true },
+              dataView: { show: true },
+              dataZoom: { show: true }
+            }
+          },
           xAxis: [
             {
               type: 'category',
-              data:  ['济南市', '青岛市', '淄博市', '枣庄市', '东营市', '烟台市', '潍坊市', '济宁市', '泰安市', '威海市', '日照市', '临沂市', '德州市', '聊城市', '滨州市', '菏泽市'],
-              type: 'category',
+              data:  ['3月', '6月', '9月', '12月'],
               axisLine: {
                 lineStyle: {
                   color: "#3A4467"
@@ -59,9 +71,9 @@ export default {
           ],
           yAxis: [
             {
-              name: "(单位:元/个)",
+              name: "标准煤/万元",
               axisLine: {
-                show: false,
+                show: true
               },
               axisTick: { //y轴刻度线
                 show: false,
@@ -85,15 +97,11 @@ export default {
           series: [
             {
               name: 'Direct',
-              type: 'bar',
-              barWidth: '30%',
-              data: [10, 52, 200, 334, 390, 330, 220,10, 52, 200, 334, 390, 330, 220, 200, 334],
-              itemStyle: {
-                normal: {
-                  color: '#3685F6',
-                  barBorderRadius:[10, 10, 0, 0]
-                }
-              }}]
+              type: 'line',
+              data: [200, 334, 390, 330],
+              itemStyle: { normal: { color: '#3979FA' }
+              }
+            }]
         }, true)
     }
   },
@@ -103,6 +111,6 @@ export default {
 <style lang="scss" scoped>
 .visibleDiv {
   width: 100%;
-  height: 330px;
+  height: 210px;
 }
 </style>
