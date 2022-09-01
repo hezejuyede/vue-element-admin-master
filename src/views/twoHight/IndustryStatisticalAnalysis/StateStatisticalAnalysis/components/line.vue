@@ -99,7 +99,7 @@ export default {
               name: 'Direct',
               type: 'line',
               data: [200, 334, 390, 330],
-              itemStyle: { normal: { color: '#3979FA' }
+              itemStyle: { normal: { color: '#32A4BF' }
               }
             }]
         }, true)

@@ -101,7 +101,7 @@ export default {
               data: [10, 52, 200, 334, 390, 330, 220,10, 52, 200, 334, 390, 330, 220, 200, 334],
               itemStyle: {
                 normal: {
-                  color: '#3685F6',
+                  color: '#32A4BF',
                   barBorderRadius:[10, 10, 0, 0]
                 }
               }}]
