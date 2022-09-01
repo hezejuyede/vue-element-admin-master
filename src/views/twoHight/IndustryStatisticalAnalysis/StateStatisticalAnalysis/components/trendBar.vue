@@ -28,7 +28,7 @@ export default {
           },
           grid: {
             left: '3%',
-            right: '4%',
+            right: '10%',
             bottom: '3%',
             containLabel: true
           },
@@ -47,64 +47,53 @@ export default {
           },
           xAxis: [
             {
-              type: 'category',
-              data: ['钢铁', '炼化', '焦化', '煤电', '肥料', '轮胎', '水泥', '石灰', '玻璃', '陶瓷', '有色', '铸造', '煤加工', '铁合金', '化学原料', '防水建材'],
-              type: 'category',
-              axisLine: {
-                lineStyle: {
-                  color: "#3A4467"
-                }
-              },
-              offset: 10,
-              axisTick: { //x轴刻度线
-                show: false,
-              },
-              splitLine: {show: false},
-              axisLabel: {
-                rotate: 30,
-                textStyle: {
-                  color: "#5D6464"
-                }
-              },
-            }
-          ],
-          yAxis: [
-            {
               name: "万元",
-              axisLine: {
-                show: false,
-              },
-              axisTick: { //y轴刻度线
-                show: false,
-                axisLine: { //y轴
-                  show: false
-                },
-
-              },
+              type: 'value',
               splitLine: {
                 lineStyle: {
                   color: "#EDEDED"
                 }
               },
-              axisLabel: {
-                textStyle: {
-                  color: "#5D6464"
+              axisTick: {
+                show: false,
+                axisLine: {
+                  show: false
                 }
               }
             }
           ],
+          yAxis: [
+            {
+              type: 'category',
+              data: ['入库税', '利润', '主业营收', '产值'],
+              axisLine: {
+                show: true
+              },
+              axisTick: { //y轴刻度线
+                show: false,
+                axisLine: { //y轴
+                  show: false
+                }
+              },
+            }
+          ],
           series: [
             {
-              name: 'Direct',
               type: 'bar',
+              showBackground: true,
               barWidth: '30%',
-              data: [10, 52, 200, 334, 390, 330, 220, 10, 52, 200, 334, 390, 330, 220, 200, 334],
-              itemStyle: {
-                normal: {
-                  color: '#32A4BF',
-                  barBorderRadius: [10, 10, 0, 0]
+              data: [10, 52, 200, 334],
+              itemStyle: [
+                {
+                  normal: {
+                    color: function(params) {
+                      var colorList = ['#B259EE', '#FFD035', '#3377FF', '#00CC60'];
+                      return colorList[params.dataIndex]
+                    },
+                    barBorderRadius: [10, 10, 0, 0]
+                  }
                 }
-              }
+              ]
             }]
         }, true)
     }
