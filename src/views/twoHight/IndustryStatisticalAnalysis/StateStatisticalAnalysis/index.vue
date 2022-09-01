@@ -55,8 +55,33 @@
                 地域统计分析
               </div>
             </div>
-            <div class="managementTitleR"></div>
+            <div class="managementTitleR">
+              <label style="margin-right: 1px;margin-left: 1px" class="fl">
+                <el-select
+                  style="width:120px"
+                  v-model="tyepe1"
+                  clearable
+                  filterable
+                  allow-create
+                  collapse-tags
+                  default-first-option
+                  placeholder="类型">
+                  <el-option
+                    v-for="item in tyepeOptions"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id">
+                  </el-option>
+                </el-select>
+              </label>
+              <label style="margin-right: 1px;margin-left: 1px" class="fl">
+                <el-date-picker style="width: 240px" v-model="examineTime3" type="daterange"
+                                start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
+                </el-date-picker>
+              </label>
+            </div>
           </div>
+          <region-bar></region-bar>
         </div>
         <div class="containerBottomT">
           <div class="managementTitle">
@@ -68,8 +93,33 @@
                 行业统计分析
               </div>
             </div>
-            <div class="managementTitleR"></div>
+            <div class="managementTitleR">
+              <label style="margin-right: 1px;margin-left: 1px" class="fl">
+                <el-select
+                  style="width:120px"
+                  v-model="tyepe2"
+                  clearable
+                  filterable
+                  allow-create
+                  collapse-tags
+                  default-first-option
+                  placeholder="类型">
+                  <el-option
+                    v-for="item in tyepeOptions"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id">
+                  </el-option>
+                </el-select>
+              </label>
+              <label style="margin-right: 1px;margin-left: 1px" class="fl">
+                <el-date-picker style="width: 240px" v-model="examineTime4" type="daterange"
+                                start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
+                </el-date-picker>
+              </label>
+            </div>
           </div>
+         <industry-bar></industry-bar>
         </div>
       </div>
     </div>
@@ -79,7 +129,8 @@
 <script>
 import left from '../StateStatisticalAnalysis/common/left'
 import detailsDiv from '../StateStatisticalAnalysis/components/details'
-
+import industryBar from '../StateStatisticalAnalysis/components/industryBar'
+import regionBar from '../StateStatisticalAnalysis/components/regionBar'
 export default {
   name: 'RegisterDiv',
   data() {
@@ -89,33 +140,25 @@ export default {
       examineTime2: [],
       examineTime3: [],
       examineTime4: [],
-      industry: '',
-      industryOptions: [
-        {"name": "增加值总总额", "id": "1"},
-        {"name": "劳动者报酬", "id": "2"},
-        {"name": "固定资产折旧", "id": "3"},
-        {"name": "生产税净值", "id": "4"},
-        {"name": "营业余额", "id": "5"}
-      ],
-      region: '',
-      regionOptions: [
-        {"name": "增加值总总额", "id": "1"},
-        {"name": "劳动者报酬", "id": "2"},
-        {"name": "固定资产折旧", "id": "3"},
-        {"name": "生产税净值", "id": "4"},
-        {"name": "营业余额", "id": "5"}
-      ],
+      tyepe1: '',
+      tyepe2: '',
+      tyepeOptions: [
+        {"name": "产值", "id": "1"},
+        {"name": "主业营收", "id": "2"},
+        {"name": "利润", "id": "3"},
+        {"name": "入库税", "id": "4"}
+      ]
     }
   },
   watch: {
     $route: {
-      handler: function (route) {
+      handler: function(route) {
       },
       immediate: true
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: {left, detailsDiv},
+  components: { left, detailsDiv, industryBar, regionBar },
 
   created() {
   },

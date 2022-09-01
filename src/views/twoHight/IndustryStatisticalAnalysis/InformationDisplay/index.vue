@@ -78,7 +78,7 @@
 import left from '../StateStatisticalAnalysis/common/left'
 import listDiv from '../StateStatisticalAnalysis/components/list'
 import descriptionsDiv from '../StateStatisticalAnalysis/components/descriptions'
-import barDiv from '../StateStatisticalAnalysis/components/bar'
+import barDiv from '../StateStatisticalAnalysis/components/regionBar'
 export default {
   name: 'RegisterDiv',
   data() {

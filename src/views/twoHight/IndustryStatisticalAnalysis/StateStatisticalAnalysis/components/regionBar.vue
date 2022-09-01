@@ -1,10 +1,9 @@
 <template>
   <div class="visibleDiv">
-    <div id="enterpriseBar" :style="{width: '100%', height: '350px'}"></div>
+    <div id="regionBar" :style="{width: '100%', height: '290px'}"></div>
   </div>
 </template>
 <script type="text/ecmascript-6">
-import Chart from '@/components/Charts/LineMarker'
 export default {
   name: 'modal',
   data() {
@@ -17,10 +16,9 @@ export default {
   },
   methods: {
     getList() {
-
-      let myChart1 = this.$echarts.init(document.getElementById('enterpriseBar'));
+      let myChart2 = this.$echarts.init(document.getElementById('regionBar'));
       // 绘制图表
-      myChart1.setOption(
+      myChart2.setOption(
         {
           tooltip: {
             trigger: 'axis',
@@ -50,7 +48,8 @@ export default {
           xAxis: [
             {
               type: 'category',
-              data:  ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+              data:  ['济南市', '青岛市', '淄博市', '枣庄市', '东营市', '烟台市', '潍坊市', '济宁市', '泰安市', '威海市', '日照市', '临沂市', '德州市', '聊城市', '滨州市', '菏泽市'],
+              type: 'category',
               axisLine: {
                 lineStyle: {
                   color: "#3A4467"
@@ -73,7 +72,7 @@ export default {
             {
               name: "万元",
               axisLine: {
-                show: false
+                show: false,
               },
               axisTick: { //y轴刻度线
                 show: false,
@@ -97,16 +96,15 @@ export default {
           series: [
             {
               name: 'Direct',
-              type: 'line',
-              data: [190, 352, 200, 334, 390, 330, 220,430, 252, 200, 334, 390],
-              smooth: true, symbol: 'circle', symbolSize: 10, itemStyle: {normal: {
-                  color: '#3979FA', areaStyle: {
-                    type: 'default',
-                    opacity: 0.1
-                  }
+              type: 'bar',
+              barWidth: '30%',
+              data: [10, 52, 200, 334, 390, 330, 220,10, 52, 200, 334, 390, 330, 220, 200, 334],
+              itemStyle: {
+                normal: {
+                  color: '#3685F6',
+                  barBorderRadius:[10, 10, 0, 0]
                 }
-              }
-            }]
+              }}]
         }, true)
     }
   },
