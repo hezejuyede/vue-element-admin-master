@@ -80,20 +80,17 @@ export default {
           series: [
             {
               type: 'bar',
-              showBackground: true,
               barWidth: '30%',
-              data: [10, 52, 200, 334],
-              itemStyle: [
-                {
-                  normal: {
-                    color: function(params) {
-                      var colorList = ['#B259EE', '#FFD035', '#3377FF', '#00CC60'];
-                      return colorList[params.dataIndex]
-                    },
-                    barBorderRadius: [10, 10, 0, 0]
-                  }
+              data: [280, 352, 256, 334],
+              itemStyle: {
+                normal: {
+                  color: function(params) {
+                    var colorList = ['#B259EE', '#FFD035', '#3377FF', '#00CC60']
+                    return colorList[params.dataIndex]
+                  },
+                  barBorderRadius: [0, 10, 10, 0]
                 }
-              ]
+              }
             }]
         }, true)
     }
