@@ -101,6 +101,13 @@ export const constantRoutes = [
         name: 'StateStatisticalAnalysis',
         meta: { title: 'StateStatisticalAnalysis', icon: 'documentation', affix: true }
       }
+      ,
+      {
+        path: 'CoreDataMonitoring',
+        component: () => import('@/views/twoHight/IndustryStatisticalAnalysis/CoreDataMonitoring/index'),
+        name: 'CoreDataMonitoring',
+        meta: { title: 'CoreDataMonitoring', icon: 'documentation', affix: true }
+      }
     ]
   },
   {
