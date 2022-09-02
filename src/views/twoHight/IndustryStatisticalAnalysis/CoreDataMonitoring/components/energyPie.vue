@@ -39,7 +39,6 @@ export default {
         legend: {
           top: '85%',
           left: 'center',
-
         },
         toolbox: {
           show: true,

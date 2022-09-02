@@ -48,7 +48,7 @@ export default {
           xAxis: [
             {
               type: 'category',
-              data: ['生铁', '烧节矿', '铁水', '粗钢', '热轧带钢', '高速线材', '优质棒材', '钢坯', '棒材', '不锈钢坯', '建筑用材'],
+              data: ['汽油', '煤油', '柴油', '石脑油', '溶剂油', '燃料油', '石油', '沥青', '乙烯', 'PX', '液化气', '其他'],
               type: 'category',
               axisLine: {
                 lineStyle: {
@@ -98,7 +98,7 @@ export default {
               name: 'Direct',
               type: 'bar',
               barWidth: '30%',
-              data: [200, 334, 390, 330, 220,200, 334, 390, 330, 220,334],
+              data: [200, 334, 390, 330, 220,200, 334, 390, 330, 220,334,252],
               itemStyle: {
                 normal: {
                   color: '#32A4BF',

@@ -15,7 +15,7 @@
             </div>
             <div class="managementTitleR"></div>
           </div>
-          <iron-table></iron-table>
+          <equipment-table></equipment-table>
         </div>
         <div class="containerBottomT">
           <div class="managementTitle">
@@ -35,7 +35,7 @@
               </label>
             </div>
           </div>
-          <steel-table></steel-table>
+          <radar-div></radar-div>
         </div>
         <div class="containerBottomT" style="margin-top: 20px">
           <div class="managementTitle">
@@ -104,8 +104,8 @@
 import left from './common/left'
 import industryBar from './components/bar'
 import productLine from './components/line'
-import ironTable from './components/ironTable'
-import steelTable from './components/steelTable'
+import equipmentTable from './components/equipmentTable'
+import radarDiv from './components/radar'
 
 export default {
   name: 'RegisterDiv',
@@ -133,7 +133,7 @@ export default {
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: {left,industryBar, productLine, steelTable, ironTable},
+  components: {left,industryBar, productLine, radarDiv, equipmentTable },
 
   created() {
   },
