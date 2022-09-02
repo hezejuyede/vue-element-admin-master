@@ -125,6 +125,13 @@ export const constantRoutes = [
         name: 'Coal',
         meta: { title: 'Coal', icon: 'documentation', affix: true }
       }
+      ,
+      {
+        path: 'Coking',
+        component: () => import('@/views/twoHight/IndustryStatisticalAnalysis/ProcessEquipmentLevelCoking/index'),
+        name: 'Coking',
+        meta: { title: 'Coking', icon: 'documentation', affix: true }
+      }
     ]
   },
   {
