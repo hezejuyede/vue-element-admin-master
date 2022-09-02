@@ -74,9 +74,9 @@ export default {
               axisLine: {
                 show: false,
               },
-              axisTick: { //y轴刻度线
+              axisTick: {
                 show: false,
-                axisLine: { //y轴
+                axisLine: {
                   show: false
                 },
 
@@ -106,6 +106,8 @@ export default {
                 }
               }}]
         }, true)
+
+      window.onresize = myChart2.resize
     }
   },
   props: {}

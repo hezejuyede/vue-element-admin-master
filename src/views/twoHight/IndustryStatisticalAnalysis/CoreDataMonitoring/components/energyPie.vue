@@ -55,13 +55,18 @@ export default {
             name: '',
             type: 'pie',
             radius: ['40%', '70%'],
-            avoidLabelOverlap: false,
+            avoidLabelOverlap: true,
             itemStyle: {
               normal: {
-                color: function (colors) {
+                color: function(colors) {
                   var colorList = ['#4CE4C3', '#4BD5F5', '#9994DB', '#837DED', '#666666', '#E44CE2','#3240FF'];
                   return colorList[colors.dataIndex]
-                }
+                },
+                label: {
+                  show: true,
+                  formatter: '{d}%'
+                },
+                labelLine: { show: true }
               }
             },
             label: {
@@ -70,7 +75,7 @@ export default {
             },
             emphasis: {
               label: {
-                show: true,
+                show: false,
                 fontSize: '40',
                 fontWeight: 'bold'
               }
