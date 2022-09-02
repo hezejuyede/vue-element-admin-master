@@ -233,7 +233,7 @@ export default {
   }
 
   .containerTop {
-    height: 170px;
+    height: 250px;
     width: 100%;
     background-color: #ffffff;
   }
@@ -244,11 +244,11 @@ export default {
 
     .containerBottomT {
       width: 49%;
-      height: 350px;
+      height: 315px;
       float: left;
       background-color: #ffffff;
       margin-right: 1%;
-      margin-top: 15px;
+      margin-top: 10px;
     }
   }
 

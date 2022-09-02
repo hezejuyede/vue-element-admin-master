@@ -1,12 +1,36 @@
 <template>
   <div class="visibleDiv">
-    <div class="bottomT" v-for="(item,index) in listData" :key="index">
+    <div class="bottomT">
       <div class="bottomTTop">
         高熔炉
       </div>
-      <div class="bottomTTemplate" v-for="(item,index) in listData[0]">
-        <div class="">{{item.name}}</div>
-        <div>{{ item.number }}</div>
+      <div class="bottomTBottom">
+        <div class="bottomTTemplate" v-for="(item,index) in listData[0]" :key="index">
+          <div class="">{{ item.name }}</div>
+          <div>{{ item.number }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="bottomT" style="background-color: #ECFAFC">
+      <div class="bottomTTop">
+        高熔炉
+      </div>
+      <div class="bottomTBottom">
+        <div class="bottomTTemplate" v-for="(item,index) in listData[1]" :key="index" style="background-color: #C1EFF6">
+          <div class="">{{ item.name }}</div>
+          <div>{{ item.number }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="bottomT" style="background-color: #EDFCF9">
+      <div class="bottomTTop">
+        高熔炉
+      </div>
+      <div class="bottomTBottom">
+        <div class="bottomTTemplate" v-for="(item,index) in listData[2]" :key="index" style="background-color: #C5F6EB">
+          <div class="">{{ item.name }}</div>
+          <div>{{ item.number }}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -58,71 +82,57 @@ export default {
   height: 100%;
   .bottomT {
     float: left;
-    width: 18.5%;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 30%;
+    height: 160px;
     margin-top: 10px;
-    background-color: #ffffff;
     box-shadow: 2.5px 2.5px 2.5px #E6F3F3;
-    margin-left: 1%;
-    .bottomTL {
-      flex: 1;
-      height: 100%;
+    margin-left: 2.5%;
+    background-color: #EAF1FF;
+    .bottomTTop{
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: flex-start;
+      padding-left: 4%;
     }
-    .bottomTR {
-      flex: 3;
-      height: 100%;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      flex-direction: column;
-
-      div:first-child {
-        flex: 1.4;
-        width: 100%;
-        height: 100%;
+    .bottomTBottom{
+      height: 120px;
+      .bottomTTemplate{
+        float: left;
+        height: 50px;
+        width: 28%;
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
+        margin-left: 4%;
+        margin-top: 8px;
+        background-color: #C5D9FF;
 
-        div:first-child {
+        border-radius: 5px;
+        div:first-child{
           flex: 1;
-          color: #192845;
+          width: 100%;
+          height: 100%;
           display: flex;
-          font-size: 20px;
+          align-items: center;
+          justify-content: flex-start;
+          padding-left: 10px;
+          padding-top: 5px;
+          font-size: 12px;
+        }
+        div:last-child{
+          flex: 1;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          padding-right: 10px;
+          font-size: 14px;
           font-weight: bold;
-          align-items: flex-end;
-          justify-content: flex-start;
           padding-bottom: 5px;
-
         }
-
-        div:last-child {
-          flex: 1;
-          color: #192845;
-          display: flex;
-          align-items: flex-end;
-          justify-content: flex-start;
-          padding-bottom: 10px;
-        }
-      }
-
-      div:last-child {
-        flex: 1.1;
-        width: 100%;
-        height: 100%;
-        color: #283650;
-        font-size: 14px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
       }
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="visibleDiv">
-    <div id="regionBar" :style="{width: '100%', height: '290px'}"></div>
+    <div id="regionBar" :style="{width: '100%', height: '250px'}"></div>
   </div>
 </template>
 <script type="text/ecmascript-6">
