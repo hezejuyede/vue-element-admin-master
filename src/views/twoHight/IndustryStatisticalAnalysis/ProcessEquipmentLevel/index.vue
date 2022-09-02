@@ -31,10 +31,12 @@
             </div>
             <div class="managementTitleR">
               <div>
-                <span>高熔炉装置数量：</span><span style="font-size: 18px;color: #4A9FF9;margin-right: 5px">8</span><span style="margin-right: 10px">座</span>
+                <span>高熔炉装置数量：</span><span style="font-size: 18px;color: #4A9FF9;margin-right: 5px">8</span><span
+                style="margin-right: 10px">座</span>
               </div>
             </div>
           </div>
+          <iron-table></iron-table>
         </div>
         <div class="containerBottomT">
           <div class="managementTitle">
@@ -48,11 +50,14 @@
             </div>
             <div class="managementTitleR">
               <div>
-                <span>电弧炉装置数量：</span><span style="font-size: 18px;color: #4A9FF9;margin-right: 5px">2</span><span style="margin-right: 10px">座</span>
-                <span>转炉装置数量：</span><span style="font-size: 18px;color: #4A9FF9;margin-right: 5px">8</span><span>座</span>
+                <span>电弧炉装置数量：</span><span style="font-size: 18px;color: #4A9FF9;margin-right: 5px">2</span><span
+                style="margin-right: 10px">座</span>
+                <span>转炉装置数量：</span><span
+                style="font-size: 18px;color: #4A9FF9;margin-right: 5px">8</span><span>座</span>
               </div>
             </div>
           </div>
+          <steel-table></steel-table>
         </div>
         <div class="containerBottomT">
           <div class="managementTitle">
@@ -90,7 +95,7 @@
               </label>
             </div>
           </div>
-          <region-bar></region-bar>
+          <product-line></product-line>
         </div>
         <div class="containerBottomT">
           <div class="managementTitle">
@@ -110,7 +115,7 @@
               </label>
             </div>
           </div>
-         <industry-bar></industry-bar>
+          <industry-bar></industry-bar>
         </div>
       </div>
     </div>
@@ -121,9 +126,10 @@
 import left from './common/left'
 import detailsDiv from './components/details'
 import industryBar from './components/bar'
-import regionBar from './components/line'
-import lineDiv from './components/steelTable'
-import trendBar from './components/ironTable'
+import productLine from './components/line'
+import ironTable from './components/ironTable'
+import steelTable from './components/steelTable'
+
 export default {
   name: 'RegisterDiv',
   data() {
@@ -143,13 +149,13 @@ export default {
   },
   watch: {
     $route: {
-      handler: function(route) {
+      handler: function (route) {
       },
       immediate: true
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: { left, detailsDiv, industryBar, regionBar, lineDiv, trendBar },
+  components: {left, detailsDiv, industryBar, productLine, steelTable, ironTable},
 
   created() {
   },
@@ -165,9 +171,15 @@ export default {
 }
 </script>
 <style lang="scss">
-.el-badge__content.is-fixed {
-  right: 0
+.el-table {
+  th {
+    padding: 0;
+  }
+  td {
+    padding: 5px;
+  }
 }
+
 </style>
 <style lang="scss" scoped>
 
@@ -251,7 +263,6 @@ export default {
       margin-top: 10px;
     }
   }
-
 }
 
 </style>

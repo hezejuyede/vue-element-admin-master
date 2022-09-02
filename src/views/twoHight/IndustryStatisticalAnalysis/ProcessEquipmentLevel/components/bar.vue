@@ -48,7 +48,7 @@ export default {
           xAxis: [
             {
               type: 'category',
-              data: ['钢铁', '炼化', '焦化', '煤电', '肥料', '轮胎', '水泥', '石灰', '玻璃', '陶瓷', '有色', '铸造', '煤加工', '铁合金', '化学原料', '防水建材'],
+              data: ['生铁', '烧节矿', '铁水', '粗钢', '热轧带钢', '高速线材', '优质棒材', '钢坯', '棒材', '不锈钢坯', '建筑用材'],
               type: 'category',
               axisLine: {
                 lineStyle: {
@@ -70,7 +70,7 @@ export default {
           ],
           yAxis: [
             {
-              name: "万元",
+              name: "t",
               axisLine: {
                 show: false,
               },
@@ -98,7 +98,7 @@ export default {
               name: 'Direct',
               type: 'bar',
               barWidth: '30%',
-              data: [10, 52, 200, 334, 390, 330, 220, 10, 52, 200, 334, 390, 330, 220, 200, 334],
+              data: [200, 334, 390, 330, 220,200, 334, 390, 330, 220,334],
               itemStyle: {
                 normal: {
                   color: '#32A4BF',

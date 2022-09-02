@@ -1,6 +1,6 @@
 <template>
   <div class="visibleDiv">
-    <div id="regionBar" :style="{width: '100%', height: '250px'}"></div>
+    <div id="productLine" :style="{width: '100%', height: '250px'}"></div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -16,9 +16,9 @@ export default {
   },
   methods: {
     getList() {
-      let myChart2 = this.$echarts.init(document.getElementById('regionBar'));
+      let myChart1 = this.$echarts.init(document.getElementById('productLine'))
       // 绘制图表
-      myChart2.setOption(
+      myChart1.setOption(
         {
           tooltip: {
             trigger: 'axis',
@@ -34,21 +34,21 @@ export default {
           },
           toolbox: {
             show: true,
-            right:'center',
-            top:0,
+            right: 'center',
+            top: 0,
             feature: {
-              mark: { show: true },
-              magicType: { show: true, type: ['line', 'bar'] },
-              restore: { show: true },
-              saveAsImage: { show: true },
-              dataView: { show: true },
-              dataZoom: { show: true }
+              mark: {show: true},
+              magicType: {show: true, type: ['line', 'bar']},
+              restore: {show: true},
+              saveAsImage: {show: true},
+              dataView: {show: true},
+              dataZoom: {show: true}
             }
           },
           xAxis: [
             {
               type: 'category',
-              data:  ['济南市', '青岛市', '淄博市', '枣庄市', '东营市', '烟台市', '潍坊市', '济宁市', '泰安市', '威海市', '日照市', '临沂市', '德州市', '聊城市', '滨州市', '菏泽市'],
+              data:  ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
               type: 'category',
               axisLine: {
                 lineStyle: {
@@ -70,7 +70,7 @@ export default {
           ],
           yAxis: [
             {
-              name: "万元",
+              name: "t",
               axisLine: {
                 show: false,
               },
@@ -96,15 +96,16 @@ export default {
           series: [
             {
               name: 'Direct',
-              type: 'bar',
-              barWidth: '30%',
-              data: [10, 52, 200, 334, 390, 330, 220,10, 52, 200, 334, 390, 330, 220, 200, 334],
-              itemStyle: {
-                normal: {
-                  color: '#32A4BF',
-                  barBorderRadius:[10, 10, 0, 0]
+              type: 'line',
+              data: [200, 334, 390, 330, 220,200, 334, 390, 330, 220, 200, 334],
+              smooth: true,itemStyle: {normal: {
+                  color: '#3979FA', areaStyle: {
+                    type: 'default',
+                    opacity: 0.1
+                  }
                 }
-              }}]
+              }
+            }]
         }, true)
     }
   },
