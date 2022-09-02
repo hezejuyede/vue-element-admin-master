@@ -100,13 +100,18 @@ export const constantRoutes = [
         component: () => import('@/views/twoHight/IndustryStatisticalAnalysis/StateStatisticalAnalysis/index'),
         name: 'StateStatisticalAnalysis',
         meta: { title: 'StateStatisticalAnalysis', icon: 'documentation', affix: true }
-      }
-      ,
+      },
       {
         path: 'CoreDataMonitoring',
         component: () => import('@/views/twoHight/IndustryStatisticalAnalysis/CoreDataMonitoring/index'),
         name: 'CoreDataMonitoring',
         meta: { title: 'CoreDataMonitoring', icon: 'documentation', affix: true }
+      },
+      {
+        path: 'ProcessEquipmentLevel',
+        component: () => import('@/views/twoHight/IndustryStatisticalAnalysis/ProcessEquipmentLevel/index'),
+        name: 'ProcessEquipmentLevel',
+        meta: { title: 'ProcessEquipmentLevel', icon: 'documentation', affix: true }
       }
     ]
   },
