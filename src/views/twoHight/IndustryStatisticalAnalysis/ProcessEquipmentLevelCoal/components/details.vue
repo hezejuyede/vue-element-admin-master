@@ -1,16 +1,8 @@
 <template>
   <div class="visibleDiv">
     <div class="bottomT" v-for="(item,index) in listData" :key="index">
-      <div class="bottomTL">
-        <img :src="item.img" alt="">
-      </div>
-      <div class="bottomTR">
-        <div class="">
-          <div>{{ item.number }}</div>
-          <div style="color: #00B000">+{{ item.compare }}</div>
-        </div>
-        <div class="">{{ item.name }}</div>
-      </div>
+      <div :style="{'color': item.color}">{{ item.number }}</div>
+      <div class="">{{ item.name }}</div>
     </div>
   </div>
 </template>
@@ -21,11 +13,13 @@ export default {
   data() {
     return {
       listData: [
-        {'img': require('../images/icon1.png'), 'name': '产值(万元)', 'number': '5812.00', 'compare': '0.31%'},
-        {'img': require('../images/icon2.png'), 'name': '主业营收(万元)', 'number': '5812.00', 'compare': '0.31%'},
-        {'img': require('../images/icon3.png'), 'name': '利润(万元)', 'number': '5812.00', 'compare': '0.31%'},
-        {'img': require('../images/icon4.png'), 'name': '入库税(万元)', 'number': '5812.00', 'compare': '0.31%'},
-        {'img': require('../images/icon5.png'), 'name': '职工人数(人)', 'number': '5812.00', 'compare': '0.31%'}
+        { 'name': '能效指标', 'number': '1', 'color': '#FFA00B' },
+        { 'name': '行业指标', 'number': '2', 'color': '#2960FF' },
+        { 'name': '行业标杆值', 'number': '3', 'color': '#40CDAE' },
+        { 'name': '地市同行业排名', 'number': '4', 'color': '#6D74FF' },
+        { 'name': '省内同行业排名', 'number': '5', 'color': '#0BB1FE' },
+        { 'name': '地市排名', 'number': '6', 'color': '#FFA00B' },
+        { 'name': '全省排名', 'number': '7', 'color': '#CC76FE' }
       ]
     }
   },
@@ -49,75 +43,28 @@ export default {
 
   .bottomT {
     float: left;
-    width: 18.5%;
+    width: 12%;
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     margin-top: 10px;
-    background-color: #ffffff;
-    box-shadow: 2.5px 2.5px 2.5px #E6F3F3;
-    margin-left: 1%;
+    background-color: #F3FCFD;
+    margin-left: 2%;
+    border-bottom:3px solid #409EFF;
 
-    .bottomTL {
-      flex: 1;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
+    div:first-child {
+      font-size: 26px;
+      font-weight: bold;
     }
 
-    .bottomTR {
-      flex: 3;
-      height: 100%;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      flex-direction: column;
-
-      div:first-child {
-        flex: 1.4;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        div:first-child {
-          flex: 1;
-          color: #192845;
-          display: flex;
-          font-size: 20px;
-          font-weight: bold;
-          align-items: flex-end;
-          justify-content: flex-start;
-          padding-bottom: 5px;
-
-        }
-
-        div:last-child {
-          flex: 1;
-          color: #192845;
-          display: flex;
-          align-items: flex-end;
-          justify-content: flex-start;
-          padding-bottom: 10px;
-        }
-      }
-
-      div:last-child {
-        flex: 1.1;
-        width: 100%;
-        height: 100%;
-        color: #283650;
-        font-size: 14px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-      }
+    div:last-child {
+      font-size: 14px;
+      font-weight: bold;
+      color: #585A5A;
     }
+
   }
 }
 

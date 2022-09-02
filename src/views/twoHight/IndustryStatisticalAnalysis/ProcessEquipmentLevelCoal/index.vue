@@ -6,7 +6,7 @@
         <div class="managementTitle">
           <div class="managementTitleL">
             <div class="">
-              <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
+              <img src="./img/titleImg.png" alt="">
             </div>
             <div class="">
               综合信息展示
@@ -23,19 +23,13 @@
           <div class="managementTitle">
             <div class="managementTitleL">
               <div class="">
-                <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
+                <img src="./img/titleImg.png" alt="">
               </div>
               <div class="">
-                趋势图
+                工业设备参数
               </div>
             </div>
-            <div class="managementTitleR">
-              <label style="margin-right: 1px;margin-left: 1px" class="fl">
-                <el-date-picker style="width: 240px" v-model="examineTime1" type="daterange"
-                                start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
-                </el-date-picker>
-              </label>
-            </div>
+            <div class="managementTitleR"></div>
           </div>
           <trend-bar></trend-bar>
         </div>
@@ -43,36 +37,33 @@
           <div class="managementTitle">
             <div class="managementTitleL">
               <div class="">
-                <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
+                <img src="./img/titleImg.png" alt="">
               </div>
               <div class="">
-                能耗强度趋势
+                指标统计
               </div>
             </div>
-            <div class="managementTitleR">
-              <label style="margin-right: 1px;margin-left: 1px" class="fl">
-                <el-date-picker style="width: 240px" v-model="examineTime2" type="daterange"
-                                start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
-                </el-date-picker>
-              </label>
-            </div>
+            <div class="managementTitleR"></div>
           </div>
           <line-div></line-div>
         </div>
-        <div class="containerBottomT">
+        <div class="containerBottomT2">
           <div class="managementTitle">
             <div class="managementTitleL">
               <div class="">
-                <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
+                <img src="./img/titleImg.png" alt="">
               </div>
               <div class="">
-                地域统计分析
+                工业能效指标
               </div>
             </div>
             <div class="managementTitleR">
               <label style="margin-right: 1px;margin-left: 1px" class="fl">
+                <el-input v-model.trim="enterpriseName" style="width: 200px" maxlength="20" placeholder="企业名称"></el-input>
+              </label>
+              <label style="margin-right: 1px;margin-left: 1px" class="fl">
                 <el-select
-                  style="width:120px"
+                  style="width:150px"
                   v-model="tyepe1"
                   clearable
                   filterable
@@ -97,67 +88,26 @@
           </div>
           <region-bar></region-bar>
         </div>
-        <div class="containerBottomT">
-          <div class="managementTitle">
-            <div class="managementTitleL">
-              <div class="">
-                <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
-              </div>
-              <div class="">
-                行业统计分析
-              </div>
-            </div>
-            <div class="managementTitleR">
-              <label style="margin-right: 1px;margin-left: 1px" class="fl">
-                <el-select
-                  style="width:120px"
-                  v-model="tyepe2"
-                  clearable
-                  filterable
-                  allow-create
-                  collapse-tags
-                  default-first-option
-                  placeholder="类型">
-                  <el-option
-                    v-for="item in tyepeOptions"
-                    :key="item.id"
-                    :label="item.name"
-                    :value="item.id">
-                  </el-option>
-                </el-select>
-              </label>
-              <label style="margin-right: 1px;margin-left: 1px" class="fl">
-                <el-date-picker style="width: 240px" v-model="examineTime4" type="daterange"
-                                start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
-                </el-date-picker>
-              </label>
-            </div>
-          </div>
-         <industry-bar></industry-bar>
-        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import left from '../StateStatisticalAnalysis/common/left'
-import detailsDiv from '../StateStatisticalAnalysis/components/details'
-import industryBar from '../StateStatisticalAnalysis/components/industryBar'
-import regionBar from '../StateStatisticalAnalysis/components/regionBar'
-import lineDiv from '../StateStatisticalAnalysis/components/line'
-import trendBar from '../StateStatisticalAnalysis/components/trendBar'
+import left from './common/left'
+import detailsDiv from './components/details'
+import industryBar from './components/industryBar'
+import regionBar from './components/regionBar'
+import lineDiv from './components/line'
+import trendBar from './components/trendBar'
 export default {
   name: 'RegisterDiv',
   data() {
     return {
       leftState: true,
-      examineTime1: [],
-      examineTime2: [],
-      examineTime3: [],
-      examineTime4: [],
-      tyepe1: '',
-      tyepe2: '',
+      enterpriseName: '',
+      examineTime: [],
+      tyepe: '',
       tyepeOptions: [
         {"name": "产值", "id": "1"},
         {"name": "主业营收", "id": "2"},
@@ -269,6 +219,14 @@ export default {
 
     .containerBottomT {
       width: 49%;
+      height: 350px;
+      float: left;
+      background-color: #ffffff;
+      margin-right: 1%;
+      margin-top: 15px;
+    }
+    .containerBottomT2{
+      width: 99%;
       height: 350px;
       float: left;
       background-color: #ffffff;
