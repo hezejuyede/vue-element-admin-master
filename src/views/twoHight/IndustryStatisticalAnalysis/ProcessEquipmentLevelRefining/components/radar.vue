@@ -1,6 +1,6 @@
 <template>
   <div class="visibleDiv">
-    <div id="radar" :style="{width: '100%', height: '320px'}"></div>
+    <div id="radar" :style="{width: '100%', height: '380px'}"></div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -29,6 +29,7 @@ export default {
           tooltip: {
             trigger: 'item'
           },
+          color: ['#A878F9', '#3BF4BC'],
           legend: {
             orient: 'vertical',
             type: 'scroll',
@@ -65,23 +66,27 @@ export default {
               type: 'radar',
               data: [
                 {
-                  value: [420, 300, 200, 350, 232, 180, 280, 380, 480, 190, 270, 350],
-                  name: '2021年',
-                  label: {
-                    show: true
-                  },
-                  areaStyle: {
-                    color: '#A878F9'
-                  }
-                },
-                {
-                  value: [490, 140, 280, 260, 420, 210, 420, 300, 200, 350, 232, 180],
+                  value: [390, 140, 280, 260, 220, 210, 220, 300, 200, 350, 232, 180],
                   name: '2022年',
                   label: {
                     show: true
                   },
+                  symbol: 'none',
+                  smooth: true,
                   areaStyle: {
                     color: '#3BF4BC'
+                  }
+                },
+                {
+                  value: [320, 300, 200, 350, 232, 180, 280, 380, 380, 190, 270, 350],
+                  name: '2021年',
+                  label: {
+                    show: true
+                  },
+                  symbol: 'none',
+                  smooth: true,
+                  areaStyle: {
+                    color: '#A878F9'
                   }
                 }
               ]

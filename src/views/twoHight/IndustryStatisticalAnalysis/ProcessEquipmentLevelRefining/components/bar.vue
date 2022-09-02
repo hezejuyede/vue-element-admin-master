@@ -37,17 +37,16 @@ export default {
             right: 'center',
             top: 0,
             feature: {
-              mark: {show: true},
-              magicType: {show: true, type: ['line', 'bar']},
-              restore: {show: true},
-              saveAsImage: {show: true},
-              dataView: {show: true},
-              dataZoom: {show: true}
+              mark: { show: true},
+              magicType: { show: true, type: ['line', 'bar'] },
+              restore: { show: true },
+              saveAsImage: { show: true },
+              dataView: { show: true },
+              dataZoom: { show: true }
             }
           },
           xAxis: [
             {
-              type: 'category',
               data: ['汽油', '煤油', '柴油', '石脑油', '溶剂油', '燃料油', '石油', '沥青', '乙烯', 'PX', '液化气', '其他'],
               type: 'category',
               axisLine: {
@@ -56,7 +55,7 @@ export default {
                 }
               },
               offset: 10,
-              axisTick: { //x轴刻度线
+              axisTick: {
                 show: false,
               },
               splitLine: {show: false},
@@ -98,7 +97,7 @@ export default {
               name: 'Direct',
               type: 'bar',
               barWidth: '30%',
-              data: [200, 334, 390, 330, 220,200, 334, 390, 330, 220,334,252],
+              data: [200, 334, 390, 330, 220, 200, 334, 390, 330, 220, 334, 252],
               itemStyle: {
                 normal: {
                   color: '#32A4BF',
