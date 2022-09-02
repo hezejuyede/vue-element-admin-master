@@ -83,7 +83,7 @@ export default {
   .bottomT {
     float: left;
     width: 30%;
-    height: 160px;
+    height: 165px;
     margin-top: 10px;
     box-shadow: 2.5px 2.5px 2.5px #E6F3F3;
     margin-left: 2.5%;

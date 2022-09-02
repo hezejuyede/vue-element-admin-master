@@ -112,6 +112,12 @@ export const constantRoutes = [
         component: () => import('@/views/twoHight/IndustryStatisticalAnalysis/ProcessEquipmentLevel/index'),
         name: 'ProcessEquipmentLevel',
         meta: { title: 'ProcessEquipmentLevel', icon: 'documentation', affix: true }
+      },
+      {
+        path: 'Refining',
+        component: () => import('@/views/twoHight/IndustryStatisticalAnalysis/ProcessEquipmentLevelRefining/index'),
+        name: 'Refining',
+        meta: { title: 'Refining', icon: 'documentation', affix: true }
       }
     ]
   },
