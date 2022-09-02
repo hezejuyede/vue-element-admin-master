@@ -1,0 +1,263 @@
+<template>
+  <div class="management-container">
+    <left :leftState="leftState" @showLeft="showRight"></left>
+    <div :class="leftState ? 'right-show':'right-hide'">
+      <div class="containerTop">
+        <div class="managementTitle">
+          <div class="managementTitleL">
+            <div class="">
+              <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
+            </div>
+            <div class="">
+              综合信息展示
+            </div>
+          </div>
+          <div class="managementTitleR">
+            <div class="">2022年-08月</div>
+          </div>
+        </div>
+        <details-div></details-div>
+      </div>
+      <div class="containerBottom">
+        <div class="containerBottomT">
+          <div class="managementTitle">
+            <div class="managementTitleL">
+              <div class="">
+                <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
+              </div>
+              <div class="">
+                综合能源消耗占比
+              </div>
+            </div>
+            <div class="managementTitleR">
+              <label style="margin-right: 1px;margin-left: 1px" class="fl">
+                <el-date-picker style="width: 240px" v-model="examineTime1" type="daterange"
+                                start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
+                </el-date-picker>
+              </label>
+            </div>
+          </div>
+          <trend-bar></trend-bar>
+        </div>
+        <div class="containerBottomT">
+          <div class="managementTitle">
+            <div class="managementTitleL">
+              <div class="">
+                <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
+              </div>
+              <div class="">
+                能源消耗分析
+              </div>
+            </div>
+            <div class="managementTitleR">
+              <label style="margin-right: 1px;margin-left: 1px" class="fl">
+                <el-select
+                  style="width:120px"
+                  v-model="tyepe"
+                  clearable
+                  filterable
+                  allow-create
+                  collapse-tags
+                  default-first-option
+                  placeholder="类型">
+                  <el-option
+                    v-for="item in tyepeOptions"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id">
+                  </el-option>
+                </el-select>
+              </label>
+              <label style="margin-right: 1px;margin-left: 1px" class="fl">
+                <el-date-picker style="width: 240px" v-model="examineTime2" type="daterange"
+                                start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
+                </el-date-picker>
+              </label>
+            </div>
+          </div>
+          <line-div></line-div>
+        </div>
+        <div class="containerBottomT">
+          <div class="managementTitle">
+            <div class="managementTitleL">
+              <div class="">
+                <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
+              </div>
+              <div class="">
+                产品单耗趋势
+              </div>
+            </div>
+            <div class="managementTitleR">
+              <label style="margin-right: 1px;margin-left: 1px" class="fl">
+                <el-date-picker style="width: 240px" v-model="examineTime3" type="daterange"
+                                start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
+                </el-date-picker>
+              </label>
+            </div>
+          </div>
+          <region-bar></region-bar>
+        </div>
+        <div class="containerBottomT">
+          <div class="managementTitle">
+            <div class="managementTitleL">
+              <div class="">
+                <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
+              </div>
+              <div class="">
+                能源消费弹性系数
+              </div>
+            </div>
+            <div class="managementTitleR">
+              <label style="margin-right: 1px;margin-left: 1px" class="fl">
+                <el-date-picker style="width: 240px" v-model="examineTime4" type="daterange"
+                                start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
+                </el-date-picker>
+              </label>
+            </div>
+          </div>
+         <industry-bar></industry-bar>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import left from './common/left'
+import detailsDiv from './components/details'
+import industryBar from './components/energyLine'
+import regionBar from './components/productLine'
+import lineDiv from './components/energyBar'
+import trendBar from './components/energyPie'
+export default {
+  name: 'RegisterDiv',
+  data() {
+    return {
+      leftState: true,
+      examineTime1: [],
+      examineTime2: [],
+      examineTime3: [],
+      examineTime4: [],
+      tyepe: '',
+      tyepeOptions: [
+        {"name": "产值", "id": "1"},
+        {"name": "主业营收", "id": "2"},
+        {"name": "利润", "id": "3"},
+        {"name": "入库税", "id": "4"}
+      ]
+    }
+  },
+  watch: {
+    $route: {
+      handler: function(route) {
+      },
+      immediate: true
+    }
+  },
+  // eslint-disable-next-line vue/no-unused-components
+  components: { left, detailsDiv, industryBar, regionBar, lineDiv, trendBar },
+
+  created() {
+  },
+  mounted() {
+  },
+  destroyed() {
+  },
+  methods: {
+    showRight(leftState) {
+      this.leftState = leftState
+    }
+  }
+}
+</script>
+<style lang="scss">
+.el-badge__content.is-fixed {
+  right: 0
+}
+</style>
+<style lang="scss" scoped>
+
+.management-container {
+  width: 100%;
+  height: 950px;
+  background-color: #F8F8F8;
+  padding-top: 20px;
+
+  .managementTitle {
+    height: 60px;
+
+    .managementTitleL {
+      float: left;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 10px;
+
+      img {
+        margin-right: 10px;
+      }
+
+      div:last-child {
+        font-weight: bold;
+      }
+    }
+
+    .managementTitleR {
+      float: left;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      div {
+        margin-right: 20px;
+        font-weight: bold;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .right-show {
+    position: absolute;
+    width: 80%;
+    left: 20%;
+    top: 20px;
+    height: 800px;
+    transition: all 0.5s;
+  }
+
+  .right-hide {
+    position: absolute;
+    width: 98%;
+    left: 2%;
+    top: 20px;
+    height: 800px;
+    transition: all 0.5s;
+  }
+
+  .containerTop {
+    height: 250px;
+    width: 100%;
+    background-color: #ffffff;
+  }
+
+  .containerBottom {
+    width: 100%;
+    height: 700px;
+
+    .containerBottomT {
+      width: 49%;
+      height: 320px;
+      float: left;
+      background-color: #ffffff;
+      margin-right: 1%;
+      margin-top: 10px;
+    }
+  }
+
+}
+
+</style>
