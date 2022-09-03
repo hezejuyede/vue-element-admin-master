@@ -85,7 +85,7 @@ export default {
             data: data
           }
         ]
-      });
+      })
     }
   },
   props: {}

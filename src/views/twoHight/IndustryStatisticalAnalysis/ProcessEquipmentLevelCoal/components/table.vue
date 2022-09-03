@@ -9,7 +9,8 @@
                 :span-method="objectSpanMethod"
                 highlight-current-row style="width: 95%;margin: auto">>
         <el-table-column label="装置名称" prop="xx1" align="center"></el-table-column>
-        <el-table-column label="型号" prop="value1" align="center"></el-table-column>
+        <el-table-column label="编号" prop="value1" align="center"></el-table-column>
+        <el-table-column label="容量" prop="value1" align="center"></el-table-column>
         <el-table-column label="类型" prop="type" align="center"></el-table-column>
         <el-table-column label="数量" prop="xx2" align="center"></el-table-column>
       </el-table>
@@ -24,10 +25,7 @@ export default {
   data() {
     return {
       tableData: [
-        { 'xx1': '焦炉', 'value1': '6.0mx60孔', 'type': '顶装', 'xx2': '1' },
-        { 'xx1': '焦炉', 'value1': '510㎡', 'type': '顶装', 'xx2': '2' },
-        { 'xx1': '焦炉', 'value1': '1080㎡', 'type': '捣固', 'xx2': '3' },
-        { 'xx1': '焦炉', 'value1': '1880㎡', 'type': '捣固', 'xx2': '4' }
+        { 'xx1': '焦炉', 'value1': '#2', 'type': '顶装', 'xx2': '1' }
       ],
       examineTime: [],
       spanArr: [],

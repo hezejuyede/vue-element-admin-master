@@ -31,7 +31,7 @@
             </div>
             <div class="managementTitleR"></div>
           </div>
-          <trend-bar></trend-bar>
+          <table-div></table-div>
         </div>
         <div class="containerBottomT">
           <div class="managementTitle">
@@ -40,12 +40,12 @@
                 <img src="./img/titleImg.png" alt="">
               </div>
               <div class="">
-                指标统计
+               产品产量
               </div>
             </div>
             <div class="managementTitleR"></div>
           </div>
-          <line-div></line-div>
+          <bar-div></bar-div>
         </div>
         <div class="containerBottomT2">
           <div class="managementTitle">
@@ -59,12 +59,12 @@
             </div>
             <div class="managementTitleR">
               <label style="margin-right: 1px;margin-left: 1px" class="fl">
-                <el-input v-model.trim="enterpriseName" style="width: 200px" maxlength="20" placeholder="企业名称"></el-input>
+                <el-input v-model.trim="enterpriseName" style="width: 200px" maxlength="20" placeholder="名称"></el-input>
               </label>
               <label style="margin-right: 1px;margin-left: 1px" class="fl">
                 <el-select
                   style="width:150px"
-                  v-model="tyepe1"
+                  v-model="type"
                   clearable
                   filterable
                   allow-create
@@ -72,7 +72,7 @@
                   default-first-option
                   placeholder="类型">
                   <el-option
-                    v-for="item in tyepeOptions"
+                    v-for="item in typeOptions"
                     :key="item.id"
                     :label="item.name"
                     :value="item.id">
@@ -86,7 +86,7 @@
               </label>
             </div>
           </div>
-          <region-bar></region-bar>
+          <line-div></line-div>
         </div>
       </div>
     </div>
@@ -96,10 +96,9 @@
 <script>
 import left from './common/left'
 import detailsDiv from './components/details'
-import industryBar from './components/industryBar'
-import regionBar from './components/regionBar'
+import tableDiv from './components/table'
 import lineDiv from './components/line'
-import trendBar from './components/trendBar'
+import barDiv from './components/bar'
 export default {
   name: 'RegisterDiv',
   data() {
@@ -107,12 +106,10 @@ export default {
       leftState: true,
       enterpriseName: '',
       examineTime: [],
-      tyepe: '',
-      tyepeOptions: [
-        {"name": "产值", "id": "1"},
-        {"name": "主业营收", "id": "2"},
-        {"name": "利润", "id": "3"},
-        {"name": "入库税", "id": "4"}
+      type: '',
+      typeOptions: [
+        {"name": "封顶", "id": "1"},
+        {"name": "捣固", "id": "2"}
       ]
     }
   },
@@ -124,7 +121,7 @@ export default {
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: { left, detailsDiv, industryBar, regionBar, lineDiv, trendBar },
+  components: { left, detailsDiv, tableDiv, lineDiv, barDiv },
 
   created() {
   },

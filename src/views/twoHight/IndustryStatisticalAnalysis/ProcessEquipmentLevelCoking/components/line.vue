@@ -1,10 +1,9 @@
 <template>
   <div class="visibleDiv">
-    <div id="lineBar" :style="{width: '100%', height: '290px'}"></div>
+    <div id="productLine" :style="{width: '100%', height: '250px'}"></div>
   </div>
 </template>
 <script type="text/ecmascript-6">
-import Chart from '@/components/Charts/LineMarker'
 export default {
   name: 'modal',
   data() {
@@ -17,8 +16,7 @@ export default {
   },
   methods: {
     getList() {
-
-      let myChart1 = this.$echarts.init(document.getElementById('lineBar'));
+      let myChart1 = this.$echarts.init(document.getElementById('productLine'))
       // 绘制图表
       myChart1.setOption(
         {
@@ -36,21 +34,22 @@ export default {
           },
           toolbox: {
             show: true,
-            right:'center',
-            top:0,
+            right: 'center',
+            top: 0,
             feature: {
-              mark: { show: true },
-              magicType: { show: true, type: ['line', 'bar'] },
-              restore: { show: true },
-              saveAsImage: { show: true },
-              dataView: { show: true },
-              dataZoom: { show: true }
+              mark: {show: true},
+              magicType: {show: true, type: ['line', 'bar']},
+              restore: {show: true},
+              saveAsImage: {show: true},
+              dataView: {show: true},
+              dataZoom: {show: true}
             }
           },
           xAxis: [
             {
               type: 'category',
-              data:  ['3月', '6月', '9月', '12月'],
+              data:  ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+              type: 'category',
               axisLine: {
                 lineStyle: {
                   color: "#3A4467"
@@ -71,9 +70,9 @@ export default {
           ],
           yAxis: [
             {
-              name: "标准煤/万元",
+              name: "t",
               axisLine: {
-                show: true
+                show: false,
               },
               axisTick: { //y轴刻度线
                 show: false,
@@ -98,8 +97,13 @@ export default {
             {
               name: 'Direct',
               type: 'line',
-              data: [200, 334, 390, 330],
-              itemStyle: { normal: { color: '#32A4BF' }
+              data: [200, 334, 390, 330, 220,200, 334, 390, 330, 220, 200, 334],
+              smooth: true,itemStyle: {normal: {
+                  color: '#3979FA', areaStyle: {
+                    type: 'default',
+                    opacity: 0.1
+                  }
+                }
               }
             }]
         }, true)
@@ -111,6 +115,6 @@ export default {
 <style lang="scss" scoped>
 .visibleDiv {
   width: 100%;
-  height: 210px;
+  height: 330px;
 }
 </style>

@@ -1,6 +1,11 @@
 <template>
   <div class="visibleDiv">
-    <div id="Bar" :style="{width: '100%', height: '280px'}"></div>
+    <div class="visibleDivL">
+      <div id="pie1" :style="{width: '100%', height: '280px'}"></div>
+    </div>
+    <div class="visibleDivR">
+      <div id="pie2" :style="{width: '100%', height: '280px'}"></div>
+    </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -10,138 +15,151 @@ export default {
     return {}
   },
   mounted() {
-    this.getList()
+    this.getList1()
+    this.getList2()
   },
   created() {
   },
   methods: {
-    getList() {
-      let myChart1 = this.$echarts.init(document.getElementById('Bar'))
+    getList1() {
+      var data = [
+        {"value": '61.17', "name": "1000MW"},
+        {"value": '27.16', "name": "600MW"},
+        {"value": '16.48', "name": "300MW"},
+        {"value": '16.48', "name": "300MW以下"}
+      ]
+      let colorList = ['#4CE4C3', '#4BD5F5', '#9994DB', '#837DED', '#666666', '#E44CE2', '#3240FF']
+      let myChart = this.$echarts.init(document.getElementById('pie1'))
       // 绘制图表
-      myChart1.setOption(
-        {
-          tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-              type: 'shadow'
-            }
-          },
-          grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-          },
-          toolbox: {
-            show: true,
-            right: 'center',
-            top: 0,
-            feature: {
-              mark: {show: true},
-              magicType: {show: true, type: ['line', 'bar']},
-              restore: {show: true},
-              saveAsImage: {show: true},
-              dataView: {show: true},
-              dataZoom: {show: true}
-            }
-          },
-          xAxis: [
-            {
-              data: ['焦炉', '封顶', '捣固'],
-              type: 'category',
-              axisLine: {
-                lineStyle: {
-                  color: "#3A4467"
-                }
-              },
-              offset: 10,
-              axisTick: { //x轴刻度线
-                show: false,
-              },
-              splitLine: {show: false},
-              axisLabel: {
-                rotate: 30,
-                textStyle: {
-                  color: "#5D6464"
-                }
-              },
-            }
-          ],
-          yAxis: [
-            {
-              name: "t",
-              axisLine: {
-                show: false,
-              },
-              axisTick: { //y轴刻度线
-                show: false,
-                axisLine: { //y轴
-                  show: false
+      myChart.setOption({
+        tooltip: {
+          trigger: 'item'
+        },
+        title: {
+          text: '',
+          subtext: '',
+          left: 'center'
+        },
+        legend: {
+          top: '85%',
+          left: 'center',
+        },
+        toolbox: {
+          show: true,
+          feature: {
+            mark: {show: true},
+            dataView: {show: true, readOnly: false},
+            restore: {show: true},
+            saveAsImage: {show: true}
+          }
+        },
+        series: [
+          {
+            name: '',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: true,
+            itemStyle: {
+              normal: {
+                color: function (colors) {
+                  var colorList = ['#4CE4C3', '#4BD5F5', '#9994DB', '#837DED', '#666666', '#E44CE2', '#3240FF'];
+                  return colorList[colors.dataIndex]
                 },
-
-              },
-              splitLine: {
-                lineStyle: {
-                  color: "#EDEDED"
-                }
-              },
-              min: '0',
-              max: '200',
-              axisLabel: {
-                textStyle: {
-                  color: "#5D6464"
-                }
-              }
-            }
-          ],
-          series: [
-            {
-              name: '',
-              type: 'bar',
-              barWidth: '30%',
-              stack: 'jl',
-              data: [43, 51, 76],
-              label: {
-                show: true
-              },
-              itemStyle: {
-                normal: {
-                  color: '#41CDE6'
-                }
+                label: {
+                  show: true,
+                  formatter: '{d}%'
+                },
+                labelLine: {show: true}
               }
             },
-            {
-              name: '',
-              type: 'bar',
-              stack: 'jl',
-              barWidth: '30%',
+            label: {
+              show: false,
+              position: 'center'
+            },
+            emphasis: {
               label: {
-                show: true
-              },
-              data: [65, 21, 32],
-              itemStyle: {
-                normal: {
-                  color: '#3377FF'
-                }
+                show: false,
+                fontSize: '40',
+                fontWeight: 'bold'
               }
             },
-            {
-              name: '',
-              type: 'bar',
-              stack: 'jl',
-              label: {
-                show: true
-              },
-              barWidth: '30%',
-              data: [35, 54, 45],
-              itemStyle: {
-                normal: {
-                  color: '#4CE4C3'
-                }
+            labelLine: {
+              show: false
+            },
+            data: data
+          }
+        ]
+      })
+    },
+    getList2() {
+      var data = [
+        {"value": '61.17', "name": "1000MW"},
+        {"value": '27.16', "name": "600MW"},
+        {"value": '16.48', "name": "300MW"},
+        {"value": '16.48', "name": "300MW以下"}
+      ]
+      let colorList = ['#4CE4C3', '#4BD5F5', '#9994DB', '#837DED', '#666666', '#E44CE2', '#3240FF']
+      let myChart = this.$echarts.init(document.getElementById('pie2'))
+      // 绘制图表
+      myChart.setOption({
+        tooltip: {
+          trigger: 'item'
+        },
+        title: {
+          text: '',
+          subtext: '',
+          left: 'center'
+        },
+        legend: {
+          top: '85%',
+          left: 'center',
+        },
+        toolbox: {
+          show: true,
+          feature: {
+            mark: {show: true},
+            dataView: {show: true, readOnly: false},
+            restore: {show: true},
+            saveAsImage: {show: true}
+          }
+        },
+        series: [
+          {
+            name: '',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: true,
+            itemStyle: {
+              normal: {
+                color: function (colors) {
+                  var colorList = ['#4CE4C3', '#4BD5F5', '#9994DB', '#837DED', '#666666', '#E44CE2', '#3240FF'];
+                  return colorList[colors.dataIndex]
+                },
+                label: {
+                  show: true,
+                  formatter: '{d}%'
+                },
+                labelLine: {show: true}
               }
-            }
-          ]
-        }, true)
+            },
+            label: {
+              show: false,
+              position: 'center'
+            },
+            emphasis: {
+              label: {
+                show: false,
+                fontSize: '40',
+                fontWeight: 'bold'
+              }
+            },
+            labelLine: {
+              show: false
+            },
+            data: data
+          }
+        ]
+      })
     }
   },
   props: {}
@@ -151,5 +169,10 @@ export default {
 .visibleDiv {
   width: 100%;
   height: 330px;
+  .visibleDivL,.visibleDivR{
+    width: 50%;
+    float: left;
+    height: 100%;
+  }
 }
 </style>
