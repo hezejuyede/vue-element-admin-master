@@ -59,12 +59,12 @@
             </div>
             <div class="managementTitleR">
               <label style="margin-right: 1px;margin-left: 1px" class="fl">
-                <el-input v-model.trim="enterpriseName" style="width: 200px" maxlength="20" placeholder="企业名称"></el-input>
+                <el-input v-model.trim="enterpriseName" style="width: 200px" maxlength="20" placeholder="名称"></el-input>
               </label>
               <label style="margin-right: 1px;margin-left: 1px" class="fl">
                 <el-select
                   style="width:150px"
-                  v-model="tyepe1"
+                  v-model="type"
                   clearable
                   filterable
                   allow-create
@@ -72,7 +72,7 @@
                   default-first-option
                   placeholder="类型">
                   <el-option
-                    v-for="item in tyepeOptions"
+                    v-for="item in typeOptions"
                     :key="item.id"
                     :label="item.name"
                     :value="item.id">
@@ -108,10 +108,8 @@ export default {
       examineTime: [],
       type: '',
       typeOptions: [
-        {"name": "产值", "id": "1"},
-        {"name": "主业营收", "id": "2"},
-        {"name": "利润", "id": "3"},
-        {"name": "入库税", "id": "4"}
+        {"name": "封顶", "id": "1"},
+        {"name": "捣固", "id": "2"}
       ]
     }
   },

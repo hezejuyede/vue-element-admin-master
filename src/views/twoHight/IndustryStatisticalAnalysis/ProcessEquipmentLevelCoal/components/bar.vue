@@ -1,6 +1,6 @@
 <template>
   <div class="visibleDiv">
-    <div id="Bar" :style="{width: '100%', height: '250px'}"></div>
+    <div id="Bar" :style="{width: '100%', height: '280px'}"></div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -47,8 +47,7 @@ export default {
           },
           xAxis: [
             {
-              type: 'category',
-              data: ['生铁', '烧节矿', '铁水', '粗钢', '热轧带钢', '高速线材', '优质棒材', '钢坯', '棒材', '不锈钢坯', '建筑用材'],
+              data: ['焦炉', '封顶', '捣固'],
               type: 'category',
               axisLine: {
                 lineStyle: {
@@ -86,6 +85,8 @@ export default {
                   color: "#EDEDED"
                 }
               },
+              min: '0',
+              max: '200',
               axisLabel: {
                 textStyle: {
                   color: "#5D6464"
@@ -95,17 +96,51 @@ export default {
           ],
           series: [
             {
-              name: 'Direct',
+              name: '',
               type: 'bar',
               barWidth: '30%',
-              data: [200, 334, 390, 330, 220,200, 334, 390, 330, 220,334],
+              stack: 'jl',
+              data: [43, 51, 76],
+              label: {
+                show: true
+              },
               itemStyle: {
                 normal: {
-                  color: '#32A4BF',
-                  barBorderRadius: [10, 10, 0, 0]
+                  color: '#41CDE6'
                 }
               }
-            }]
+            },
+            {
+              name: '',
+              type: 'bar',
+              stack: 'jl',
+              barWidth: '30%',
+              label: {
+                show: true
+              },
+              data: [65, 21, 32],
+              itemStyle: {
+                normal: {
+                  color: '#3377FF'
+                }
+              }
+            },
+            {
+              name: '',
+              type: 'bar',
+              stack: 'jl',
+              label: {
+                show: true
+              },
+              barWidth: '30%',
+              data: [35, 54, 45],
+              itemStyle: {
+                normal: {
+                  color: '#4CE4C3'
+                }
+              }
+            }
+          ]
         }, true)
     }
   },
