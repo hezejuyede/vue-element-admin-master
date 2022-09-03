@@ -1,6 +1,6 @@
 <template>
   <div class="visibleDiv">
-    <div id="regionBar" :style="{width: '100%', height: '290px'}"></div>
+    <div id="Bar" :style="{width: '100%', height: '250px'}"></div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -16,9 +16,9 @@ export default {
   },
   methods: {
     getList() {
-      let myChart2 = this.$echarts.init(document.getElementById('regionBar'));
+      let myChart1 = this.$echarts.init(document.getElementById('Bar'))
       // 绘制图表
-      myChart2.setOption(
+      myChart1.setOption(
         {
           tooltip: {
             trigger: 'axis',
@@ -34,21 +34,21 @@ export default {
           },
           toolbox: {
             show: true,
-            right:'center',
-            top:0,
+            right: 'center',
+            top: 0,
             feature: {
-              mark: { show: true },
-              magicType: { show: true, type: ['line', 'bar'] },
-              restore: { show: true },
-              saveAsImage: { show: true },
-              dataView: { show: true },
-              dataZoom: { show: true }
+              mark: {show: true},
+              magicType: {show: true, type: ['line', 'bar']},
+              restore: {show: true},
+              saveAsImage: {show: true},
+              dataView: {show: true},
+              dataZoom: {show: true}
             }
           },
           xAxis: [
             {
               type: 'category',
-              data:  ['济南市', '青岛市', '淄博市', '枣庄市', '东营市', '烟台市', '潍坊市', '济宁市', '泰安市', '威海市', '日照市', '临沂市', '德州市', '聊城市', '滨州市', '菏泽市'],
+              data: ['生铁', '烧节矿', '铁水', '粗钢', '热轧带钢', '高速线材', '优质棒材', '钢坯', '棒材', '不锈钢坯', '建筑用材'],
               type: 'category',
               axisLine: {
                 lineStyle: {
@@ -70,7 +70,7 @@ export default {
           ],
           yAxis: [
             {
-              name: "万元",
+              name: "t",
               axisLine: {
                 show: false,
               },
@@ -98,13 +98,14 @@ export default {
               name: 'Direct',
               type: 'bar',
               barWidth: '30%',
-              data: [10, 52, 200, 334, 390, 330, 220,10, 52, 200, 334, 390, 330, 220, 200, 334],
+              data: [200, 334, 390, 330, 220,200, 334, 390, 330, 220,334],
               itemStyle: {
                 normal: {
                   color: '#32A4BF',
-                  barBorderRadius:[10, 10, 0, 0]
+                  barBorderRadius: [10, 10, 0, 0]
                 }
-              }}]
+              }
+            }]
         }, true)
     }
   },
