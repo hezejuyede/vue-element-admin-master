@@ -10,7 +10,7 @@
                 <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
               </div>
               <div class="">
-                区域碳排放强度
+                区域污染物排放
               </div>
             </div>
             <div class="managementTitleR">
@@ -30,7 +30,7 @@
                 <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
               </div>
               <div class="">
-                济南市市碳排放地图
+                济南市污染物排放地图
               </div>
             </div>
             <div class="managementTitleR">
@@ -45,7 +45,7 @@
                 <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
               </div>
               <div class="">
-                行业碳排放强度
+                行业污染物排放
               </div>
             </div>
             <div class="managementTitleR">
@@ -67,7 +67,7 @@
                 <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
               </div>
               <div class="">
-                实时碳排放详情
+                污染物排放详情
               </div>
             </div>
             <div class="managementTitleR">
