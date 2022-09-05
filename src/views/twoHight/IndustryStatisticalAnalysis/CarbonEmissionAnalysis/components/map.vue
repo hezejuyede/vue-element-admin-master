@@ -1,6 +1,6 @@
 <template>
   <div class="visibleDiv">
-    <div id="mapDiv" :style="{width: '100%', height: '350px'}"></div>
+    <div id="mapDiv" :style="{width: '100%', height: '300px'}"></div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -85,10 +85,19 @@ export default {
           formatter: '{b}',
           itemSize: '14px'
         },
+        visualMap: {
+          top: 'middle',
+          right: 10,
+          min: 800,
+          max: 50000,
+          inRange: {
+            color: ['lightskyblue', 'yellow', 'orangered']
+          }
+        },
         dataRange: {
           x: 'left',
           y: 'center',
-          top: '100',
+          top: '10',
           splitList: [
             {start: 81, end: 100, label: '', color: '#0449AE'},
             {start: 71, end: 80, label: '', color: '#1D5BB6'},
@@ -107,7 +116,7 @@ export default {
         },
         series: [
           {
-            name: '县域乡村振兴全景展示',
+            name: '',
             type: 'map',
             map: '山东',
             mapType: '山东',
@@ -172,8 +181,5 @@ export default {
 .visibleDiv {
   width: 100%;
   height: 360px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 </style>

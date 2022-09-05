@@ -36,6 +36,7 @@
             <div class="managementTitleR">
             </div>
           </div>
+          <map-div></map-div>
         </div>
         <div class="containerTopT">
           <div class="managementTitle">
@@ -137,6 +138,7 @@ import lineDiv from './components/line'
 import peiDiv from './components/pie'
 import regionBar from './components/regionBar'
 import industryBar from './components/industryBar'
+import mapDiv from './components/map'
 export default {
   name: 'RegisterDiv',
   data() {
@@ -155,7 +157,7 @@ export default {
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: { left, barDiv, lineDiv, peiDiv, regionBar, industryBar },
+  components: { left, barDiv, lineDiv, peiDiv, regionBar, industryBar, mapDiv },
 
   created() {
   },
