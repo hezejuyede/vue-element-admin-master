@@ -97,7 +97,7 @@ export default {
               name: 'Direct',
               type: 'line',
               data: [200, 334, 390, 330, 220, 200, 334, 390, 330, 220, 200, 334, 200, 334, 390, 330, 220, 200, 334, 390, 330, 220, 200, 390],
-              symbol: 'circle', symbolSize: 10, smooth: true, itemStyle: { normal: { color: '#39BCD8' }
+              symbol: 'circle', symbolSize: 10, smooth: true, itemStyle: { normal: { color: '#4180FF' }
               }
             }]
         }, true)

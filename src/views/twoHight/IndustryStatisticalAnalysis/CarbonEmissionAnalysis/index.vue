@@ -75,6 +75,7 @@
               </label>
             </div>
           </div>
+          <pei-div></pei-div>
         </div>
         <div class="containerTopR">
           <div class="containerTopRT">
@@ -131,6 +132,7 @@
 import left from './common/left'
 import barDiv from './components/bar'
 import lineDiv from './components/line'
+import peiDiv from './components/pie'
 export default {
   name: 'RegisterDiv',
   data() {
@@ -149,7 +151,7 @@ export default {
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: { left, barDiv, lineDiv },
+  components: { left, barDiv, lineDiv, peiDiv },
 
   created() {
   },
