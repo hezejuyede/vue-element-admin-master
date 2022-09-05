@@ -90,6 +90,7 @@
               <div class="managementTitleR">
               </div>
             </div>
+            <line-div></line-div>
           </div>
           <div class="containerTopRB">
             <div class="managementTitle">
@@ -118,6 +119,7 @@
                 </label>
               </div>
             </div>
+            <bar-div></bar-div>
           </div>
         </div>
       </div>
@@ -127,7 +129,8 @@
 
 <script>
 import left from './common/left'
-
+import barDiv from './components/bar'
+import lineDiv from './components/line'
 export default {
   name: 'RegisterDiv',
   data() {
@@ -146,7 +149,7 @@ export default {
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: {left},
+  components: { left, barDiv, lineDiv },
 
   created() {
   },
