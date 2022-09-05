@@ -49,7 +49,7 @@ export default {
             {
               name: "",
               type: 'value',
-              data: ['0.51', '0.65', '0.70', '0.75', '0.80', '0.85', '0.90', '0.95'],
+              data: ['10', '20', '30', '40', '50', '60', '70', '80'],
               splitLine: {
                 lineStyle: {
                   color: "#EDEDED"
@@ -82,7 +82,8 @@ export default {
             {
               type: 'bar',
               barWidth: '30%',
-              data: [0.11, 0.21, 0.31, 0.41, 0.51, 0.61, 0.71, 0.81, 0.41, 0.31, 0.21, 0.21, 0.31, 0.41, 0.51, 0.81],
+              stack: 'jl',
+              data: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,22, 23, 24, 25, 26],
               itemStyle: {
                 normal: {
                   color: function(params) {
@@ -92,7 +93,53 @@ export default {
                   barBorderRadius: [0, 10, 10, 0]
                 }
               }
-            }]
+            },
+            {
+              type: 'bar',
+              barWidth: '30%',
+              stack: 'jl',
+              data: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,22, 23, 24, 25, 26],
+              itemStyle: {
+                normal: {
+                  color: function(params) {
+                    var colorList = ['#29D078']
+                    return colorList[params.dataIndex]
+                  },
+                  barBorderRadius: [0, 10, 10, 0]
+                }
+              }
+            },
+            {
+              type: 'bar',
+              barWidth: '30%',
+              stack: 'jl',
+              data: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,22, 23, 24, 25, 26],
+              itemStyle: {
+                normal: {
+                  color: function(params) {
+                    var colorList = ['#4ECEE5']
+                    return colorList[params.dataIndex]
+                  },
+                  barBorderRadius: [0, 10, 10, 0]
+                }
+              }
+            },
+            {
+              type: 'bar',
+              barWidth: '30%',
+              stack: 'jl',
+              data: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,22, 23, 24, 25, 26],
+              itemStyle: {
+                normal: {
+                  color: function(params) {
+                    var colorList = ['#FBD55A']
+                    return colorList[params.dataIndex]
+                  },
+                  barBorderRadius: [0, 10, 10, 0]
+                }
+              }
+            }
+          ]
         }, true)
     }
   },

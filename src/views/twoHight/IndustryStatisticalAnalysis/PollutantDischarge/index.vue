@@ -13,7 +13,7 @@
                 区域碳排放强度
               </div>
             </div>
-            <div class="managementTitleR" id="managementTitleR1">
+            <div class="managementTitleR">
               <label class="fl">
                 <el-date-picker style="width: 240px" v-model="examineTime1" type="daterange"
                                 start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
@@ -60,6 +60,21 @@
         </div>
       </div>
       <div class="containerBottom">
+        <div class="containerTopR">
+          <div class="managementTitle">
+            <div class="managementTitleL">
+              <div class="">
+                <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
+              </div>
+              <div class="">
+                实时碳排放详情
+              </div>
+            </div>
+            <div class="managementTitleR">
+            </div>
+          </div>
+          <table-div></table-div>
+        </div>
         <div class="containerTopL">
           <div class="managementTitle">
             <div class="managementTitleL">
@@ -67,64 +82,13 @@
                 <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
               </div>
               <div class="">
-                区域碳排放占比
+                实时污染物排放量
               </div>
             </div>
             <div class="managementTitleR">
-              <label class="fl" id="managementTitleR2">
-                <el-date-picker style="width: 240px" v-model="examineTime2" type="daterange"
-                                start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
-                </el-date-picker>
-              </label>
             </div>
           </div>
-          <pei-div></pei-div>
-        </div>
-        <div class="containerTopR">
-          <div class="containerTopRT">
-            <div class="managementTitle">
-              <div class="managementTitleL">
-                <div class="">
-                  <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
-                </div>
-                <div class="">
-                  实时碳排放强度
-                </div>
-              </div>
-              <div class="managementTitleR">
-              </div>
-            </div>
-            <line-div></line-div>
-          </div>
-          <div class="containerTopRB">
-            <div class="managementTitle">
-              <div class="managementTitleL" style="width: 30%">
-                <div class="">
-                  <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
-                </div>
-                <div class="">
-                  碳排放统计
-                </div>
-              </div>
-              <div class="managementTitleR" style="width: 70%">
-                <div class="" style="width: 400px;height: 100%;display: flex;align-items: center;justify-content: center">
-                  <label class="fl">
-                    <el-radio-group v-model="emissions">
-                      <el-radio label="1">日排放量</el-radio>
-                      <el-radio label="2">月排放量</el-radio>
-                    </el-radio-group>
-                  </label>
-                </div>
-
-                <label class="fl">
-                  <el-date-picker style="width: 240px" v-model="examineTime2" type="daterange"
-                                  start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
-                  </el-date-picker>
-                </label>
-              </div>
-            </div>
-            <bar-div></bar-div>
-          </div>
+         <line-div></line-div>
         </div>
       </div>
     </div>
@@ -133,9 +97,8 @@
 
 <script>
 import left from './common/left'
-import barDiv from './components/bar'
+import tableDiv from './components/table'
 import lineDiv from './components/line'
-import peiDiv from './components/pie'
 import regionBar from './components/regionBar'
 import industryBar from './components/industryBar'
 import mapDiv from './components/map'
@@ -157,7 +120,7 @@ export default {
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: { left, barDiv, lineDiv, peiDiv, regionBar, industryBar, mapDiv },
+  components: { left, tableDiv, lineDiv, regionBar, industryBar, mapDiv },
 
   created() {
   },
@@ -268,26 +231,19 @@ export default {
   .containerBottom{
     margin-top: 10px;
     height: 530px;
+    background-color: #F8F8F8;
     .containerTopL{
       float: left;
       width: 32%;
       height: 100%;
       background-color: #ffffff;
-      margin-right: 1%;
     }
     .containerTopR{
       float: left;
       width: 65%;
       height: 100%;
-      .containerTopRT{
-        height: 49%;
-        margin-bottom: 1.5%;
-        background-color: #ffffff;
-      }
-      .containerTopRB{
-        height: 49%;
-        background-color: #ffffff;
-      }
+      background-color: #ffffff;
+      margin-right: 1%;
     }
   }
 

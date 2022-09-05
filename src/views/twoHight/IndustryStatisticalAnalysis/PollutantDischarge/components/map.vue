@@ -76,7 +76,7 @@ export default {
       myChart.on('click', function(params) {})
       myChart.setOption({
         visualMap: {
-          show: true,
+          show: false,
           min: 0,
           max: 100,
           text: ['高', '低'],
@@ -100,9 +100,9 @@ export default {
               }
             },
             emphasis: {
-              show: false,
+              show: true,
               textStyle: {
-                color: "#00a0c9"
+                color: "#FFFFFF"
               }
             }
           },
@@ -119,6 +119,55 @@ export default {
             }
           }
         },
+        title: {
+          name: '污染物排放量',
+          top: "1%",
+          left: "center",
+          textStyle: {
+            fontSize: 20,
+            fontWeight: 600,
+            color: "#222",
+          },
+        },
+        tooltip: {
+          trigger: 'item',
+          triggerOn: "mousemove",
+          showContent: true,
+          alwaysShowContent: true,
+          showDelay: 0,
+          hideDelay: 100,
+          enterable: false,
+          confine: false,
+          transitionDuration: 0.4,
+          position: ['2%', '2%'],
+          formatter: function(params) {
+            const showname = params
+            return (
+              `
+                <div style='width:150px;height:120px;background-color: #ffffff'>
+                    <p  style="width:100%;height:15px;text-align: center;line-height: 15px;font-size: 14px">${showname.data.name}污染物排放量</p>
+                    <p  style="width:100%;height:10px;line-height: 10px;text-align: center">
+                    <span>SO₂:</span><span style="color: #3B7BFF;font-size: 14px;margin-left: 5px">${showname.data.value}[吨]</span>
+                    </p>
+                    <p  style="width:100%;height:10px;line-height: 10px;text-align: center">
+                    <span>NOx:</span><span style="color: #3B7BFF;font-size: 14px;margin-left: 5px">${showname.data.value}[吨]</span>
+                    </p>
+                    <p  style="width:100%;height:10px;line-height: 10px;text-align: center">
+                    <span>PM2.5:</span><span style="color: #3B7BFF;font-size: 14px;margin-left: 5px"> ${showname.data.value}[吨]</span>
+                    </p>
+                    <p  style="width:100%;height:10px;line-height: 10px;text-align: center">
+                    <span>VOCs:</span><span style="color: #3B7BFF;font-size: 14px;margin-left: 5px">${showname.data.value}[吨]</span>
+                    </p>
+              </div>
+              `
+            )
+          },
+          backgroundColor: "transparent",
+          borderColor: "#ccc",
+          borderWidth: 1,
+          padding: 0,
+          textStyle: '',
+        },
         series: [{
           name: '',
           type: 'map',
@@ -129,16 +178,7 @@ export default {
           geoIndex: 0,
           aspectScale: 0.75,
           zoom: 1.2,
-          label: {
-            normal: {
-              formatter: '{b}',
-              position: 'right',
-              show: false
-            },
-            emphasis: {
-              show: true
-            }
-          },
+          label: {},
           itemStyle: {
             normal: {
               color: '#F06C00'
