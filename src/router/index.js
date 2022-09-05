@@ -132,6 +132,13 @@ export const constantRoutes = [
         name: 'Coking',
         meta: { title: 'Coking', icon: 'documentation', affix: true }
       }
+      ,
+      {
+        path: 'CarbonEmissionAnalysis',
+        component: () => import('@/views/twoHight/IndustryStatisticalAnalysis/CarbonEmissionAnalysis/index'),
+        name: 'CarbonEmissionAnalysis',
+        meta: { title: 'CarbonEmissionAnalysis', icon: 'documentation', affix: true }
+      }
     ]
   },
   {
