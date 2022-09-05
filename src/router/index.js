@@ -138,6 +138,12 @@ export const constantRoutes = [
         component: () => import('@/views/twoHight/IndustryStatisticalAnalysis/CarbonEmissionAnalysis/index'),
         name: 'CarbonEmissionAnalysis',
         meta: { title: 'CarbonEmissionAnalysis', icon: 'documentation', affix: true }
+      },
+      {
+        path: 'PollutantDischarge',
+        component: () => import('@/views/twoHight/IndustryStatisticalAnalysis/PollutantDischarge/index'),
+        name: 'PollutantDischarge',
+        meta: { title: 'PollutantDischarge', icon: 'documentation', affix: true }
       }
     ]
   },
