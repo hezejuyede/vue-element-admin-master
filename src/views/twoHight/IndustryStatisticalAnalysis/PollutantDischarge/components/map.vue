@@ -1,6 +1,6 @@
 <template>
   <div class="visibleDiv">
-    <div id="mapDiv" :style="{width: '100%', height: '300px'}"></div>
+    <div id="mapDiv" :style="{width: '100%', height: '330px'}"></div>
   </div>
 </template>
 <script type="text/ecmascript-6">

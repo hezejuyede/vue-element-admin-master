@@ -1,6 +1,6 @@
 <template>
   <div class="visibleDiv">
-    <div id="regionBar" :style="{width: '100%', height: '350px'}"></div>
+    <div id="regionBar" :style="{width: '100%', height: '380px'}"></div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -20,6 +20,13 @@ export default {
       // 绘制图表
       myChart1.setOption(
         {
+          legend: {
+            data:['SO₂', 'NOx', 'PM2.5', 'VOCs'],
+            textStyle: {
+              fontSize: 12,//字体大小
+              color: '#5D6464'//字体颜色
+            }
+          },
           tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -27,12 +34,12 @@ export default {
             }
           },
           grid: {
-            top: '2%',
+            top: '6%',
             left: '3%',
             right: '10%',
             containLabel: true
           },
-          /*   toolbox: {
+         /*    toolbox: {
             show: true,
             right: 'center',
             top: 0,
@@ -83,6 +90,7 @@ export default {
               type: 'bar',
               barWidth: '30%',
               stack: 'jl',
+              name:"SO₂",
               data: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,22, 23, 24, 25, 26],
               itemStyle: {
                 normal: {
@@ -98,6 +106,7 @@ export default {
               type: 'bar',
               barWidth: '30%',
               stack: 'jl',
+              name:"NOx",
               data: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,22, 23, 24, 25, 26],
               itemStyle: {
                 normal: {
@@ -113,6 +122,7 @@ export default {
               type: 'bar',
               barWidth: '30%',
               stack: 'jl',
+              name:"PM2.5",
               data: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,22, 23, 24, 25, 26],
               itemStyle: {
                 normal: {
@@ -128,6 +138,7 @@ export default {
               type: 'bar',
               barWidth: '30%',
               stack: 'jl',
+              name:"VOCs",
               data: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,22, 23, 24, 25, 26],
               itemStyle: {
                 normal: {
@@ -149,6 +160,6 @@ export default {
 <style lang="scss" scoped>
 .visibleDiv {
   width: 100%;
-  height: 330px;
+  height: 380px;
 }
 </style>

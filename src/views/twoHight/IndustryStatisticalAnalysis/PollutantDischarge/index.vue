@@ -217,12 +217,12 @@ export default {
 
   .containerTop {
     width: 100%;
-    height: 360px;
+    height: 390px;
     background-color: #F8F8F8;
 
     .containerTopT {
       width: 32%;
-      height: 360px;
+      height: 390px;
       background-color: #ffffff;
       float: left;
       margin-right: 1%;
@@ -230,17 +230,17 @@ export default {
   }
   .containerBottom{
     margin-top: 10px;
-    height: 530px;
+    height: 500px;
     background-color: #F8F8F8;
     .containerTopL{
       float: left;
-      width: 32%;
+      width: 50%;
       height: 100%;
       background-color: #ffffff;
     }
     .containerTopR{
       float: left;
-      width: 65%;
+      width: 47%;
       height: 100%;
       background-color: #ffffff;
       margin-right: 1%;

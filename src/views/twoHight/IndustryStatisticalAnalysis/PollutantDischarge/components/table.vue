@@ -17,7 +17,7 @@
                 :header-cell-style="{background:'#EDF4F4',color:'#474F4F',height:'40px',borderColor:'#CAE5E4',fontSize:'14px',fontWeight: 'bold'}"
                 :cell-style="{fontSize:'12px',fontWeight: 'norma',color:'#444B4B',background:'#FFFFFF',borderColor:'#CAE5E4'}"
                 border
-                :height="320"
+                :height="300"
                 ref="moviesTable"
                 highlight-current-row style="width: 98%;margin: auto">
         <el-table-column
@@ -38,7 +38,7 @@
             </el-popover>
           </template>
         </el-table-column>
-        <el-table-column label="烟气量(t)" prop="kssj" align="center" width="70"></el-table-column>
+        <el-table-column label="烟气量(m³)" prop="kssj" align="center" width="70"></el-table-column>
         <el-table-column label="SO₂(t)" prop="jssj" align="center" width="60"></el-table-column>
         <el-table-column label="NOx(t)" prop="htdl" align="center" width="60"></el-table-column>
         <el-table-column label="PM2.5(t)" prop="lydl" align="center" width="70"></el-table-column>
