@@ -21,6 +21,7 @@
               </label>
             </div>
           </div>
+          <region-bar></region-bar>
         </div>
         <div class="containerTopT">
           <div class="managementTitle">
@@ -54,6 +55,7 @@
               </label>
             </div>
           </div>
+          <industry-bar></industry-bar>
         </div>
       </div>
       <div class="containerBottom">
@@ -133,6 +135,8 @@ import left from './common/left'
 import barDiv from './components/bar'
 import lineDiv from './components/line'
 import peiDiv from './components/pie'
+import regionBar from './components/regionBar'
+import industryBar from './components/industryBar'
 export default {
   name: 'RegisterDiv',
   data() {
@@ -151,7 +155,7 @@ export default {
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: { left, barDiv, lineDiv, peiDiv },
+  components: { left, barDiv, lineDiv, peiDiv, regionBar, industryBar },
 
   created() {
   },
@@ -248,19 +252,19 @@ export default {
 
   .containerTop {
     width: 100%;
-    height: 350px;
+    height: 360px;
     background-color: #F8F8F8;
 
     .containerTopT {
       width: 32%;
-      height: 350px;
+      height: 360px;
       background-color: #ffffff;
       float: left;
       margin-right: 1%;
     }
   }
   .containerBottom{
-    margin-top: 20px;
+    margin-top: 10px;
     height: 530px;
     .containerTopL{
       float: left;
