@@ -82,6 +82,12 @@ export const constantRoutes = [
         component: () => import('@/views/twoHight/businessManagement/EnterpriseInformationPortrait/index'),
         name: 'EnterpriseInformationPortrait',
         meta: { title: 'EnterpriseInformationPortrait', icon: 'documentation', affix: true }
+      } ,
+      {
+        path: 'EnterpriseInformationMaintenance',
+        component: () => import('@/views/twoHight/businessManagement/EnterpriseInformationMaintenance/index'),
+        name: 'EnterpriseInformationMaintenance',
+        meta: { title: 'EnterpriseInformationMaintenance', icon: 'documentation', affix: true }
       }
     ]
   },
