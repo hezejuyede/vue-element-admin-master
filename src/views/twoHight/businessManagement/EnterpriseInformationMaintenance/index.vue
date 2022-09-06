@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="containerCenter">
-
+      <tab-div></tab-div>
     </div>
     <div class="containerBottom">
       <div class="managementTitle">
@@ -48,6 +48,7 @@
 <script>
 import tableDiv from './components/table'
 import avatarDiv from './components/avatar'
+import tabDiv from './components/tab'
 export default {
   name: 'RegisterDiv',
   data() {
@@ -63,7 +64,7 @@ export default {
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: { tableDiv, avatarDiv},
+  components: { tableDiv, avatarDiv, tabDiv },
 
   created() {
   },
@@ -83,7 +84,7 @@ export default {
 
 .management-container {
   width: 100%;
-  height: 950px;
+  height: 1000px;
   background-color: #F8F8F8;
   padding-top: 10px;
 
@@ -136,7 +137,6 @@ export default {
         height: 100%;
         border-right: 1px solid #E8E8E8;
       }
-
       .topDivR {
         float: left;
         width: 50%;
@@ -146,7 +146,7 @@ export default {
   }
   .containerCenter{
     width: 97%;
-    height: 450px;
+    height: 500px;
     margin: 15px auto 0 auto;
     background-color: #ffffff;
   }

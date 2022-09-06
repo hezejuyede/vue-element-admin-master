@@ -120,6 +120,8 @@ export default {
         align-items: center;
         justify-content: flex-end;
         margin-right: 5px;
+        color: #505156;
+        font-weight: bold;
       }
       .avatarRTC{
         flex: 1.5;
@@ -128,6 +130,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: flex-start;
+        color: #737477;
       }
       .avatarRTR{
         flex: 1;
