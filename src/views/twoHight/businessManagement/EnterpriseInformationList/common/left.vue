@@ -1,9 +1,9 @@
 <template>
-  <div :class="leftState ? 'left-show':'left-hide'">
-    <div class="left-show-div" @click="showLeft" v-if="leftState">
+  <div :class="leftStatus ? 'left-show':'left-hide'">
+    <div class="left-show-div" @click="showLeft" v-if="leftStatus">
       <img src="../img/s-q.png" alt="" class="">
     </div>
-    <div class="left-hide-div" @click="showLeft" v-if="!leftState">
+    <div class="left-hide-div" @click="showLeft" v-if="!leftStatus">
       <img src="../img/zh-k.png" alt="" class="">
     </div>
     <div class="leftDiv">
@@ -48,6 +48,7 @@ export default {
   name: 'Modal',
   data() {
     return {
+      leftStatus: this.leftState,
       showDown: true,
       chooseDiv: 0,
       titleList: [
@@ -418,8 +419,8 @@ export default {
       this.showDown = !this.showDown
     },
     showLeft() {
-      this.leftState = !this.leftState
-      this.$emit('showLeft', this.leftState)
+      this.leftStatus = !this.leftStatus
+      this.$emit('showLeft', this.leftStatus)
     },
     chooseList(index, choose) {
       if (index === 0) {

@@ -31,7 +31,7 @@
             <div class="managementTitleR">
             </div>
           </div>
-          <map-div></map-div>
+          <map-div ref="Chart"></map-div>
         </div>
       </div>
       <div class="containerBottom">
@@ -57,10 +57,11 @@
 import left from './common/left'
 import listDiv from './components/list'
 import detailsDiv from './components/details'
-import mapDiv from './components/bar'
+import mapDiv from './components/map'
 
 export default {
   name: 'RegisterDiv',
+  components: { left, listDiv, detailsDiv, mapDiv },
   data() {
     return {
       leftState: true
@@ -68,14 +69,16 @@ export default {
   },
   watch: {
     $route: {
-      handler: function (route) {
+      handler: function(route) {
       },
       immediate: true
+    },
+    leftState(val) {
+      this.$nextTick(() => {
+      /*  this.$refs.Chart.resize()*/
+      })
     }
   },
-  // eslint-disable-next-line vue/no-unused-components
-  components: { left, listDiv, detailsDiv, mapDiv },
-
   created() {
   },
   mounted() {
@@ -148,7 +151,7 @@ export default {
   .right-hide {
     position: absolute;
     width: 98%;
-    left: -2%;
+    left: 2%;
     top: 20px;
     height: 800px;
     transition: all 0.5s;

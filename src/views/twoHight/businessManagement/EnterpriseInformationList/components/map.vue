@@ -6,9 +6,12 @@
 <script type="text/ecmascript-6">
 export default {
   name: 'Modal',
+  props: {},
   data() {
     return {}
   },
+  computed: {},
+  watch: {},
   mounted() {
     this.$nextTick(() => {
       this.getList()
@@ -73,7 +76,6 @@ export default {
         }
         arr.push(json)
       }
-
       var myChart = this.$echarts.init(document.getElementById('mapDiv'))
       myChart.on('click', function (params) {})
       myChart.setOption({
@@ -159,13 +161,8 @@ export default {
             data:arr
           }],
       })
-      window.addEventListener("resize", function() {
-        myChart.resize()
-      })
-      console.log(arr)
     }
-  },
-  props: {}
+  }
 }
 </script>
 <style lang="scss" scoped>
