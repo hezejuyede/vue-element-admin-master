@@ -14,7 +14,7 @@
                 :header-cell-style="{background:'#EDF4F4',color:'#474F4F',height:'40px',borderColor:'#CAE5E4',fontSize:'14px',fontWeight: 'bold'}"
                 :cell-style="{fontSize:'12px',fontWeight: 'norma',color:'#444B4B',background:'#FFFFFF',borderColor:'#CAE5E4'}"
                 border
-                :height="200"
+                :height="600"
                 ref="moviesTable"
                 highlight-current-row style="width: 95%;margin: auto">
         <el-table-column
@@ -48,6 +48,17 @@
         <el-table-column label="意见" prop="lydl" align="center" ></el-table-column>
         <el-table-column label="备注" prop="lydl" align="center"></el-table-column>
       </el-table>
+      <div class="handle-page" style="display: flex;align-items: center;justify-content: flex-end;margin-top: 15px;margin-bottom:10px;padding-right: 50px">
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage"
+          :page-sizes="[10,50,100, 150,200,250,300]"
+          :page-size="mrPage"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="countSize">
+        </el-pagination>
+      </div>
     </div>
   </div>
 </template>
@@ -60,7 +71,12 @@ export default {
   data() {
     return {
       tableData: [],
-      enterpriseName: ''
+      enterpriseName: '',
+      currentPage: 1,
+      startIndex: 0,
+      mrPage: 10,
+      pageNum: Number,
+      countSize: 0
     }
   },
   mounted() {
@@ -74,7 +90,16 @@ export default {
   },
   methods: {
     getList() {
-    }
+    },
+    handleSizeChange(val) {
+      this.mrPage = val;
+      this.startIndex = (this.currentPage - 1) * this.mrPage;
+      this.getList()
+    },
+    handleCurrentChange(val) {
+      this.startIndex = (val - 1) * this.mrPage;
+      this.getList()
+    },
   },
   props: {}
 }
