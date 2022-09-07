@@ -19,7 +19,7 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="统一社会信用代码：" prop="provinceCode">
+        <el-form-item label="统一社会信用代码：" prop="code">
           <el-input v-model.trim="ruleForm.code" style="width: 250px"
                     maxlength="20"
                     placeholder="请填写您的单位统一社会信用代码"></el-input>
