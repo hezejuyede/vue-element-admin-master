@@ -2,7 +2,7 @@
   <div class="visibleDiv">
     <div class="visibleDivSelect">
       <label style="margin-right: 20px;margin-left: 5px" class="fr">
-        <el-button type="primary" @click="getList" icon="el-icon-plus"
+        <el-button type="primary" @click="openVisible" icon="el-icon-plus"
                    style="background-color: #3377FF;width: 150px;height: 35px">添加单位用户
         </el-button>
       </label>
@@ -44,6 +44,9 @@ export default {
   methods: {
     getList() {
     },
+    openVisible() {
+      this.$emit('openVisible', 'openDialog')
+    }
   },
   props: {}
 }

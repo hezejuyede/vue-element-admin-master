@@ -1,5 +1,24 @@
 <template>
   <div class="tabDiv">
+    <div class="tabDivSelect">
+      <el-select
+        style="width:295px"
+        v-model="quota"
+        clearable
+        filterable
+        allow-create
+        multiple
+        collapse-tags
+        default-first-option
+        placeholder="行业">
+        <el-option
+          v-for="item in quotaOptions"
+          :key="item.id"
+          :label="item.name"
+          :value="item.id">
+        </el-option>
+      </el-select>
+    </div>
     <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
       <el-tab-pane label="基本信息">
         <el-table class="tb-edit" :data="tableData"
@@ -24,7 +43,7 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="数据项">
+      <el-tab-pane label="设备信息">
         <div class="visibleDivSelect">
           <label style="margin-right: 5px;margin-left: 5px" class="fl">
             <el-select
@@ -134,6 +153,62 @@
           </div>
         </div>
       </el-tab-pane>
+      <el-tab-pane label="数据填报">
+        <div class="visibleDivSelect">
+          <label style="margin-right: 50px;margin-left: 5px" class="fl">
+            <el-button type="primary" @click="getList" icon="el-icon-plus"
+                       style="background-color: #3377FF;width: 100px;height: 35px">新增
+            </el-button>
+            <el-button @click="getList" icon="el-icon-delete"
+                       style="border: 1px solid #D8D8D8;width: 100px;color:#959699; height: 35px">删除
+            </el-button>
+            <el-button @click="getList" icon="el-icon-download"
+                       style="border: 1px solid #D8D8D8;width: 100px;color:#959699; height: 35px">导出
+            </el-button>
+          </label>
+        </div>
+        <div class="visibleTable">
+          <div class="visibleTableT">
+            <el-table class="tb-edit" :data="tableData3"
+                      :header-cell-style="{background:'#EDF4F4',color:'#474F4F',height:'40px',borderColor:'#CAE5E4',fontSize:'14px',fontWeight: 'bold'}"
+                      :cell-style="{fontSize:'12px',fontWeight: 'norma',color:'#444B4B',background:'#FFFFFF',borderColor:'#CAE5E4'}"
+                      border
+                      :height="200"
+                      ref="moviesTable"
+                      highlight-current-row style="width: 95%;margin: auto">
+              <el-table-column label="参数" prop="sdzt" align="center" width="150"></el-table-column>
+              <el-table-column label="数据填报项" prop="kssj" align="center"></el-table-column>
+              <el-table-column label="单位" prop="jssj" align="center"></el-table-column>
+            </el-table>
+          </div>
+          <div class="visibleTableT">
+            <el-table class="tb-edit" :data="tableData4"
+                      :header-cell-style="{background:'#EDF4F4',color:'#474F4F',height:'40px',borderColor:'#CAE5E4',fontSize:'14px',fontWeight: 'bold'}"
+                      :cell-style="{fontSize:'12px',fontWeight: 'norma',color:'#444B4B',background:'#FFFFFF',borderColor:'#CAE5E4'}"
+                      border
+                      :height="200"
+                      ref="moviesTable"
+                      highlight-current-row style="width: 95%;margin: auto">
+              <el-table-column label="参数" prop="sdzt" align="center" width="150"></el-table-column>
+              <el-table-column label="数据填报项" prop="kssj" align="center"></el-table-column>
+              <el-table-column label="单位" prop="jssj" align="center"></el-table-column>
+            </el-table>
+          </div>
+          <div class="visibleTableT">
+            <el-table class="tb-edit" :data="tableData5"
+                      :header-cell-style="{background:'#EDF4F4',color:'#474F4F',height:'40px',borderColor:'#CAE5E4',fontSize:'14px',fontWeight: 'bold'}"
+                      :cell-style="{fontSize:'12px',fontWeight: 'norma',color:'#444B4B',background:'#FFFFFF',borderColor:'#CAE5E4'}"
+                      border
+                      :height="200"
+                      ref="moviesTable"
+                      highlight-current-row style="width: 95%;margin: auto">
+              <el-table-column label="参数" prop="sdzt" align="center" width="150"></el-table-column>
+              <el-table-column label="数据填报项" prop="kssj" align="center"></el-table-column>
+              <el-table-column label="单位" prop="jssj" align="center"></el-table-column>
+            </el-table>
+          </div>
+        </div>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -156,6 +231,9 @@ export default {
         {'name1': '是否纳统企业', 'info1': '8', 'name2': '是否规上企业', 'info2': '16', 'iseditor': false, 'index': '8' }
       ],
       tableData2: [],
+      tableData3:[],
+      tableData4:[],
+      tableData5:[],
       quota: "",
       quotaOptions: [],
       status: "",
@@ -214,7 +292,7 @@ export default {
   }
 
   td {
-    padding: 5px;
+    padding: 3px;
   }
 }
 
@@ -228,5 +306,16 @@ export default {
 }
 .visibleTable {
   height: 250px;
+}
+.tabDivSelect{
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.visibleTableT{
+  float: left;
+  width: 33%;
+  height: 100%;
 }
 </style>

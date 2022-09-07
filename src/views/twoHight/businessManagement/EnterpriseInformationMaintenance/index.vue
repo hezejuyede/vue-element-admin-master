@@ -18,7 +18,7 @@
           <avatar-div></avatar-div>
         </div>
         <div class="topDivR">
-          <table-div></table-div>
+          <table-div @openVisible="openVisible"></table-div>
         </div>
       </div>
     </div>
@@ -42,6 +42,7 @@
         <img src="./img/modifyTracking.png" alt="">
       </div>
     </div>
+    <add-dialog :addDialog="addDialog" @closeVisible="closeVisible"></add-dialog>
   </div>
 </template>
 
@@ -49,22 +50,24 @@
 import tableDiv from './components/table'
 import avatarDiv from './components/avatar'
 import tabDiv from './components/tab'
+import addDialog from './components/addDialog'
 export default {
   name: 'RegisterDiv',
   data() {
     return {
-      examineTime: []
+      examineTime: [],
+      addDialog: false
     }
   },
   watch: {
     $route: {
-      handler: function (route) {
+      handler: function(route) {
       },
       immediate: true
     }
   },
   // eslint-disable-next-line vue/no-unused-components
-  components: { tableDiv, avatarDiv, tabDiv },
+  components: { tableDiv, avatarDiv, tabDiv, addDialog },
 
   created() {
   },
@@ -72,7 +75,19 @@ export default {
   },
   destroyed() {
   },
-  methods: {}
+  methods: {
+    closeVisible(type) {
+      if (type === 'addDialog') {
+        this.addDialog = false
+      }
+    },
+    openVisible(type) {
+      if (type === 'openDialog') {
+        this.addDialog = true
+      }
+    }
+
+  }
 }
 </script>
 <style lang="scss">
