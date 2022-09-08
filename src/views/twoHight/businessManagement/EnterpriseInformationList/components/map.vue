@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     getList() {
-      var data =[
+      var data = [
         {
           "name": "历下区", "value": "88", "id": "2"
 
@@ -61,11 +61,11 @@ export default {
           "name": "商河县", "value": "29.9", "id": "7"
         },
       ]
-      let arr =[]
+      let arr = []
       for (let i = 0; i < data.length; i++) {
 
         let json = {
-          "name": data[i].name, "value": data[i].value, "id": data[i].id,"label": {
+          "name": data[i].name, "value": data[i].value, "id": data[i].id, "label": {
             normal: {
               show: true,
               formatter: function (params) {
@@ -77,7 +77,8 @@ export default {
         arr.push(json)
       }
       var myChart = this.$echarts.init(document.getElementById('mapDiv'))
-      myChart.on('click', function (params) {})
+      myChart.on('click', function (params) {
+      })
       myChart.setOption({
         title: {
           text: ''
@@ -132,24 +133,24 @@ export default {
               }
             },
             label: {
-              normal:{
-                show:true,
-                formatter:function(params){ //标签内容
-                  return  params.name;
+              normal: {
+                show: true,
+                formatter: function (params) { //标签内容
+                  return params.name;
                 },
                 lineHeight: 12,
-                backgroundColor:'#FFFFFF',
-                borderColor:'#80cffd',
-                borderWidth:'1',
-                padding:[5,15,5],
-                color:'#000000',
+                backgroundColor: '#FFFFFF',
+                borderColor: '#80cffd',
+                borderWidth: '1',
+                padding: [5, 15, 5],
+                color: '#000000',
                 fontSize: 14,
-                fontWeight:'normal',
+                fontWeight: 'normal',
               },
               emphasis: {
                 show: true,
                 textStyle: {
-                  color:'#000000',
+                  color: '#000000',
                 }
               },
             },
@@ -158,8 +159,11 @@ export default {
               brushType: 'stroke'
             },
             hoverAnimation: true,
-            data:arr
+            data: arr
           }],
+      })
+      window.addEventListener("resize", function () {
+        myChart.resize()
       })
     }
   }

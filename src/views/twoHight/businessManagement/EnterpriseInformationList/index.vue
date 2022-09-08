@@ -74,9 +74,11 @@ export default {
       immediate: true
     },
     leftState(val) {
-      this.$nextTick(() => {
-      /*  this.$refs.Chart.resize()*/
-      })
+      setTimeout(() => {
+        this.$nextTick(() => {
+          this.$refs.Chart.resize()
+        })
+      }, 1000)
     }
   },
   created() {
