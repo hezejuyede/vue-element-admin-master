@@ -10,6 +10,9 @@
       <div class="leftDivTop">
         <div class="leftDivTopTitle">
           <div class="leftDivTopTitleL">行业选择</div>
+          <div class="leftDivTopTitleC">
+            <el-button style="width: 60px;height: 25px;padding: 0;font-size: 12px" type="primary"  icon="el-icon-search">查询</el-button>
+          </div>
           <div class="leftDivTopTitleR">
             <img src="../img/shou-q.png" alt="" v-if="showDown" @click="showBottom">
             <img src="../img/zhan-k.png" alt="" v-if="!showDown" @click="showBottom">
@@ -53,22 +56,22 @@ export default {
       chooseDiv: 0,
       titleList: [
         {'name': '全部', 'id': '0', 'choose': '0'},
-        {"name": "钢铁", "id": "12", 'choose': '1'},
-        {"name": "炼化", "id": "1", 'choose': '1'},
-        {"name": "焦化", "id": "2", 'choose': '1'},
-        {"name": "煤电", "id": "16", 'choose': '1'},
-        {"name": "肥料", "id": "5", 'choose': '1'},
-        {"name": "轮胎", "id": "6", 'choose': '1'},
-        {"name": "水泥", "id": "7", 'choose': '1'},
-        {"name": "石灰", "id": "8", 'choose': '1'},
-        {"name": "玻璃", "id": "10", 'choose': '1'},
-        {"name": "陶瓷", "id": "11", 'choose': '1'},
-        {"name": "有色", "id": "14", 'choose': '1'},
-        {"name": "铸造", "id": "15", 'choose': '1'},
-        {"name": "煤加工", "id": "3", 'choose': '1'},
-        {"name": "铁合金", "id": "13", 'choose': '1'},
-        {"name": "化学原料", "id": "4", 'choose': '1'},
-        {"name": "防水建材", "id": "9", 'choose': '1'},
+        {"name": "钢铁", "id": "12", 'choose': '0'},
+        {"name": "炼化", "id": "1", 'choose': '0'},
+        {"name": "焦化", "id": "2", 'choose': '0'},
+        {"name": "煤电", "id": "16", 'choose': '0'},
+        {"name": "肥料", "id": "5", 'choose': '0'},
+        {"name": "轮胎", "id": "6", 'choose': '0'},
+        {"name": "水泥", "id": "7", 'choose': '0'},
+        {"name": "石灰", "id": "8", 'choose': '0'},
+        {"name": "玻璃", "id": "10", 'choose': '0'},
+        {"name": "陶瓷", "id": "11", 'choose': '0'},
+        {"name": "有色", "id": "14", 'choose': '0'},
+        {"name": "铸造", "id": "15", 'choose': '0'},
+        {"name": "煤加工", "id": "3", 'choose': '0'},
+        {"name": "铁合金", "id": "13", 'choose': '0'},
+        {"name": "化学原料", "id": "4", 'choose': '0'},
+        {"name": "防水建材", "id": "9", 'choose': '0'},
       ],
       filterText: '',
       treeData: [
@@ -78,7 +81,7 @@ export default {
           "children": [
             {
               "id": 101,
-              "label": "邹平县晟昶钙业有限公司"
+              "label": "邹平县晟昶钙业有限公司邹平县晟昶钙业有限公司邹平县晟昶钙业有限公司邹平县晟昶钙业有限公司"
             },
             {
               "id": 102,
@@ -443,16 +446,23 @@ export default {
               this.titleList[0].choose = '1'
             } else {
               this.titleList[i].choose = '0'
-              if (this.titleList[0].choose === '1') {
-                for (let j = 0; j < this.titleList.length; j++) {
-                  if (this.titleList[j].choose === '1' && j > 0) {
-                    return
-                  } else if (this.titleList[j].choose === '1' && j === 0) {
-                    return
-                  } else {
-                    this.titleList[0].choose = '0'
+              let typeS = 1
+              for (let j = 0; j < this.titleList.length; j++) {
+                if (j > 0) {
+                  if (this.titleList[j].choose === '0') {
+                    typeS = 2
+                  }
+                  for (let n = 0; n < this.titleList.length; n++) {
+                    if (n > 0) {
+                      if (this.titleList[n].choose === '1') {
+                        typeS = 1
+                      }
+                    }
                   }
                 }
+              }
+              if (typeS === 2) {
+                this.titleList[0].choose = '0'
               }
             }
           }
@@ -461,11 +471,10 @@ export default {
     },
     filterNode(value, data) {
       if (!value) return true
-      return data.label.indexOf(value) !== -1;
+      return data.label.indexOf(value) !== -1
     },
     nodeClick(data, node, item) {
-      if (data.children === undefined) {
-      }
+      if (data.children === undefined){}
     }
   },
   // eslint-disable-next-line no-undef
@@ -477,6 +486,11 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.el-tree-node__label {
+  font-size: 12px;
+}
+</style>
 <style lang="scss" scoped>
 .left-hide {
   width: 20%;
@@ -544,27 +558,35 @@ export default {
       height: 50px;
 
       .leftDivTopTitleL {
-        width: 50%;
+        width: 43%;
         height: 100%;
         float: left;
         font-size: 16px;
         font-weight: bold;
         display: flex;
         align-items: center;
-        justify-content: flex-start;
-        padding-left: 10px;
+        justify-content: center;
+      }
+      .leftDivTopTitleC {
+        width: 34%;
+        height: 100%;
+        float: left;
+        font-size: 16px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content:center;
       }
 
       .leftDivTopTitleR {
-        width: 50%;
+        width: 23%;
         height: 100%;
         float: left;
         font-size: 16px;
         font-weight: bold;
         display: flex;
         align-items: center;
-        justify-content: flex-end;
-        padding-right: 10px;
+        justify-content: center;
         cursor: pointer;
       }
     }
