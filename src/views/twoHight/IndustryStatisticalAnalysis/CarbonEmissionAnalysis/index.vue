@@ -10,7 +10,7 @@
                 <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
               </div>
               <div class="">
-                区域碳排放强度
+                区域碳排放量
               </div>
             </div>
             <div class="managementTitleR" id="managementTitleR1">
@@ -45,7 +45,7 @@
                 <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
               </div>
               <div class="">
-                行业碳排放强度
+                行业碳排放量
               </div>
             </div>
             <div class="managementTitleR">
@@ -88,7 +88,7 @@
                   <img src="../StateStatisticalAnalysis/img/titleImg.png" alt="">
                 </div>
                 <div class="">
-                  实时碳排放强度
+                  实时碳排放量
                 </div>
               </div>
               <div class="managementTitleR">

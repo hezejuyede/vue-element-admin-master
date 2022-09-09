@@ -102,7 +102,7 @@ export default {
             emphasis: {
               show: false,
               textStyle: {
-                color: "#00a0c9"
+                color: '#FFFFFF'
               }
             }
           },
