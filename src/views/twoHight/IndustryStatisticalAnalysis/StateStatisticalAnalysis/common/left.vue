@@ -7,11 +7,10 @@
       <img src="../img/zh-k.png" alt="" class="">
     </div>
     <div class="leftDiv">
-      <div class="leftDivTop">
-        <div class="leftDivTopTitle">
+      <div class="leftDivTop" ref="leftDivTop">
+        <div class="leftDivTopTitle" ref="leftDivTopTitle">
           <div class="leftDivTopTitleL">行业选择</div>
           <div class="leftDivTopTitleC">
-            <el-button style="width: 60px;height: 25px;padding: 0;font-size: 12px" type="primary"  icon="el-icon-search">查询</el-button>
           </div>
           <div class="leftDivTopTitleR">
             <img src="../img/shou-q.png" alt="" v-if="showDown" @click="showBottom">
@@ -19,13 +18,14 @@
           </div>
         </div>
         <div class="leftDivTopBottom" v-if="showDown">
+          <el-button style="width: 36px;height: 20px;padding: 0;font-size: 12px;float: left;margin-left: 2.5%; margin-top: 5px;" type="primary">查询</el-button>
           <div v-for="(item,index) in titleList" @click="chooseList(index,item.choose)"
                :class="(item.choose==='0') ? 'leftDivTopBottomDivChoose':'leftDivTopBottomDiv'">
             {{ item.name }}
           </div>
         </div>
       </div>
-      <div class="leftDivBottom">
+      <div class="leftDivBottom tree" ref="leftDivBottom">
         <el-input
           style="width: 90%;margin: 10px 5% 10px 5%"
           placeholder="输入关键字进行过滤"
@@ -37,6 +37,8 @@
           :data="treeData"
           :props="defaultProps"
           accordion
+          highlight-current
+          node-key="id"
           @node-click="nodeClick"
           :filter-node-method="filterNode"
           ref="tree">
@@ -58,19 +60,19 @@ export default {
         {'name': '全部', 'id': '0', 'choose': '0'},
         {"name": "钢铁", "id": "12", 'choose': '0'},
         {"name": "炼化", "id": "1", 'choose': '0'},
+        {"name": "煤加工", "id": "3", 'choose': '0'},
         {"name": "焦化", "id": "2", 'choose': '0'},
         {"name": "煤电", "id": "16", 'choose': '0'},
         {"name": "肥料", "id": "5", 'choose': '0'},
         {"name": "轮胎", "id": "6", 'choose': '0'},
+        {"name": "铁合金", "id": "13", 'choose': '0'},
         {"name": "水泥", "id": "7", 'choose': '0'},
         {"name": "石灰", "id": "8", 'choose': '0'},
         {"name": "玻璃", "id": "10", 'choose': '0'},
+        {"name": "化学原料", "id": "4", 'choose': '0'},
         {"name": "陶瓷", "id": "11", 'choose': '0'},
         {"name": "有色", "id": "14", 'choose': '0'},
         {"name": "铸造", "id": "15", 'choose': '0'},
-        {"name": "煤加工", "id": "3", 'choose': '0'},
-        {"name": "铁合金", "id": "13", 'choose': '0'},
-        {"name": "化学原料", "id": "4", 'choose': '0'},
         {"name": "防水建材", "id": "9", 'choose': '0'},
       ],
       filterText: '',
@@ -420,6 +422,14 @@ export default {
     },
     showBottom() {
       this.showDown = !this.showDown
+      if (this.showDown) {
+        this.$refs.leftDivBottom.style.height = '80%'
+        this.$refs.leftDivTop.style.height = '20%'
+      }else {
+        this.$refs.leftDivTop.style.height = '50px'
+        this.$refs.leftDivTopTitle.style.height = '50px'
+        this.$refs.leftDivBottom.style.height = '90%'
+      }
     },
     showLeft() {
       this.leftStatus = !this.leftStatus
@@ -489,6 +499,78 @@ export default {
 <style lang="scss">
 .el-tree-node__label {
   font-size: 12px;
+  margin-top: 2px;
+}
+
+// 树形列表
+.el-tree .el-tree-node__expand-icon.expanded {
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+//有子节点 且未展开
+.el-tree .el-icon-caret-right:before {
+  background: url("./img/close.png") no-repeat 0 0;
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  background-size: 16px;
+  margin-left: 5px;
+}
+
+//有子节点 且已展开
+.el-tree .el-tree-node__expand-icon.expanded.el-icon-caret-right:before {
+  background: url("./img/open.png") no-repeat 0 0;
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  background-size: 16px;
+  margin-left: 5px;
+}
+
+//没有子节点
+.el-tree .el-tree-node__expand-icon.is-leaf::before {
+  background: transparent no-repeat 0 3px;
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  background-size: 16px;
+}
+
+.tree {
+  .el-tree-node {
+    white-space: normal;
+
+    .el-tree-node__content {
+      height: 100%;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+
+    /* .el-tree-node__content:hover {
+      background-color: #FFFFFF;
+    }*/
+    /* .el-tree-node:focus > .el-tree-node__content:hover {
+      background-color: #FFFFFF;
+    }*/
+    /* .el-tree-node.is-current>.el-tree-node__content {
+      background-color: #FFFFFF !important;
+      color:#333!important
+    }*/
+    /*.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content{
+      background-color: #4a9de7 !important;
+      color: #fff !important;
+    }*/
+    /* .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
+      background-color: red;
+    }*/
+  }
 }
 </style>
 <style lang="scss" scoped>
@@ -514,10 +596,11 @@ export default {
   align-items: flex-start;
   justify-content: center;
 
+
 }
 
 .left-show-div {
-  width: 30px;
+  width: 11%;
   height: 100%;
   position: absolute;
   top: 0;
@@ -530,6 +613,7 @@ export default {
   justify-content: flex-start;
   transition: all 0.5s;
   background-color: #C6D6F5;
+  z-index: 999;
 }
 
 .left-hide-div {
@@ -549,14 +633,14 @@ export default {
 }
 
 .leftDiv {
-  width: 80%;
+  width: 85%;
   height: 100%;
   background-color: #FFFFFF;
-
+  margin-left: 5%;
   .leftDivTop {
+    height: 20%;
     .leftDivTopTitle {
-      height: 50px;
-
+      height: 30%;
       .leftDivTopTitleL {
         width: 43%;
         height: 100%;
@@ -590,18 +674,18 @@ export default {
         cursor: pointer;
       }
     }
-
     .leftDivTopBottom {
-      height: 250px;
+      height: 70%;
+      padding-left: 4%;
 
       .leftDivTopBottomDiv {
+        border: 1px solid #E6E6E6;
         float: left;
-        width: 30%;
-        height: 30px;
-        padding: 5px 10px;
+        height: 20px;
         margin-left: 2.5%;
-        margin-top: 8px;
-        background-color: #F7F7F7;
+        margin-top: 5px;
+        padding-left: 2.2%;
+        padding-right: 2.2%;
         font-size: 12px;
         display: flex;
         align-items: center;
@@ -610,19 +694,21 @@ export default {
         border-radius: 2px;
       }
 
-      .leftDivTopBottomDiv:nth-child(16), :nth-child(17) {
-        width: 45%;
+      .leftDivTopBottomDiv:nth-child(14),:nth-child(18) {
+        padding-left: 8.5%;
+        padding-right:8.5%;
       }
+
 
       .leftDivTopBottomDivChoose {
-        color: #FFFFFF;
+        color: #588CFD;
+        border: 1px solid #588CFD;
         float: left;
-        width: 30%;
-        height: 30px;
-        padding: 5px 10px;
+        height: 20px;
         margin-left: 2.5%;
-        margin-top: 8px;
-        background-color: #3377FF;
+        margin-top: 5px;
+        padding-left: 2.25%;
+        padding-right: 2.25%;
         font-size: 12px;
         display: flex;
         align-items: center;
@@ -631,16 +717,18 @@ export default {
         border-radius: 2px;
       }
 
-      .leftDivTopBottomDivChoose:nth-child(16), :nth-child(17) {
-        width: 45%;
+      .leftDivTopBottomDivChoose:nth-child(14),:nth-child(18) {
+        padding-left: 8.5%;
+        padding-right:8.5%;
       }
+
     }
   }
 
   .leftDivBottom {
-    height: 60%;
+    height: 80%;
     width: 100%;
-    padding-top: 20px;
+    padding-top: 10px;
     border-top: 3px solid #ECECEC;
     overflow: auto;
   }
