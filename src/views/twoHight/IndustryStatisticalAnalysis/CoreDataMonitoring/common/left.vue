@@ -684,8 +684,8 @@ export default {
         height: 20px;
         margin-left: 2.5%;
         margin-top: 5px;
-        padding-left: 2.2%;
-        padding-right: 2.2%;
+        padding-left: 2.25%;
+        padding-right: 2.25%;
         font-size: 12px;
         display: flex;
         align-items: center;
