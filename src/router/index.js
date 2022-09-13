@@ -56,6 +56,16 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/shandongMap',
+    component: () => import('@/views/twoHight/LargeScreenDisplay/shandongMap/index'),
+    hidden: true
+  },
+  {
+    path: '/changeMap',
+    component: () => import('@/views/twoHight/LargeScreenDisplay/changeMap/index'),
+    hidden: true
+  },
+  {
     path: '/loginTwoHight',
     component: () => import('@/views/twoHight/login/login'),
     hidden: true
