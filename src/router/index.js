@@ -66,6 +66,11 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/listMap',
+    component: () => import('@/views/twoHight/LargeScreenDisplay/map'),
+    hidden: true
+  },
+  {
     path: '/loginTwoHight',
     component: () => import('@/views/twoHight/login/login'),
     hidden: true
@@ -99,6 +104,7 @@ export const constantRoutes = [
         name: 'EnterpriseInformationMaintenance',
         meta: { title: 'EnterpriseInformationMaintenance', icon: 'documentation', affix: true }
       }
+
     ]
   },
   {

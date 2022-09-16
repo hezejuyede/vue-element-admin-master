@@ -214,6 +214,7 @@ export default {
       this.clickType = !this.clickType
     },
     goRegister() {
+      this.$router.push('/register')
     },
     goCodeScanning() {
       this.codeScanning = true

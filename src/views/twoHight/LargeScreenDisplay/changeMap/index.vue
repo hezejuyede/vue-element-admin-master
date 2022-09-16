@@ -1,81 +1,92 @@
 <template>
-  <div class="content">
-    <div class="bg">
-      <img src="./image/daping_01.png" alt="" class="title">
-      <div style="position:relative; height: 30px">
-        <span class="time">{{ date }} {{ week }}</span>
-      </div>
-      <div class="flex">
-        <div style="height: 100%">
-          <div class="left-top">
-            <div class="border">
-              <img src="./image/icon1.png" alt="">
-            </div>
-            <div id="chartPie" class="pie-wrap" />
-          </div>
-          <div class="left-bottom">
-            <div class="border">
-              <img src="./image/icon2.png" alt="">
-            </div>
-            <div id="chartHistogram" class="histogram-wrap" />
-          </div>
+  <!-- <v-scale-screen width="1920" height="1080"> -->
+  <ScaleBox>
+    <div class="content">
+      <div class="bg">
+        <img src="./image/daping_01.png" alt="" class="title">
+        <div style="position:relative; height: 30px">
+          <span class="time">{{ date }} {{ week }}</span>
         </div>
-        <div style="width: 100%; position: relative;">
-          <img v-if="city === '山东省'" src="./image/青岛_03.jpg" alt="" style="width: 100%;">
-          <img v-if="city === '济南市'" src="./image/济南市_01.jpg" alt="" style="width: 100%;">
-          <img v-if="city === '钢城区'" src="./image/钢城区_01.jpg" alt="" style="width: 100%;">
-          <img v-if="city === '山东钢铁股份莱芜分公司(含银山型钢)'" src="./image/山钢公司_01.jpg" alt="" style="width: 100%;">
-          <img v-if="city === '青岛市'" src="./image/青岛_03.jpg" alt="" style="width: 100%;">
-          <img v-if="city === '淄博市'" src="./image/淄博_03.jpg" alt="" style="width: 100%;">
-          <img v-if="city === '枣庄市'" src="./image/枣庄_03.jpg" alt="" style="width: 100%;">
-          <img v-if="city === '东营市'" src="./image/东营_03.jpg" alt="" style="width: 100%;">
-          <img v-if="city === '烟台市'" src="./image/烟台_03.jpg" alt="" style="width: 100%;">
-          <img v-if="city === '滨州市'" src="./image/滨州_03.jpg" alt="" style="width: 100%;">
-          <div v-show="expandShow" class="button">
-            <img src="./image/expand2.png" alt="" @click="expandClick">
-          </div>
-          <div class="img">
-            <img src="./image/xiangm-dt_07.png" alt="">
-            <img src="./image/xiangm-dt_10.png" alt="">
-            <img src="./image/xiangm-dt_13.png" alt="">
-            <img src="./image/xiangm-dt_16.png" alt="">
-            <img src="./image/xiangm-dt_22.png" alt="">
-            <img src="./image/xiangm-dt_26.png" alt="">
-            <img src="./image/xiangm-dt_30.png" alt="">
-            <img src="./image/xiangm-dt_33.png" alt="">
-          </div>
-          <div v-show="centerShow" class="center tree">
-            <img src="./image/expand1.png" alt="" @click="centerClick">
-            <div style="margin-top: 15px; margin-bottom: 13px;">
-              <el-input v-model="input3" placeholder="输入关键字进行过滤" size="medium" class="input-with-select">
-                <el-button slot="append" icon="el-icon-search" />
-              </el-input>
-            </div>
-            <el-tree :data="data" :props="defaultProps" node-key="id" :default-expanded-keys="[1,2,9,17,10]" @node-click="handleNodeClick" />
-          </div>
-          <div class="div">
-            <div class="smTitle">
-              <img src="./image/xiangm-dt_41.png" alt="">
-              <div>
-                <span>2617</span>
-                <p>企业及项目总数</p>
+        <div class="flex">
+          <div style="height: 100%">
+            <div class="left-top">
+              <div class="border">
+                <img src="./image/icon1.png" alt="">
               </div>
+              <div id="chartPie" class="pie-wrap" />
             </div>
-            <div id="radar" class="radar-wrap" />
+            <div class="left-bottom">
+              <div class="border">
+                <img src="./image/icon2.png" alt="">
+              </div>
+              <div id="chartHistogram" class="histogram-wrap" />
+            </div>
           </div>
+          <div style="width: 100%; position: relative;">
+            <img v-if="city === '山东省'" src="./image/青岛_03.jpg" alt="" style="width: 100%;">
+            <img v-if="city === '济南市'" src="./image/济南市_01.jpg" alt="" style="width: 100%;">
+            <img v-if="city === '钢城区'" src="./image/钢城区_01.jpg" alt="" style="width: 100%;">
+            <img v-if="city === '山东钢铁股份莱芜分公司(含银山型钢)'" src="./image/山钢公司_01.jpg" alt="" style="width: 100%;">
+            <img v-if="city === '青岛市'" src="./image/青岛_03.jpg" alt="" style="width: 100%;">
+            <img v-if="city === '淄博市'" src="./image/淄博_03.jpg" alt="" style="width: 100%;">
+            <img v-if="city === '枣庄市'" src="./image/枣庄_03.jpg" alt="" style="width: 100%;">
+            <img v-if="city === '东营市'" src="./image/东营_03.jpg" alt="" style="width: 100%;">
+            <img v-if="city === '烟台市'" src="./image/烟台_03.jpg" alt="" style="width: 100%;">
+            <img v-if="city === '滨州市'" src="./image/滨州_03.jpg" alt="" style="width: 100%;">
+            <div v-show="expandShow" class="button">
+              <img src="./image/expand2.png" alt="" @click="expandClick">
+            </div>
+            <div class="img">
+              <img src="./image/xiangm-dt_07.png" alt="">
+              <img src="./image/xiangm-dt_10.png" alt="">
+              <img src="./image/xiangm-dt_13.png" alt="">
+              <img src="./image/xiangm-dt_16.png" alt="">
+              <img src="./image/xiangm-dt_22.png" alt="">
+              <img src="./image/xiangm-dt_26.png" alt="">
+              <img src="./image/xiangm-dt_30.png" alt="">
+              <img src="./image/xiangm-dt_33.png" alt="">
+            </div>
+            <div v-show="centerShow" class="center tree">
+              <img src="./image/expand1.png" alt="" @click="centerClick">
+              <div style="margin-top: 15px; margin-bottom: 13px;">
+                <el-input v-model="input3" placeholder="输入关键字进行过滤" size="medium" class="input-with-select">
+                  <el-button slot="append" icon="el-icon-search" />
+                </el-input>
+              </div>
+              <el-tree :data="data" :props="defaultProps" highlight-current node-key="id" :default-expanded-keys="[1,2,9,17,10]" @node-click="handleNodeClick" />
+            </div>
+            <div class="div">
+              <div class="smTitle">
+                <img src="./image/xiangm-dt_41.png" alt="">
+                <div>
+                  <span>2617</span>
+                  <p>企业及项目总数</p>
+                </div>
+              </div>
+              <div id="radar" class="radar-wrap" />
+            </div>
+          </div>
+          <div />
         </div>
-        <div />
       </div>
     </div>
-  </div>
+  </ScaleBox>
+<!-- </v-scale-screen> -->
 </template>
 
 <script>
-import { createUnionTypeAnnotation } from '@babel/types'
 import * as echarts from 'echarts'
 require('echarts/theme/macarons')
+import Vue from 'vue'
+import ScaleBox from './scaleBox/index.vue'
+// import VScaleScreen from 'v-scale-screen'
+// Vue.use(VScaleScreen)
 export default {
   name: 'LargeScreen',
+  components: {
+    // VScaleScreen,
+    ScaleBox
+  },
   data() {
     return {
       total: 5308,
@@ -168,13 +179,8 @@ export default {
   },
   methods: {
     handleNodeClick(data) {
-      console.log('!!--->', data.label)
+      console.log('!!--->', data)
       this.city = data.label
-    },
-    dataDestroy() {
-      if (this.timer) {
-        clearInterval(this.timer) // 在Vue实例销毁前，清除我们的定时器
-      }
     },
     // 获取当前时间和星期
     dateFormat() {
@@ -248,6 +254,9 @@ export default {
           '#37B244',
           '#339966'
         ],
+        tooltip: {
+          trigger: 'item'
+        },
         legend: {
           orient: 'vertical',
           right: '10%',
@@ -261,18 +270,19 @@ export default {
         },
         series: [
           {
-            name: '访问来源',
+            name: '区域数量',
             type: 'pie',
             radius: ['30%', '60%'],
             center: ['30%', '45%'],
             avoidLabelOverlap: false,
             label: {
+              // 不显示标签文字
               show: false,
-              position: 'center',
-              normal: {
-                position: 'inner',
-                formatter: '{c}'
-              }
+              position: 'center'
+              // normal: {
+              //   position: 'inner',
+              //   formatter: '{c}'
+              // }
             },
             labelLine: {
               show: false
@@ -384,9 +394,6 @@ export default {
             top: 0,
             left: 0
           },
-          tooltip: {
-            trigger: 'item'
-          },
           color: ['#A878F9', '#3BF4BC'],
           legend: {
             y: 'bottom',
@@ -403,6 +410,7 @@ export default {
             }
           },
           tooltip: {
+            trigger: 'item',
             textStyle: {
               fontSize: 16, // 字体大小
               color: '#ffffff'
@@ -434,7 +442,6 @@ export default {
                 fontSize: 16 // 控制文本的大小
               }
             }
-
           },
           series: [
             {
@@ -483,10 +490,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .content{
-  // width: 100%;
+  width: 100%;
   height: 100%;
-  width: 1920px;
-  height: 1080px;
   .bg{
     width: 100%;
     height: 100%;
@@ -574,6 +579,10 @@ export default {
       ::v-deep.el-input-group__append, .el-input-group__prepend {
         background-color: transparent;
       }
+      ::v-deep .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
+        // 设置颜色
+        background-color:  rgba(0,0,0,0.2)!important;
+      }
       ::v-deep .el-tree{
         background-color: transparent;
         color: #999;
@@ -582,7 +591,7 @@ export default {
         font-family: Microsoft YaHei;
         font-weight: 400;
         font-size: 16px;
-        color: #999;
+        color: #fff
       }
       ::v-deep.el-tree-node {
         white-space: normal;
@@ -595,9 +604,6 @@ export default {
       }
       ::v-deep.el-tree-node__content{
           &:hover{
-          background-color: rgba(0,0,0,0.2);
-        }
-        ::v-deep.el-tree-node.is-current > .el-tree-node__content {
           background-color: rgba(0,0,0,0.2);
         }
       }

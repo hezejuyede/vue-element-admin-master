@@ -4,6 +4,8 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
+import echarts from 'echarts'
+
 export default {
   name: 'Modal',
   props: {},
@@ -76,6 +78,14 @@ export default {
         }
         arr.push(json)
       }
+     /* const mapList = [
+        { 'name': 'shandong', 'url': require('../../../mapList/shandong.js'), 'id': '370000' },
+        { 'name': 'jinan', 'url': require('../../../mapList/jinan.js'), 'id': '370100' },
+        { 'name': 'binzhou', 'url': require('../../../mapList/binzhou.js'), 'id': '371600' },
+        { 'name': 'dezhou', 'url': require('../../../mapList/dezhou.js'), 'id': '371400' },
+        { 'name': 'dongying', 'url': require('../../../mapList/dongying.js'), 'id': '370500' }
+      ]
+      echarts.registerMap(mapList[4].name, mapList[4].url)*/
       var myChart = this.$echarts.init(document.getElementById('mapDiv'))
       myChart.on('click', function (params) {
       })
