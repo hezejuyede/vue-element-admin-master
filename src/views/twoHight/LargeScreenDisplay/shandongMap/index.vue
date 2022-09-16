@@ -140,583 +140,591 @@ import echarts from 'echarts'
 // 自适应
 import ScaleBox from './scaleBox/index.vue'
 import date from './date.vue'
-import china from 'echarts/map/js/province/shandong'
-echarts.registerMap('china', china)
+import shandong from '../../mapList/shandong'
+
+import binzhou from '../../mapList/binzhou'
+import dongying from '../../mapList/dongying'
+import linyi from '../../mapList/linyi'
+import jinan from '../../mapList/jinan'
+import dezhou from '../../mapList/dezhou'
+import heze from '../../mapList/heze'
+
+echarts.registerMap('china',shandong)
 export default {
-    name: 'index',
-    data() {
-        return {
-            // 能源消费
-            energy: [
-                { name: '电力(亿千瓦时)', img: "07" },
-                { name: '天然气(亿立方米)', img: "10" },
-                { name: '煤品(万吨)', img: "14" },
-                { name: '油品(万吨)', img: "15" },
-                { name: '热量(百万千焦)', img: "18" },
-                { name: '其他(亿立方米)', img: "19" },
-            ],
-            // 中间顶部综合
-            synthesize: [
-                { name: '存量', img: "" },
-                { name: '在建', img: "-e" },
-                { name: '拟建', img: "-r" },
-                { name: '关停', img: "-t" },
-            ],
-            // 区域排行
-            areaRanking: [
-                { name: '青岛市', img: "03" },
-                { name: '威海市', img: "06" },
-                { name: '滨州市', img: "08" },
-                { name: '枣庄市', img: "10" },
-            ],
-            // 行业排行
-            tradeRanking: [
-                { name: '煤电', img: "03" },
-                { name: '焦化', img: "06" },
-                { name: '炼化', img: "08" },
-                { name: '钢铁', img: "10" },
-            ],
+  name: 'index',
+  data() {
+    return {
+      // 能源消费
+      energy: [
+        {name: '电力(亿千瓦时)', img: "07"},
+        {name: '天然气(亿立方米)', img: "10"},
+        {name: '煤品(万吨)', img: "14"},
+        {name: '油品(万吨)', img: "15"},
+        {name: '热量(百万千焦)', img: "18"},
+        {name: '其他(亿立方米)', img: "19"},
+      ],
+      // 中间顶部综合
+      synthesize: [
+        {name: '存量', img: ""},
+        {name: '在建', img: "-e"},
+        {name: '拟建', img: "-r"},
+        {name: '关停', img: "-t"},
+      ],
+      // 区域排行
+      areaRanking: [
+        {name: '青岛市', img: "03"},
+        {name: '威海市', img: "06"},
+        {name: '滨州市', img: "08"},
+        {name: '枣庄市', img: "10"},
+      ],
+      // 行业排行
+      tradeRanking: [
+        {name: '煤电', img: "03"},
+        {name: '焦化', img: "06"},
+        {name: '炼化', img: "08"},
+        {name: '钢铁', img: "10"},
+      ],
 
-        }
-    },
-    computed: {},
-    components: { ScaleBox, date },
-    mounted() {
-        this.doSearch();
-        this.$nextTick(() => {
-            this.getList()
-        })
-    },
-    created() {
-    },
-    methods: {
-        //页面初始
-        doSearch() {
-            this.regionalEnergy();
-            this.energyUse();
-            this.industryUse();
-            const date = new Date().toLocaleString()
-            console.log(date);
-        },
-        // 区域单位产值能耗 左下柱状
-        regionalEnergy() {
-            var chartDom = document.getElementById('chart_1');
-            var myChart = echarts.init(chartDom);
-            var option = {
-                color: ["#17A8FF"],
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'shadow'
-                    }
-                },
-                // 图表的大小
-                grid: {
-                    left: '0%',
-                    right: '0%',
-                    top: '0%',
-                    bottom: '0%',
-                    containLabel: true
-                },
-                legend: {
-                    show: false
-                },
-                // 距离外面尺寸
-                grid: {
-                    top: '3%',
-                    left: '3%',
-                    right: '4%',
-                    bottom: '3%',
-                    containLabel: true
-                },
-                xAxis: {
-                    type: 'value',
-                    boundaryGap: [0, 0.01],
-                    // 修改刻度标签 相关样式
-                    axisLabel: {
-                        color: "rgba(255,255,255,.6)",
-                        fontSize: "12",
-                    },
-                    // x 轴分隔线样式
-                    splitLine: {
-                        lineStyle: {
-                            type: 'dashed',
-                            color: "rgba(63, 218, 242,0.2)"
-                        }
-                    },
-                    // 设置轴线
-                    axisLine: {
-                        lineStyle: {
-                            color: "rgba(63,218,242,0.5)",
-                            width: 1,
-                            type: "solid"
-                        }
-                    },
-                    // 不显示刻度
-                    axisTick: {
-                        show: false
-                    },
-                    // 刻度范围间隔
-                    min: 0.50,
-                    max: 1.0,
-                },
-                yAxis: {
-                    type: 'category',//横向
-                    data: ['菏泽市', '临沂市', '聊城市', '德州市', '滨州市', '日照市', '威海市', '泰安市', '济宁市', '潍坊市', '烟台市', '东营市', '枣庄市', '淄博市', '青岛市', '济南市'],
-                    // 修改刻度标签 相关样式
-                    axisLabel: {
-                        color: "rgba(255,255,255,.6)",
-                        fontSize: "16"
-                    },
-                    // 设置轴线
-                    axisLine: {
-                        lineStyle: {
-                            color: "rgba(63,218,242,0.5)",
-                            width: 1,
-                            type: "solid"
-                        }
-                    },
-                    // 不显示刻度
-                    axisTick: {
-                        show: false
-                    },
-                },
-                series: [
-                    {
-                        type: 'bar',
-                        barWidth: 10,//柱图宽度
-                        data: [0.838, 0.86, 0.83, 0.84, 0.82, 0.76, 0.78, 0.91, 0.85, 0.92, 0.85, 0.82, 0.92, 0.78, 0.80, 0.79],
-                        // 渐变色
-                        itemStyle: {
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0, 0, 1, 0,
-                                    [
-                                        { offset: 0, color: '#18FDFE' },
-                                        { offset: 1, color: '#17A8FF' }
-                                    ]
-                                ),
-                                label: {
-                                    show: true,		//开启显示
-                                    position: 'right',	//在右方显示
-                                    textStyle: {//数值样式
-                                        color: '#75D1FF'
-                                    }
-                                },
-                            },
-                        }
-
-                    },
-                ],
-            };
-            option && myChart.setOption(option);
-
-        },
-        // 能源消耗结构 右上饼图
-        energyUse() {
-            var chartDom = document.getElementById('chart_2');
-            var myChart = echarts.init(chartDom);
-            var option = {
-                color: [
-                    "#0263FF",
-                    "#00BAFF",
-                    "#FFFFFF",
-                    "#6E56D2",
-                    "#9AD119",
-                    "#49B09F",
-                ],
-                tooltip: {
-                    trigger: 'item'
-                },
-                legend: {
-                    //图例垂直排列
-                    orient: 'vertical',
-                    bottom: '30%',
-                    left: '60%',
-                    // 小图标的宽度和高度
-                    itemWidth: 10,
-                    itemHeight: 10,
-                    // 图例圆形
-                    icon: 'circle',
-                    symbolKeepAspect: false,
-                    data: ["电力", "煤品", "热量", "天然气", "油品", "其他"],
-                    // 修改图例组件的文字为 12px
-                    textStyle: {
-                        color: "rgba(255,255,255,.5)",
-                        fontSize: "16",
-                    },
-                    formatter: function (name) {
-                        let data = option.series[0].data
-                        // console.log(data, 'data')
-                        let total = 0
-                        let tarValue
-                        for (let i = 0; i < data.length; i++) {
-                            total += data[i].value
-                            if (data[i].name == name) {
-                                tarValue = data[i].value
-                            }
-                        }
-                        //计算出百分比
-                        let p = ((tarValue / total) * 100).toFixed(2) + '%'
-                        return `${name}  ${p}`
-                        //name是名称，v是数值
-                    },
-                },
-                series: [
-                    {
-                        name: '能源消费',
-                        type: 'pie',
-                        // 设置饼形图在容器中的位置
-                        center: ["30%", "50%"],
-                        //  修改内圆半径和外圆半径为  百分比是相对于容器宽度来说的
-                        radius: ["40%", "70%"],
-                        avoidLabelOverlap: false,
-                        label: {
-                            // 不显示标签文字
-                            show: false,
-                            position: 'center',
-                            // formatter: '{d}%',//模板变量有 {a}、{b}、{c}、{d}，分别表示系列名，数据名，数据值，百分比。{d}数据会根据value值计算百分比
-                        },
-                        labelLine: {
-                            // 不显示连接线
-                            show: false
-                        },
-                        data: [
-                            { value: 27.16, name: "电力" },
-                            { value: 81.17, name: "煤品" },
-                            { value: 0.33, name: "热量" },
-                            { value: 0.26, name: "天然气" },
-                            { value: 16.48, name: "油品" },
-                            { value: 0, name: "其他" },
-                        ],
-                    }
-                ]
-            };
-
-            option && myChart.setOption(option);
-        },
-        // 行业单位产值能耗 右下柱状
-        industryUse() {
-            var chartDom = document.getElementById('chart_3');
-            var myChart = echarts.init(chartDom);
-            var option = {
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: { // 坐标轴指示器，坐标轴触发有效
-                        type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
-                    },
-                    // 鼠标移入条形图提示层文字的自定义
-                    formatter(params) {
-                        let relVal = params[0].name
-                        for (var i = 0, l = params.length; i < l; i++) {
-                            // console.log(params)
-                            let circle = `<i class="iconfont icon-yuan" style="margin-right:4px;font-size:14px;color:${params[i].color}"></i>`
-                            params[i].value = Math.abs(params[i].value)
-                            relVal += '<br/>' + circle + params[i].seriesName + ' : ' + params[i].value + 'ms'
-                        }
-                        return relVal
-                    }
-                },
-                legend: {
-                    data: ['本月', '上月'],
-                    top: '3%',
-                    left: "40%",
-                    textStyle: {
-                        color: "rgba(255,255,255,.5)",
-                        fontSize: "16",
-                    },
-                },
-                grid: {
-                    left: '-10%',
-                    right: '0%',
-                    bottom: '0%',
-                    containLabel: true
-                },
-                xAxis: [
-                    {
-                        type: 'value',
-                        // 设置x轴线的属性
-                        splitLine: {
-                            show: false//不显示分隔线
-                        },
-                        axisLine: {
-                            show: false, //不显示坐标轴线,
-                            lineStyle: {
-                                color: '#888'
-                            }
-                        },
-                        axisLabel: {
-                            show: false, //不显示坐标轴上的文字
-                            formatter(value) {
-                                return Math.abs(value) // 负数取绝对值变正数（x轴本来数据是正负才能分开两边展示的，所以我们只是把负数处理为正数在视觉上显示）
-                            }
-                        }
-                    }
-                ],
-                yAxis: [
-                    {
-                        type: 'category',
-                        axisTick: { show: false },
-                        // 修改刻度标签 相关样式
-                        axisLabel: {
-                            // interval: 0,//横轴信息全部显示
-                            margin: 65,//刻度标签与轴线之间的距离。
-                            color: "rgba(255,255,255,.6)",
-                            fontSize: "16",
-                            textStyle: {
-                                align: 'left'
-                            }
-                        },
-                        // 设置y轴线的属性
-                        axisLine: {
-                            show: false, //不显示坐标轴线
-                        },
-                        data: ['铸造', '轮胎', '煤加工', '煤电', '钢铁', '炼化', '焦化', '石灰', '水泥', '化学原料', '房复', '陶瓷', '玻璃', '铁合金', '有色', '防水建材', '肥料'] // y轴下到上
-                    }
-                ],
-                color: ['#98d87d', '#49a9ee'],
-                series: [
-                    {
-                        name: '上月',
-                        type: 'bar',
-                        stack: '总量',
-                        barMaxWidth: '22',
-                        barWidth: '45%',//柱图宽度
-                        // barGap: '-100%',
-                        // barCategoryGap: '10',
-                        label: {
-                            normal: {
-                                show: true,
-                                color: '#444',
-                                align: 'left',
-                            }
-                        },
-                        // 渐变色
-                        itemStyle: {
-                            barBorderRadius: 5,
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0, 0, 1, 0,
-                                    [
-                                        { offset: 0, color: '#38F5CE' },
-                                        { offset: 1, color: '#44EA84' }
-                                    ]
-                                ),
-                                label: {
-                                    show: true,		//开启显示
-                                    position: 'right',	//在右方显示
-                                    textStyle: {//数值样式
-                                        color: 'rgba(56, 244, 205,.5)'
-                                    }
-                                },
-                                //柱形图圆角，初始化效果
-                                barBorderRadius: 10,
-                            }
-                        },
-                        data: [
-                            103.85, 93.85, 86.26, 76.26, 66.26, 54.21, 50.26, 46.78, 43.45, 36.26, 35.26, 34.26, 32.26, 25.23, 15.26, 15.26, 8.26
-                        ]
-                    },
-                    {
-                        name: '本月',
-                        type: 'bar',
-                        stack: '总量', // 数据堆叠，同个类目轴上系列配置相同的stack值可以堆叠放置。
-                        barMaxWidth: '22',
-                        barWidth: '45%',//柱图宽度
-                        // 渐变色
-                        itemStyle: {
-                            barBorderRadius: 5,
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(
-                                    0, 0, 1, 0,
-                                    [
-                                        { offset: 0, color: '#00BAFF' },
-                                        { offset: 1, color: '#0263FF' }
-                                    ]
-                                ),
-                                label: {
-                                    show: true,		//开启显示
-                                    position: 'left',	//在右方显示
-                                    textStyle: {//数值样式
-                                        color: 'rgba(0, 186, 255,.5)'
-                                    }
-                                },
-                                //柱形图圆角，初始化效果
-                                barBorderRadius: 10,
-                            }
-                        },
-                        label: {
-                            normal: {
-                                show: true,
-                                color: '#444',
-                                align: 'right',
-                                formatter(params) {
-                                    let htmlStr = Math.abs(params.value)
-                                    return htmlStr
-                                }
-                            }
-                        },
-                        data: [-103.85, -93.85, -86.26, -76.26, -66.26, -54.21, -50.26, -46.78, -43.45, -36.26, -35.26, -34.26, -32.26, -25.23, -15.26, -15.26, -8.26]
-                    }
-                ]
-            }
-            option && myChart.setOption(option);
-        },
-        // 地图
-        getList() {
-            var data = [
-                {
-                    "name": "历下区", "value": "88", "id": "2"
-
-                },
-                {
-                    "name": "市中区", "value": "69.9", "id": "3"
-                },
-                {
-                    "name": "槐荫区", "value": "79", "id": "4"
-                },
-                {
-                    "name": "天桥区", "value": "49.9", "id": "1"
-                },
-                {
-                    "name": "历城区", "value": "39.9", "id": "5"
-                },
-                {
-                    "name": "长清区", "value": "19.9", "id": "6"
-                },
-                {
-                    "name": "章丘区", "value": "29.9", "id": "7"
-                },
-
-                {
-                    "name": "济阳区", "value": "29.9", "id": "7"
-                },
-                {
-                    "name": "莱芜区", "value": "29.9", "id": "7"
-                },
-                {
-                    "name": "钢城区", "value": "29.9", "id": "7"
-                },
-                {
-                    "name": "平阴县", "value": "29.9", "id": "7"
-                },
-                {
-                    "name": "商河县", "value": "29.9", "id": "7"
-                },
-            ]
-            let arr = []
-            for (let i = 0; i < data.length; i++) {
-
-                let json = {
-                    "name": data[i].name, "value": data[i].value, "id": data[i].id, "label": {
-                        normal: {
-                            show: true,
-                            formatter: function (params) {
-                                return params.name + "\n" + params.value;    //地图上展示文字 + 数值
-                            },
-                        }
-                    }
-                }
-                arr.push(json)
-            }
-            var myChart = this.$echarts.init(document.getElementById('mapDiv'))
-            myChart.on('click', function (params) {
-            })
-            myChart.setOption({
-                title: {
-                    text: ''
-                },
-                tooltip: {
-                    trigger: 'item',
-                    formatter: '{b}',
-                    itemSize: '14px',
-                    lineHeight: 12,
-                    backgroundColor: 'rgb(7, 28, 56)',
-                    borderWidth: '1',
-                    padding: [3, 2, 2, 9],
-                    color: '#fff',
-                    fontSize: 14,
-                    fontWeight: '400',
-                },
-                dataRange: {
-                    x: 'left',
-                    y: 'center',
-                    top: '100',
-                    splitList: [
-                        { start: 81, end: 100, label: '', color: '#0449AE' },
-                        { start: 71, end: 80, label: '', color: '#1D5BB6' },
-                        { start: 51, end: 70, label: '', color: '#356BBA' },
-                        { start: 41, end: 50, label: '', color: '#1D5BB6' },
-                        { start: 31, end: 40, label: '', color: '#366DBE' },
-                        { start: 21, end: 30, label: '', color: '#4F7EC5' },
-                        { start: 0, end: 20, label: '', color: '#4671B0' },
-                    ],
-                    textStyle: {
-                        color: '#3899FF' // 值域文字颜色
-                    },
-                    show: false,
-                    selectedMode: false,
-                    color: ['#E0022B', '#E09107', '#A3E00B']
-                },
-                series: [
-                    {
-                        name: '县域乡村振兴全景展示',
-                        type: 'map',
-                        map: '山东',
-                        mapType: '山东',
-                        mapLocation: {
-                            x: 'left'
-                        },
-                        zoom: 1.2,
-                        roam: true,
-                        show: true,
-                        itemStyle: {
-                            normal: {
-                                areaColor: "rgba(10,126,217, 0.8)",
-                                borderColor: "#04B4F3",
-                                type: 'dashed',
-                                borderWidth: 2,
-                                label: { show: true }
-                            },
-                            emphasis: {
-                                areaColor: '#E85706',
-                                borderWidth: 0
-                            }
-                        },
-                        label: {
-                            normal: {
-                                show: true,
-                                formatter: function (params) { //标签内容
-                                    return params.name;
-                                },
-                                lineHeight: 12,
-                                backgroundColor: 'rgb(7, 28, 56)',
-                                borderWidth: '1',
-                                padding: [3, 2, 2, 9],
-                                color: '#fff',
-                                fontSize: 14,
-                                fontWeight: '400',
-                            },
-                            emphasis: {
-                                show: true,
-                                textStyle: {
-                                    color: '#fff',
-                                }
-                            },
-                        },
-                        showEffectOn: 'render',
-                        rippleEffect: {
-                            brushType: 'stroke'
-                        },
-                        hoverAnimation: true,
-                        data: arr
-                    }],
-            })
-            window.addEventListener("resize", function () {
-                myChart.resize()
-            })
-        }
     }
+  },
+  computed: {},
+  components: {ScaleBox, date},
+  mounted() {
+    this.doSearch();
+    this.$nextTick(() => {
+      this.getList()
+    })
+  },
+  created() {
+  },
+  methods: {
+    //页面初始
+    doSearch() {
+      this.regionalEnergy();
+      this.energyUse();
+      this.industryUse();
+      const date = new Date().toLocaleString()
+      console.log(date);
+    },
+    // 区域单位产值能耗 左下柱状
+    regionalEnergy() {
+      var chartDom = document.getElementById('chart_1');
+      var myChart = echarts.init(chartDom);
+      var option = {
+        color: ["#17A8FF"],
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
+        // 图表的大小
+        grid: {
+          left: '0%',
+          right: '0%',
+          top: '0%',
+          bottom: '0%',
+          containLabel: true
+        },
+        legend: {
+          show: false
+        },
+        // 距离外面尺寸
+        grid: {
+          top: '3%',
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'value',
+          boundaryGap: [0, 0.01],
+          // 修改刻度标签 相关样式
+          axisLabel: {
+            color: "rgba(255,255,255,.6)",
+            fontSize: "12",
+          },
+          // x 轴分隔线样式
+          splitLine: {
+            lineStyle: {
+              type: 'dashed',
+              color: "rgba(63, 218, 242,0.2)"
+            }
+          },
+          // 设置轴线
+          axisLine: {
+            lineStyle: {
+              color: "rgba(63,218,242,0.5)",
+              width: 1,
+              type: "solid"
+            }
+          },
+          // 不显示刻度
+          axisTick: {
+            show: false
+          },
+          // 刻度范围间隔
+          min: 0.50,
+          max: 1.0,
+        },
+        yAxis: {
+          type: 'category',//横向
+          data: ['菏泽市', '临沂市', '聊城市', '德州市', '滨州市', '日照市', '威海市', '泰安市', '济宁市', '潍坊市', '烟台市', '东营市', '枣庄市', '淄博市', '青岛市', '济南市'],
+          // 修改刻度标签 相关样式
+          axisLabel: {
+            color: "rgba(255,255,255,.6)",
+            fontSize: "16"
+          },
+          // 设置轴线
+          axisLine: {
+            lineStyle: {
+              color: "rgba(63,218,242,0.5)",
+              width: 1,
+              type: "solid"
+            }
+          },
+          // 不显示刻度
+          axisTick: {
+            show: false
+          },
+        },
+        series: [
+          {
+            type: 'bar',
+            barWidth: 10,//柱图宽度
+            data: [0.838, 0.86, 0.83, 0.84, 0.82, 0.76, 0.78, 0.91, 0.85, 0.92, 0.85, 0.82, 0.92, 0.78, 0.80, 0.79],
+            // 渐变色
+            itemStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0, 0, 1, 0,
+                  [
+                    {offset: 0, color: '#18FDFE'},
+                    {offset: 1, color: '#17A8FF'}
+                  ]
+                ),
+                label: {
+                  show: true,		//开启显示
+                  position: 'right',	//在右方显示
+                  textStyle: {//数值样式
+                    color: '#75D1FF'
+                  }
+                },
+              },
+            }
+
+          },
+        ],
+      };
+      option && myChart.setOption(option);
+
+    },
+    // 能源消耗结构 右上饼图
+    energyUse() {
+      var chartDom = document.getElementById('chart_2');
+      var myChart = echarts.init(chartDom);
+      var option = {
+        color: [
+          "#0263FF",
+          "#00BAFF",
+          "#FFFFFF",
+          "#6E56D2",
+          "#9AD119",
+          "#49B09F",
+        ],
+        tooltip: {
+          trigger: 'item'
+        },
+        legend: {
+          //图例垂直排列
+          orient: 'vertical',
+          bottom: '30%',
+          left: '60%',
+          // 小图标的宽度和高度
+          itemWidth: 10,
+          itemHeight: 10,
+          // 图例圆形
+          icon: 'circle',
+          symbolKeepAspect: false,
+          data: ["电力", "煤品", "热量", "天然气", "油品", "其他"],
+          // 修改图例组件的文字为 12px
+          textStyle: {
+            color: "rgba(255,255,255,.5)",
+            fontSize: "16",
+          },
+          formatter: function (name) {
+            let data = option.series[0].data
+            // console.log(data, 'data')
+            let total = 0
+            let tarValue
+            for (let i = 0; i < data.length; i++) {
+              total += data[i].value
+              if (data[i].name == name) {
+                tarValue = data[i].value
+              }
+            }
+            //计算出百分比
+            let p = ((tarValue / total) * 100).toFixed(2) + '%'
+            return `${name}  ${p}`
+            //name是名称，v是数值
+          },
+        },
+        series: [
+          {
+            name: '能源消费',
+            type: 'pie',
+            // 设置饼形图在容器中的位置
+            center: ["30%", "50%"],
+            //  修改内圆半径和外圆半径为  百分比是相对于容器宽度来说的
+            radius: ["40%", "70%"],
+            avoidLabelOverlap: false,
+            label: {
+              // 不显示标签文字
+              show: false,
+              position: 'center',
+              // formatter: '{d}%',//模板变量有 {a}、{b}、{c}、{d}，分别表示系列名，数据名，数据值，百分比。{d}数据会根据value值计算百分比
+            },
+            labelLine: {
+              // 不显示连接线
+              show: false
+            },
+            data: [
+              {value: 27.16, name: "电力"},
+              {value: 81.17, name: "煤品"},
+              {value: 0.33, name: "热量"},
+              {value: 0.26, name: "天然气"},
+              {value: 16.48, name: "油品"},
+              {value: 0, name: "其他"},
+            ],
+          }
+        ]
+      };
+
+      option && myChart.setOption(option);
+    },
+    // 行业单位产值能耗 右下柱状
+    industryUse() {
+      var chartDom = document.getElementById('chart_3');
+      var myChart = echarts.init(chartDom);
+      var option = {
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: { // 坐标轴指示器，坐标轴触发有效
+            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+          },
+          // 鼠标移入条形图提示层文字的自定义
+          formatter(params) {
+            let relVal = params[0].name
+            for (var i = 0, l = params.length; i < l; i++) {
+              // console.log(params)
+              let circle = `<i class="iconfont icon-yuan" style="margin-right:4px;font-size:14px;color:${params[i].color}"></i>`
+              params[i].value = Math.abs(params[i].value)
+              relVal += '<br/>' + circle + params[i].seriesName + ' : ' + params[i].value + 'ms'
+            }
+            return relVal
+          }
+        },
+        legend: {
+          data: ['本月', '上月'],
+          top: '3%',
+          left: "40%",
+          textStyle: {
+            color: "rgba(255,255,255,.5)",
+            fontSize: "16",
+          },
+        },
+        grid: {
+          left: '-10%',
+          right: '0%',
+          bottom: '0%',
+          containLabel: true
+        },
+        xAxis: [
+          {
+            type: 'value',
+            // 设置x轴线的属性
+            splitLine: {
+              show: false//不显示分隔线
+            },
+            axisLine: {
+              show: false, //不显示坐标轴线,
+              lineStyle: {
+                color: '#888'
+              }
+            },
+            axisLabel: {
+              show: false, //不显示坐标轴上的文字
+              formatter(value) {
+                return Math.abs(value) // 负数取绝对值变正数（x轴本来数据是正负才能分开两边展示的，所以我们只是把负数处理为正数在视觉上显示）
+              }
+            }
+          }
+        ],
+        yAxis: [
+          {
+            type: 'category',
+            axisTick: {show: false},
+            // 修改刻度标签 相关样式
+            axisLabel: {
+              // interval: 0,//横轴信息全部显示
+              margin: 65,//刻度标签与轴线之间的距离。
+              color: "rgba(255,255,255,.6)",
+              fontSize: "16",
+              textStyle: {
+                align: 'left'
+              }
+            },
+            // 设置y轴线的属性
+            axisLine: {
+              show: false, //不显示坐标轴线
+            },
+            data: ['铸造', '轮胎', '煤加工', '煤电', '钢铁', '炼化', '焦化', '石灰', '水泥', '化学原料', '房复', '陶瓷', '玻璃', '铁合金', '有色', '防水建材', '肥料'] // y轴下到上
+          }
+        ],
+        color: ['#98d87d', '#49a9ee'],
+        series: [
+          {
+            name: '上月',
+            type: 'bar',
+            stack: '总量',
+            barMaxWidth: '22',
+            barWidth: '45%',//柱图宽度
+            // barGap: '-100%',
+            // barCategoryGap: '10',
+            label: {
+              normal: {
+                show: true,
+                color: '#444',
+                align: 'left',
+              }
+            },
+            // 渐变色
+            itemStyle: {
+              barBorderRadius: 5,
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0, 0, 1, 0,
+                  [
+                    {offset: 0, color: '#38F5CE'},
+                    {offset: 1, color: '#44EA84'}
+                  ]
+                ),
+                label: {
+                  show: true,		//开启显示
+                  position: 'right',	//在右方显示
+                  textStyle: {//数值样式
+                    color: 'rgba(56, 244, 205,.5)'
+                  }
+                },
+                //柱形图圆角，初始化效果
+                barBorderRadius: 10,
+              }
+            },
+            data: [
+              103.85, 93.85, 86.26, 76.26, 66.26, 54.21, 50.26, 46.78, 43.45, 36.26, 35.26, 34.26, 32.26, 25.23, 15.26, 15.26, 8.26
+            ]
+          },
+          {
+            name: '本月',
+            type: 'bar',
+            stack: '总量', // 数据堆叠，同个类目轴上系列配置相同的stack值可以堆叠放置。
+            barMaxWidth: '22',
+            barWidth: '45%',//柱图宽度
+            // 渐变色
+            itemStyle: {
+              barBorderRadius: 5,
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0, 0, 1, 0,
+                  [
+                    {offset: 0, color: '#00BAFF'},
+                    {offset: 1, color: '#0263FF'}
+                  ]
+                ),
+                label: {
+                  show: true,		//开启显示
+                  position: 'left',	//在右方显示
+                  textStyle: {//数值样式
+                    color: 'rgba(0, 186, 255,.5)'
+                  }
+                },
+                //柱形图圆角，初始化效果
+                barBorderRadius: 10,
+              }
+            },
+            label: {
+              normal: {
+                show: true,
+                color: '#444',
+                align: 'right',
+                formatter(params) {
+                  let htmlStr = Math.abs(params.value)
+                  return htmlStr
+                }
+              }
+            },
+            data: [-103.85, -93.85, -86.26, -76.26, -66.26, -54.21, -50.26, -46.78, -43.45, -36.26, -35.26, -34.26, -32.26, -25.23, -15.26, -15.26, -8.26]
+          }
+        ]
+      }
+      option && myChart.setOption(option);
+    },
+    // 地图
+    getList() {
+      var data = [
+        {
+          "name": "历下区", "value": "88", "id": "2"
+
+        },
+        {
+          "name": "市中区", "value": "69.9", "id": "3"
+        },
+        {
+          "name": "槐荫区", "value": "79", "id": "4"
+        },
+        {
+          "name": "天桥区", "value": "49.9", "id": "1"
+        },
+        {
+          "name": "历城区", "value": "39.9", "id": "5"
+        },
+        {
+          "name": "长清区", "value": "19.9", "id": "6"
+        },
+        {
+          "name": "章丘区", "value": "29.9", "id": "7"
+        },
+
+        {
+          "name": "济阳区", "value": "29.9", "id": "7"
+        },
+        {
+          "name": "莱芜区", "value": "29.9", "id": "7"
+        },
+        {
+          "name": "钢城区", "value": "29.9", "id": "7"
+        },
+        {
+          "name": "平阴县", "value": "29.9", "id": "7"
+        },
+        {
+          "name": "商河县", "value": "29.9", "id": "7"
+        },
+      ]
+      let arr = []
+      for (let i = 0; i < data.length; i++) {
+
+        let json = {
+          "name": data[i].name, "value": data[i].value, "id": data[i].id, "label": {
+            normal: {
+              show: true,
+              formatter: function (params) {
+                return params.name + "\n" + params.value;    //地图上展示文字 + 数值
+              },
+            }
+          }
+        }
+        arr.push(json)
+      }
+      var myChart = this.$echarts.init(document.getElementById('mapDiv'))
+      myChart.on('click', function (params) {
+      })
+      myChart.setOption({
+        title: {
+          text: ''
+        },
+        tooltip: {
+          trigger: 'item',
+          formatter: '{b}',
+          itemSize: '14px',
+          lineHeight: 12,
+          backgroundColor: 'rgb(7, 28, 56)',
+          borderWidth: '1',
+          padding: [3, 2, 2, 9],
+          color: '#fff',
+          fontSize: 14,
+          fontWeight: '400',
+        },
+        dataRange: {
+          x: 'left',
+          y: 'center',
+          top: '100',
+          splitList: [
+            {start: 81, end: 100, label: '', color: '#0449AE'},
+            {start: 71, end: 80, label: '', color: '#1D5BB6'},
+            {start: 51, end: 70, label: '', color: '#356BBA'},
+            {start: 41, end: 50, label: '', color: '#1D5BB6'},
+            {start: 31, end: 40, label: '', color: '#366DBE'},
+            {start: 21, end: 30, label: '', color: '#4F7EC5'},
+            {start: 0, end: 20, label: '', color: '#4671B0'},
+          ],
+          textStyle: {
+            color: '#3899FF' // 值域文字颜色
+          },
+          show: false,
+          selectedMode: false,
+          color: ['#E0022B', '#E09107', '#A3E00B']
+        },
+        series: [
+          {
+            name: '县域乡村振兴全景展示',
+            type: 'map',
+            map: '山东',
+            mapType: '山东',
+            mapLocation: {
+              x: 'left'
+            },
+            zoom: 1.2,
+            roam: true,
+            show: true,
+            itemStyle: {
+              normal: {
+                areaColor: "rgba(10,126,217, 0.8)",
+                borderColor: "#04B4F3",
+                type: 'dashed',
+                borderWidth: 2,
+                label: {show: true}
+              },
+              emphasis: {
+                areaColor: '#E85706',
+                borderWidth: 0
+              }
+            },
+            label: {
+              normal: {
+                show: true,
+                formatter: function (params) { //标签内容
+                  return params.name;
+                },
+                lineHeight: 12,
+                backgroundColor: 'rgb(7, 28, 56)',
+                borderWidth: '1',
+                padding: [3, 2, 2, 9],
+                color: '#fff',
+                fontSize: 14,
+                fontWeight: '400',
+              },
+              emphasis: {
+                show: true,
+                textStyle: {
+                  color: '#fff',
+                }
+              },
+            },
+            showEffectOn: 'render',
+            rippleEffect: {
+              brushType: 'stroke'
+            },
+            hoverAnimation: true,
+            data: arr
+          }],
+      })
+      window.addEventListener("resize", function () {
+        myChart.resize()
+      })
+    }
+  }
 }
 
 </script>
