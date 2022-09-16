@@ -141,15 +141,24 @@ import echarts from 'echarts'
 import ScaleBox from './scaleBox/index.vue'
 import date from './date.vue'
 import shandong from '../../mapList/shandong'
-
 import binzhou from '../../mapList/binzhou'
 import dongying from '../../mapList/dongying'
 import linyi from '../../mapList/linyi'
 import jinan from '../../mapList/jinan'
 import dezhou from '../../mapList/dezhou'
 import heze from '../../mapList/heze'
+import jining from '../../mapList/jining'
+import qingdao from '../../mapList/qingdao'
+import rizhao from '../../mapList/rizhao'
+import zaozhuang from '../../mapList/zaozhuang'
+import yantai from '../../mapList/yantai'
+import weifang from '../../mapList/weifang'
+import zibo from '../../mapList/zibo'
+import liaocheng from '../../mapList/liaocheng'
+import weihai from '../../mapList/weihai'
+import taian from '../../mapList/taian'
 
-echarts.registerMap('china',shandong)
+
 export default {
   name: 'index',
   data() {
@@ -627,6 +636,8 @@ export default {
         }
         arr.push(json)
       }
+
+      echarts.registerMap('china',taian)
       var myChart = this.$echarts.init(document.getElementById('mapDiv'))
       myChart.on('click', function (params) {
       })
